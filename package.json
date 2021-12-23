@@ -9,5 +9,9 @@
   "devDependencies": {
     "typescript": "^4.4.4",
     "vite": "^2.7.2"
+  },
+  "dependencies": {
+    "gsap": "^3.9.0",
+    "sass": "^1.45.0"
   }
 }
