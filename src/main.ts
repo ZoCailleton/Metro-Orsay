@@ -47,11 +47,10 @@ scene_1_to_2
 document.querySelector<HTMLInputElement>('.slide-1')?.addEventListener('click', () => {
   scene_1_to_2.play()
   CURRENT_SCENE = 2
+  setTimeout(() => { slideSubtitle(0) }, 2000)
 })
 
 /* Scène 1 */
-
-slideSubtitle(0)
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 slide1?.setAttribute('style', 'margin-top: -100px')
