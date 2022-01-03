@@ -3,7 +3,7 @@ import { SlideSubtitle } from './voix'
 
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { getShift } from './mouse'
+import { MouseParalax } from './mouse'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,9 +13,9 @@ const getAverage = (first: number, second: number) => {
 
 const cursor = document.querySelector<HTMLInputElement>('.cursor')
 window.addEventListener('mousemove', (e: MouseEvent) => {
-    let _x = e.clientX - cursor!.offsetWidth / 2
-    let _y = e.clientY - cursor!.offsetHeight / 2
-    cursor?.setAttribute('style', 'transform: translate(' + _x + 'px, ' + _y + 'px)')
+  let _x = e.clientX - cursor!.offsetWidth / 2
+  let _y = e.clientY - cursor!.offsetHeight / 2
+  cursor?.setAttribute('style', 'transform: translate(' + _x + 'px, ' + _y + 'px)')
 })
 
 let CURRENT_SCENE: number = 0
@@ -24,6 +24,12 @@ let CURRENT_SCENE: number = 0
 const subtitles0: SlideSubtitle = new SlideSubtitle(0)
 const subtitles1: SlideSubtitle = new SlideSubtitle(1)
 const subtitles2: SlideSubtitle = new SlideSubtitle(2)
+
+const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
+const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
+
+const scene1Paralax = new MouseParalax(1, slide1!)
+const scene2Paralax = new MouseParalax(2, slide2!)
 
 
 
@@ -130,7 +136,6 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 
 /* Scène 1 */
 
-const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 slide1?.setAttribute('style', 'margin-top: -100px')
 
 const scene_1_to_2 = gsap.timeline({ paused: true })
@@ -176,24 +181,23 @@ scene_2_to_3
 
 
 /* Parallax sur toutes les sections */
-  
-document.addEventListener('mousemove', (e: MouseEvent) => {
 
-  let _w = window.innerWidth
-  let _h = window.innerHeight
-  let _mouseX = e.clientX
-  let _mouseY = e.clientY
 
-  if (CURRENT_SCENE === 1 && intro.totalProgress() === 1) {
 
-    for (let layer of slide1!.querySelectorAll('.layer img')) {
-      let _coefBase = (layer as HTMLImageElement).dataset.coef || ''
-      let _coef: number = +_coefBase
-      layer?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, _coef * 0.01) + '%,' + getShift(_mouseY, _h, _coef * 0.01) + '%)')
-    }
+function parallax() {
 
+  if (CURRENT_SCENE === 1 && intro.totalProgress() === 1 && scene1Paralax.getInit() === false) {
+    scene1Paralax.init()
+  } else if(CURRENT_SCENE === 2 && scene_1_to_2.totalProgress() === 2 && scene2Paralax.getInit() === false) {
+    scene2Paralax.init()
   }
 
-})
+  requestAnimationFrame(parallax)
+}
+parallax()
+
+
+
+
 
 
