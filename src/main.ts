@@ -14,12 +14,12 @@ let CURRENT_SCENE: number = 0
 const intro = gsap.timeline({ paused: true })
 
 intro
-.to('.intro', {scale: 1.3, duration: 1, ease: Power2.easeInOut})
-.to('.intro .btn', {y: 50, opacity: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.intro .side:first-child', {rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.intro .side:last-child', {rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.slide-1', {width: '100vw', height: '100vh', marginTop: 0, borderRadius: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.nav--bottom', {bottom: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
+  .to('.intro', { scale: 1.3, duration: 1, ease: Power2.easeInOut })
+  .to('.intro .btn', { y: 50, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-1', { width: '100vw', height: '100vh', marginTop: 0, borderRadius: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 /*
 
