@@ -21,6 +21,8 @@ intro
 .to('.slide-1', {width: '100vw', height: '100vh', marginTop: 0, borderRadius: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.nav--bottom', {bottom: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
 
+/*
+
 .to('.slide-1 .layer:nth-child(8)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut})
 .to('.slide-1 .layer:nth-child(9)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut})
 .to('.slide-1 .layer:nth-child(6)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut})
@@ -28,6 +30,8 @@ intro
 .to('.slide-1 .layer:nth-child(3)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut}, '-=0.5')
 .to('.slide-1 .layer:nth-child(4)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut}, '-=0.5')
 .to('.slide-1 .layer:nth-child(5)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut}, '-=0.5')
+
+*/
 
 
 
@@ -54,7 +58,7 @@ slide1?.addEventListener('mousemove', (e: MouseEvent) => {
     
     let i = 0;
 
-    for(let layer of document.querySelectorAll('.slide-1 .layer')) {
+    for(let layer of document.querySelectorAll('.slide-1 .layer img')) {
       layer?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, i * 0.01) + '%,' + getShift(_mouseY, _h, i * 0.01) + '%)')
       i++      
     }
