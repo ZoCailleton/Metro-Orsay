@@ -10,7 +10,6 @@ function getShift(mouse: number, window: number, coef: number) {
 }
 
 export class MouseParalax {
-	scene: number;
 	isInit: boolean;
 	isStart: boolean;
 	containerEl: HTMLInputElement;
@@ -18,8 +17,7 @@ export class MouseParalax {
 	_h: number;
 	_mouseX: number;
 	_mouseY: number;
-	constructor(scene: number, containerEl: HTMLInputElement) {
-		this.scene = scene
+	constructor(containerEl: HTMLInputElement) {
 		this.isStart = false
 		this.containerEl = containerEl
 		this._w = window.innerWidth
