@@ -8,14 +8,52 @@
   </head>
   <body>
     <div id="app">
+
+      <nav class=""></nav>
+
       <div class="story--wrapper">
-        <section id="slide-1" class="story--slide">
-          <img class="layer" src="assets/slide1/layer-1.svg" alt="" />
-          <img class="layer" src="assets/slide1/layer-2.svg" alt="" />
-          <img class="layer" src="assets/slide1/layer-3.png" alt="" />
-          <img class="layer" src="assets/slide1/layer-4.png" alt="" />
-        </section>
-        <section id="slide-2" class="story--slide"></section>
+
+        <div class="wrapper-intro">
+
+          <section id="intro" class="story--slide intro">
+
+            <div class="flex">
+              <div class="side"></div>
+              <div class="shadow-elt"></div>
+              <div class="side"></div>
+            </div>
+
+            <h1>L'odyssée secrète des arches du métro</h1>
+            
+            <div class="flex">
+              <div class="aile"></div>
+              <div class="btn">Start the experience</div>
+              <div class="aile"></div>
+            </div>
+
+          </section>
+
+          <section id="slide-1" class="story--slide slide-1">
+
+            <figure class="layer">
+              <img src="assets/slide1/layer-1.svg" alt="" />
+            </figure>
+            <figure class="layer">
+              <img src="assets/slide1/layer-2.svg" alt="" />
+            </figure>
+            <figure class="layer">
+              <img src="assets/slide1/layer-3.png" alt="" />
+            </figure>
+            <figure class="layer">
+              <img src="assets/slide1/layer-4.png" alt="" />
+            </figure>
+          
+          </section>
+
+        </div>
+        
+        <nav class="nav--timeline"></nav>
+
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
