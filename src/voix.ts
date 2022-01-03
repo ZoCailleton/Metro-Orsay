@@ -3,13 +3,13 @@ import text from './text.json'
 export function slideSubtitle(slideStep: number) {
   let voice = text[slideStep]
 
-  const containerSubtitle = document.createElement('div')
-  containerSubtitle.className = 'subtitle--container'
-  document.getElementsByTagName('body')[0].appendChild(containerSubtitle);
+  const containerSubtitle = document.querySelector<HTMLInputElement>('.subtitles')
 
   const textSubtitle = document.createElement('p')
   textSubtitle.className = 'subtitle--text'
-  containerSubtitle.appendChild(textSubtitle)
+  if (containerSubtitle) {
+    containerSubtitle.appendChild(textSubtitle)
+  }
 
   function getNewSentence(step: number) {
     textSubtitle.innerHTML = voice[step].text
@@ -18,7 +18,7 @@ export function slideSubtitle(slideStep: number) {
         step++
         getNewSentence(step)
       } else {
-        textSubtitle.innerHTML = 'FIN'
+        textSubtitle.innerHTML = ''
       }
     }, voice[step].duration * 1000);
   }

@@ -38,11 +38,11 @@ intro
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
   intro.play()
   CURRENT_SCENE = 1
+  setTimeout(() => { slideSubtitle(0) }, 2000)
 })
 
 /* Scène 1 */
 
-slideSubtitle(0)
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 slide1?.setAttribute('style', 'margin-top: -100px')
