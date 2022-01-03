@@ -3,6 +3,7 @@ import { slideSubtitle } from './voix'
 
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { getShift } from './mouse'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -47,9 +48,17 @@ const s1l4 = document.querySelector<HTMLInputElement>('.slide-1 .layer:nth-child
 
 slide1?.addEventListener('mousemove', (e: MouseEvent) => {
 
-  if(CURRENT_SCENE === 1 && intro.totalProgress() === 1) {
-  
-    
+  if (CURRENT_SCENE === 1 && intro.totalProgress() === 1) {
+
+    let _w = window.innerWidth
+    let _h = window.innerHeight
+    let _mouseX = e.clientX
+    let _mouseY = e.clientY
+
+    s1l1?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, 0.01) + '%,' + getShift(_mouseY, _h, 0.01) + '%)')
+    s1l2?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, 0.015) + '%,' + getShift(_mouseY, _h, 0.015) + '%)')
+    s1l3?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, 0.02) + '%,' + getShift(_mouseY, _h, 0.02) + '%)')
+    s1l4?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, 0.03) + '%,' + getShift(_mouseY, _h, 0.025) + '%)')
 
   }
 
