@@ -7,6 +7,13 @@ import { getShift } from './mouse'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const cursor = document.querySelector<HTMLInputElement>('.cursor')
+document.addEventListener('mousemove', e => {
+  let _mouseX = e.clientX
+  let _mouseY = e.clientY
+  cursor?.setAttribute('style', 'transform: translate(' + _mouseX + 'px, ' + _mouseY + 'px)')
+}) 
+
 let CURRENT_SCENE: number = 0
 
 /* Intro */
@@ -19,10 +26,16 @@ intro
   .to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-1', { width: '100vw', height: '100vh', marginTop: 0, borderRadius: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1');
 
-/*
+document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
+  intro.play()
+  CURRENT_SCENE = 1
+})
 
+const scene_1_to_2 = gsap.timeline({ paused: true })
+
+scene_1_to_2
 .to('.slide-1 .layer:nth-child(8)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut})
 .to('.slide-1 .layer:nth-child(9)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut})
 .to('.slide-1 .layer:nth-child(6)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut})
@@ -31,13 +44,9 @@ intro
 .to('.slide-1 .layer:nth-child(4)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut}, '-=0.5')
 .to('.slide-1 .layer:nth-child(5)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut}, '-=0.5')
 
-*/
-
-
-
-document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
-  intro.play()
-  CURRENT_SCENE = 1
+document.querySelector<HTMLInputElement>('.slide-1')?.addEventListener('click', () => {
+  scene_1_to_2.play()
+  CURRENT_SCENE = 2
 })
 
 /* Scène 1 */
@@ -56,11 +65,10 @@ slide1?.addEventListener('mousemove', (e: MouseEvent) => {
     let _mouseX = e.clientX
     let _mouseY = e.clientY
 
-    let i = 0;
-
     for (let layer of document.querySelectorAll('.slide-1 .layer img')) {
-      layer?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, i * 0.01) + '%,' + getShift(_mouseY, _h, i * 0.01) + '%)')
-      i++
+      let _coefBase = (layer as HTMLImageElement).dataset.coef || ''
+      let _coef: number = +_coefBase
+      layer?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, _coef * 0.01) + '%,' + getShift(_mouseY, _h, _coef * 0.01) + '%)')
     }
 
   }
