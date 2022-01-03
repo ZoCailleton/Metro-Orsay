@@ -55,12 +55,12 @@ slide1?.addEventListener('mousemove', (e: MouseEvent) => {
     let _h = window.innerHeight
     let _mouseX = e.clientX
     let _mouseY = e.clientY
-    
+
     let i = 0;
 
-    for(let layer of document.querySelectorAll('.slide-1 .layer img')) {
+    for (let layer of document.querySelectorAll('.slide-1 .layer img')) {
       layer?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, i * 0.01) + '%,' + getShift(_mouseY, _h, i * 0.01) + '%)')
-      i++      
+      i++
     }
 
   }
