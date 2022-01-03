@@ -35,7 +35,14 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
   setTimeout(() => { slideSubtitle(0) }, 2000)
 })
 
+
+
+
+
 /* Scène 1 */
+
+const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
+slide1?.setAttribute('style', 'margin-top: -100px')
 
 const scene_1_to_2 = gsap.timeline({ paused: true })
 
@@ -65,6 +72,15 @@ document.querySelector<HTMLInputElement>('.slide-1')?.addEventListener('click', 
   }
 })
 
+
+
+
+
+
+/* Scène 2 */
+
+const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
+
 const scene_2_to_3 = gsap.timeline({ paused: true })
 
 scene_2_to_3
@@ -73,19 +89,31 @@ scene_2_to_3
 .to('.slide-1', {scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.slide-2', {scale: 1.1, duration: 1, ease: Power2.easeInOut}, '-=1')
 
-const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
-slide1?.setAttribute('style', 'margin-top: -100px')
 
-slide1?.addEventListener('mousemove', (e: MouseEvent) => {
+
+
+
+
+/* Parallax sur toutes les sections */
+  
+document.addEventListener('mousemove', (e: MouseEvent) => {
+
+  let _w = window.innerWidth
+  let _h = window.innerHeight
+  let _mouseX = e.clientX
+  let _mouseY = e.clientY
 
   if (CURRENT_SCENE === 1 && intro.totalProgress() === 1) {
 
-    let _w = window.innerWidth
-    let _h = window.innerHeight
-    let _mouseX = e.clientX
-    let _mouseY = e.clientY
+    for (let layer of slide1!.querySelectorAll('.layer img')) {
+      let _coefBase = (layer as HTMLImageElement).dataset.coef || ''
+      let _coef: number = +_coefBase
+      layer?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, _coef * 0.01) + '%,' + getShift(_mouseY, _h, _coef * 0.01) + '%)')
+    }
 
-    for (let layer of document.querySelectorAll('.slide-1 .layer img')) {
+  } else if(CURRENT_SCENE === 2 && scene_1_to_2.totalProgress() === 1) {
+
+    for (let layer of slide2!.querySelectorAll('.layer img')) {
       let _coefBase = (layer as HTMLImageElement).dataset.coef || ''
       let _coef: number = +_coefBase
       layer?.setAttribute('style', 'transform: translate(' + getShift(_mouseX, _w, _coef * 0.01) + '%,' + getShift(_mouseY, _h, _coef * 0.01) + '%)')
@@ -94,3 +122,5 @@ slide1?.addEventListener('mousemove', (e: MouseEvent) => {
   }
 
 })
+
+
