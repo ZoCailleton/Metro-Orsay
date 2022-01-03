@@ -1,16 +1,20 @@
 import text from './text.json'
 
 export function slideSubtitle(slideStep: number) {
-    let voix = text[slideStep]
+  let voice = text[slideStep]
 
-    const containerSubtitle = document.createElement('div')
-    containerSubtitle.className = 'containerSubtitle'
-    document.getElementsByTagName('body')[0].appendChild(containerSubtitle);
+  const containerSubtitle = document.createElement('div')
+  containerSubtitle.className = 'subtitle--container'
+  document.getElementsByTagName('body')[0].appendChild(containerSubtitle);
 
-    const textSubtitle = document.createElement('p')
-    textSubtitle.className = 'TextSubtitle'
-    containerSubtitle.appendChild(textSubtitle)
+  const textSubtitle = document.createElement('p')
+  textSubtitle.className = 'subtitle--text'
+  containerSubtitle.appendChild(textSubtitle)
 
-    textSubtitle.innerHTML = voix[1].text
-    console.log(voix, containerSubtitle)
+  voice.forEach(element => {
+
+  });
+
+  textSubtitle.innerHTML = voice[1].text
+  console.log(voice, containerSubtitle)
 }
