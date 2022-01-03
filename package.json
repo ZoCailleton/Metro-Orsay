@@ -12,6 +12,7 @@
     "vite": "^2.7.2"
   },
   "dependencies": {
+    "@barba/core": "^2.9.7",
     "gsap": "^3.9.0",
     "sass": "^1.45.0"
   }

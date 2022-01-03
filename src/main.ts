@@ -18,7 +18,15 @@ intro
 .to('.intro .side:first-child', {rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.intro .side:last-child', {rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.slide-1', {width: '100vw', height: '100vh', marginTop: 0, borderRadius: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.nav--timeline', {bottom: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
+.to('.nav--bottom', {bottom: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
+
+.to('.slide-1 .layer:nth-child(8)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut})
+.to('.slide-1 .layer:nth-child(9)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut})
+.to('.slide-1 .layer:nth-child(6)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut})
+.to('.slide-1 .layer:nth-child(2)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut})
+.to('.slide-1 .layer:nth-child(3)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut}, '-=0.5')
+.to('.slide-1 .layer:nth-child(4)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut}, '-=0.5')
+.to('.slide-1 .layer:nth-child(5)', {opacity: 0, duration: 0.5, ease: Power2.easeInOut}, '-=0.5')
 
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
   intro.play()
@@ -41,14 +49,7 @@ slide1?.addEventListener('mousemove', (e: MouseEvent) => {
 
   if(CURRENT_SCENE === 1 && intro.totalProgress() === 1) {
   
-    let _w = window.innerWidth
-    let _h = window.innerHeight
-    let _mouseX = e.clientX
-    let _mouseY = e.clientY
-    console.log((100 * _mouseX / _w));
     
-
-    s1l4?.setAttribute('style', 'transform: translate(' + 100 * _mouseX / _w + '%, 0px)')
 
   }
 
