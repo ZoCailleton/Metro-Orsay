@@ -11,10 +11,17 @@ export function slideSubtitle(slideStep: number) {
   textSubtitle.className = 'subtitle--text'
   containerSubtitle.appendChild(textSubtitle)
 
-  voice.forEach(element => {
+  function getNewSentence(step: number) {
+    textSubtitle.innerHTML = voice[step].text
+    setTimeout(function () {
+      if (voice[step + 1]) {
+        step++
+        getNewSentence(step)
+      } else {
+        textSubtitle.innerHTML = 'FIN'
+      }
+    }, voice[step].duration * 1000);
+  }
 
-  });
-
-  textSubtitle.innerHTML = voice[1].text
-  console.log(voice, containerSubtitle)
+  getNewSentence(0)
 }

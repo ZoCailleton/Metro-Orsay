@@ -28,7 +28,7 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 
 /* Scène 1 */
 
-slideSubtitle(1)
+slideSubtitle(0)
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 slide1?.setAttribute('style', 'margin-top: -100px')
