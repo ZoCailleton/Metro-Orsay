@@ -1,105 +1,107 @@
 [
   [
     {
-      "text": "Tout les franciliens connaissent",
-      "duration": 2
+      "text": "Tous les franciliens connaissent",
+      "duration": 0.5
     },
     {
       "text": "les arches emblématiques du métro parisien.",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "De leur vrai nom édicules Guimard,",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "elles se caractérisent par des formes organiques atypiques,",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "qui se démarquent dans le paysage de la capitale.",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "Pourtant, ces arches cachent une histoire peu connue du grand public.",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "Retour au début du 20e siècle...",
-      "duration": 2
+      "duration": 0.5
     }
   ],
   [
     {
       "text": "C’est en 1900 que les premières arches voient le jour.",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "Initialement très critiquées, voir même détruites pour certaines,",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "elles finissent par gagner le cœur des parisiens.",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "Depuis 1969, un statut empêche d’ailleurs de les détruire.",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "Actuellement, elles sont considérées par certains",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "comme des chefsd'œuvre de l'art nouveau,",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "et elles ont su traverser le temps.",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "En effet, leur architecte les a imaginées",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "et construites il y a plus de 100 ans",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "au début du 20e siècle.",
-      "duration": 2
+      "duration": 0.5
+    },
+    {
+      "text": "Cet architecte n’est autre qu’Hector Guimard.",
+      "duration": 0.5
+    },
+    {
+      "text": "Né en 1867, il est prisé pour ses villas et ses immeubles.",
+      "duration": 0.5
     }
   ],
   [
     {
-      "text": "Cet architecte n’est autre qu’Hector Guimard.",
-      "duration": 2
-    },
-    {
-      "text": "Né en 1867, il est prisé pour ses villas et ses immeubles.",
-      "duration": 2
-    },
-    {
       "text": "En 1899, la ville de Paris",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "en retard sur les grandes capitales européennes",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "souhaite développer son métropolitain",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "en vue de l’exposition universelle.",
-      "duration": 2
+      "duration": 0.5
     },
     {
       "text": "Elle organise alors un concours d’édicules pour décorer les bouches du métro.",
-      "duration": 2
-    },
+      "duration": 0.5
+    }
+  ],
+  [
     {
       "text": "Mais Guimard, sans même participer au concours",
       "duration": 2

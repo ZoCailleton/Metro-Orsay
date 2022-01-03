@@ -1,11 +1,13 @@
 import text from './text.json'
 
 export class SlideSubtitle {
+
   voice: { text: string, duration: number }[];
   finish: boolean;
   numSentences: number;
   duration: number;
   step: number;
+  
   constructor(slideStep: number) {
     this.voice = text[slideStep];
     this.finish = false;
