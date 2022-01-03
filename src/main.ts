@@ -1,5 +1,5 @@
 import './style.scss'
-import { slideSubtitle } from './voix'
+import { SlideSubtitle } from './voix'
 
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -38,7 +38,11 @@ intro
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
   intro.play()
   CURRENT_SCENE = 1
-  setTimeout(() => { slideSubtitle(0) }, 2000)
+  const subtitles1 = new SlideSubtitle(0)
+  setTimeout(() => {
+    subtitles1.init()
+    subtitles1.getDuration()
+  }, 2000)
 })
 
 /* Scène 1 */
@@ -66,3 +70,5 @@ slide1?.addEventListener('mousemove', (e: MouseEvent) => {
   }
 
 })
+
+
