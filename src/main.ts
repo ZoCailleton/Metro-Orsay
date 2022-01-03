@@ -1,4 +1,5 @@
 import './style.scss'
+import { slideSubtitle } from './voix'
 
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -26,6 +27,8 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 
 /* Scène 1 */
 
+slideSubtitle(1)
+
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 slide1?.setAttribute('style', 'margin-top: -100px')
 
@@ -50,10 +53,3 @@ slide1?.addEventListener('mousemove', (e: MouseEvent) => {
   }
 
 })
-
-const loop = () => {
-
-  requestAnimationFrame(loop)
-}
-
-requestAnimationFrame(loop)
