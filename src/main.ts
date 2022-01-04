@@ -33,6 +33,7 @@ const scene1Voix = new Audio('/assets/audio/slide2.mp3')
 const scene2Voix = new Audio('/assets/audio/slide3.mp3')
 const scene3Voix = new Audio('/assets/audio/slide4.mp3')
 const scene4Voix = new Audio('/assets/audio/slide5.mp3')
+const scene5Voix = new Audio('/assets/audio/slide6.mp3')
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
@@ -45,8 +46,6 @@ const scene2Parallax = new MouseParallax(slide2!)
 const scene3Parallax = new MouseParallax(slide3!)
 const scene4Parallax = new MouseParallax(slide4!)
 const scene5Parallax = new MouseParallax(slide5!)
-
-
 
 
 
