@@ -42,7 +42,8 @@ const scene2Voix = new Audio('/assets/audio/slide3.mp3')
 const scene3Voix = new Audio('/assets/audio/slide4.mp3')
 const scene4Voix = new Audio('/assets/audio/slide5.mp3')
 const scene5Voix = new Audio('/assets/audio/slide6.mp3')
-const scene6Voix = new Audio('/assets/audio/slide7.mp3')
+// pas encore de voix ici
+// const scene6Voix = new Audio('/assets/audio/slide7.mp3')
 const scene7Voix = new Audio('/assets/audio/slide8.mp3')
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
@@ -168,10 +169,10 @@ const checkSlide = () => {
       scene5Parallax.stop()
       scene_6_to_7.play()
       scene5Voix.stop()
-      scene6Voix.init()
+      // scene6Voix.init()
       CURRENT_SCENE = 7
       setTimeout(() => {
-        scene6Voix.start()
+        // scene6Voix.start()
         launchSubtitles(subtitles6)
       }, 1000)
     }
@@ -181,11 +182,11 @@ const checkSlide = () => {
     if (scene_6_to_7.totalProgress() === 1 && subtitles6.isFinish()) {
       scene6Parallax.stop()
       scene_7_to_8.play()
-      scene6Voix.stop()
-      scene6Voix.init()
+      // scene6Voix.stop()
+      scene7Voix.init()
       CURRENT_SCENE = 8
       setTimeout(() => {
-        scene6Voix.start()
+        scene7Voix.start()
         launchSubtitles(subtitles7)
       }, 1000)
     }
