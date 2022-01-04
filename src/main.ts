@@ -84,9 +84,11 @@ const loadSlideImg = () => {
   }
 
   // On charge les images de la slide suivante
-  for(let layer of slides[CURRENT_SCENE+1].querySelectorAll('.layer img')) {
-    let _src = (layer as HTMLImageElement).dataset.src || ''
-    layer.setAttribute('src', _src)
+  if(slides[CURRENT_SCENE+1] != null) {
+    for(let layer of slides[CURRENT_SCENE+1].querySelectorAll('.layer img')) {
+      let _src = (layer as HTMLImageElement).dataset.src || ''
+      layer.setAttribute('src', _src)
+    }
   }
 
 }
