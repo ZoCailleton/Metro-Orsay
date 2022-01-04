@@ -4,6 +4,11 @@ import { MouseParallax } from './mouse'
 
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { LoaderTrigger } from './loader'
+
+const SiteLoader = new LoaderTrigger()
+SiteLoader.init()
+
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -235,7 +240,7 @@ const checkSlide = () => {
     }
 
   }
-  
+
   console.log(CURRENT_SCENE);
 
 }
@@ -290,14 +295,14 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 /* Scène 1 */
 
 scene_1_to_2
-.to('.slide-1 .layer img', { x: 0, y: 0, duration: 0.5, ease: Power2.easeInOut })
-.to('.slide-1 .layer:nth-child(8)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
-.to('.slide-1 .layer:nth-child(7)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
-.to('.slide-1 .layer:nth-child(6)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
-.to('.slide-1 .layer:nth-child(2)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
-.to('.slide-1 .layer:nth-child(3)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut }, '-=0.5')
-.to('.slide-1 .layer:nth-child(4)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut }, '-=0.5')
-.to('.slide-1 .layer:nth-child(5)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut }, '-=0.5')
+  .to('.slide-1 .layer img', { x: 0, y: 0, duration: 0.5, ease: Power2.easeInOut })
+  .to('.slide-1 .layer:nth-child(8)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
+  .to('.slide-1 .layer:nth-child(7)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
+  .to('.slide-1 .layer:nth-child(6)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
+  .to('.slide-1 .layer:nth-child(2)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
+  .to('.slide-1 .layer:nth-child(3)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut }, '-=0.5')
+  .to('.slide-1 .layer:nth-child(4)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut }, '-=0.5')
+  .to('.slide-1 .layer:nth-child(5)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut }, '-=0.5')
 //.to('.slide-1 .layer:nth-child(9)', {scale: 1.25, duration: 4, ease: Power0.easeNone})
 //.to('.slide-1 .layer:nth-child(1)', {scale: 1.1, duration: 4, ease: Power0.easeNone}, '-=4')
 
@@ -336,33 +341,33 @@ scene_4_to_5
 /* Scène 5 */
 
 scene_5_to_6
-.set('.slide-5 .layer:nth-child(1)', { y: 500 })
-.set('.slide-5 .layer:nth-child(2)', { y: 400 })
-.set('.slide-5 .layer:nth-child(3)', { y: 300 })
-.set('.slide-5 .layer:nth-child(4)', { y: 200 })
-.set('.slide-5 .layer:nth-child(5)', { y: 100 })
-.to('.wrapper-desk', {y: '-100vh', duration: 1, ease: Power2.easeInOut})
-.to('.wrapper-desk .slide-4 .layer:nth-child(1)', {y: 450, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(2)', {y: 400, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(2)', {y: 350, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(3)', {y: 300, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(4)', {y: 250, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(5)', {y: 200, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(6)', {y: 150, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(7)', {y: 100, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-5 .layer', {y: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
+  .set('.slide-5 .layer:nth-child(1)', { y: 500 })
+  .set('.slide-5 .layer:nth-child(2)', { y: 400 })
+  .set('.slide-5 .layer:nth-child(3)', { y: 300 })
+  .set('.slide-5 .layer:nth-child(4)', { y: 200 })
+  .set('.slide-5 .layer:nth-child(5)', { y: 100 })
+  .to('.wrapper-desk', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.wrapper-desk .slide-4 .layer:nth-child(1)', { y: 450, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(2)', { y: 350, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(4)', { y: 250, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(5)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(6)', { y: 150, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(7)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-5 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 scene_6_to_7
-.to('.wrapper-desk', {y: '-200vh', duration: 1, ease: Power2.easeInOut})
+  .to('.wrapper-desk', { y: '-200vh', duration: 1, ease: Power2.easeInOut })
 
 scene_7_to_8
-.to('.slide-6 .item:nth-child(1)', {y: '-100vh', duration: 1, ease: Power2.easeInOut})
-.to('.slide-6 .item:nth-child(2)', {y: '-100vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
-.to('.slide-6 .item:nth-child(3)', {y: '-100vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
-.to('.wrapper-desk', {y: '-300vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
+  .to('.slide-6 .item:nth-child(1)', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.slide-6 .item:nth-child(2)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+  .to('.slide-6 .item:nth-child(3)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+  .to('.wrapper-desk', { y: '-300vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
 
 scene_8_to_9
-.to('.wrapper-usine', {y: '-100vh', duration: 1, ease: Power2.easeInOut})
+  .to('.wrapper-usine', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
 
 /* Parallax sur toutes les sections */
 
@@ -383,8 +388,10 @@ const parallax = () => {
     scene4Parallax.stop()
     scene5Parallax.init()
   } else if (CURRENT_SCENE === 7 && scene_5_to_6.totalProgress() === 1 && scene6Parallax.getInit() === false) {
+    scene5Parallax.stop()
     scene6Parallax.init()
   } else if (CURRENT_SCENE === 8 && scene_6_to_7.totalProgress() === 1 && scene7Parallax.getInit() === false) {
+    scene6Parallax.stop()
     scene7Parallax.init()
   }
 
