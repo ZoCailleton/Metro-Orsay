@@ -1,4 +1,4 @@
-import text from './dev.json'
+import text from './text.json'
 
 export class SlideSubtitle {
 
@@ -68,7 +68,7 @@ export class SlideSubtitle {
   }
 }
 
-export class AudioVoix {
+export class Audio {
   url: string
   contexteAudio: any
   yodelBuffer: any
