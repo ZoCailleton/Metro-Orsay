@@ -49,7 +49,7 @@ const scene5Voix = new Audio('/assets/audio/slide6.mp3', false)
 // const scene6Voix = new Audio('/assets/audio/slide7.mp3', false)
 const scene7Voix = new Audio('/assets/audio/slide8.mp3', false)
 
-const scene4Ambiance = new Audio('/assets/audio/ambiance_slide_4.mp3')
+const scene4Ambiance = new Audio('/assets/audio/ambiance_slide_4.mp3', false)
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
