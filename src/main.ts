@@ -27,6 +27,7 @@ const subtitles2: SlideSubtitle = new SlideSubtitle(2)
 const subtitles3: SlideSubtitle = new SlideSubtitle(3)
 const subtitles4: SlideSubtitle = new SlideSubtitle(4)
 const subtitles5: SlideSubtitle = new SlideSubtitle(5)
+const subtitles6: SlideSubtitle = new SlideSubtitle(6)
 
 const scene0Voix = new AudioVoix('/assets/audio/slide1.mp3')
 const scene1Voix = new AudioVoix('/assets/audio/slide2.mp3')
@@ -34,18 +35,21 @@ const scene2Voix = new AudioVoix('/assets/audio/slide3.mp3')
 const scene3Voix = new AudioVoix('/assets/audio/slide4.mp3')
 const scene4Voix = new AudioVoix('/assets/audio/slide5.mp3')
 const scene5Voix = new AudioVoix('/assets/audio/slide6.mp3')
+const scene6Voix = new AudioVoix('/assets/audio/slide7.mp3')
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
 const slide3 = document.querySelector<HTMLInputElement>('.slide-3')
 const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
 const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
+const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
 
 const scene1Parallax = new MouseParallax(slide1!)
 const scene2Parallax = new MouseParallax(slide2!)
 const scene3Parallax = new MouseParallax(slide3!)
 const scene4Parallax = new MouseParallax(slide4!)
 const scene5Parallax = new MouseParallax(slide5!)
+const scene6Parallax = new MouseParallax(slide6!)
 
 
 
@@ -70,6 +74,8 @@ const launchSubtitles = (subtitles: SlideSubtitle) => {
   }, 10)
 
 }
+
+
 
 const checkSlide = () => {
 
@@ -143,6 +149,20 @@ const checkSlide = () => {
       setTimeout(() => {
         scene5Voix.start()
         launchSubtitles(subtitles5)
+      }, 1000)
+    }
+
+  } else if (CURRENT_SCENE === 6) {
+
+    if (scene_5_to_6.totalProgress() === 1 && subtitles5.isFinish()) {
+      scene5Parallax.stop()
+      scene_6_to_7.play()
+      scene5Voix.stop()
+      scene6Voix.init()
+      CURRENT_SCENE = 7
+      setTimeout(() => {
+        scene6Voix.start()
+        launchSubtitles(subtitles6)
       }, 1000)
     }
 
@@ -289,11 +309,11 @@ scene_4_to_5
 
 const scene_5_to_6 = gsap.timeline({ paused: true })
 scene_5_to_6
-.set('.slide-5 .layer:nth-child(1)', { y: -500 })
-.set('.slide-5 .layer:nth-child(2)', { y: -400 })
-.set('.slide-5 .layer:nth-child(3)', { y: -300 })
-.set('.slide-5 .layer:nth-child(4)', { y: -200 })
-.set('.slide-5 .layer:nth-child(5)', { y: -100 })
+.set('.slide-5 .layer:nth-child(1)', { y: 500 })
+.set('.slide-5 .layer:nth-child(2)', { y: 400 })
+.set('.slide-5 .layer:nth-child(3)', { y: 300 })
+.set('.slide-5 .layer:nth-child(4)', { y: 200 })
+.set('.slide-5 .layer:nth-child(5)', { y: 100 })
 .to('.wrapper-desk', {y: '-100vh', duration: 1, ease: Power2.easeInOut})
 .to('.wrapper-desk .slide-4 .layer:nth-child(1)', {y: 450, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.wrapper-desk .slide-4 .layer:nth-child(2)', {y: 400, duration: 1, ease: Power2.easeInOut}, '-=1')
@@ -304,6 +324,22 @@ scene_5_to_6
 .to('.wrapper-desk .slide-4 .layer:nth-child(6)', {y: 150, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.wrapper-desk .slide-4 .layer:nth-child(7)', {y: 100, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.wrapper-desk .slide-5 .layer', {y: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
+
+
+
+
+const scene_6_to_7 = gsap.timeline({ paused: true })
+scene_6_to_7
+.to('.wrapper-desk', {y: '-200vh', duration: 1, ease: Power2.easeInOut})
+
+
+
+const scene_7_to_8 = gsap.timeline({ paused: true })
+scene_7_to_8
+.to('.slide6 .item:nth-child(1)', {y: '-100vh', duration: 1, ease: Power2.easeInOut})
+.to('.slide6 .item:nth-child(2)', {y: '-100vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
+.to('.slide6 .item:nth-child(3)', {y: '-100vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
+.to('.wrapper-desk', {y: '-300vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
 
 
 
@@ -326,6 +362,8 @@ function parallax() {
     scene4Parallax.init()
   } else if (CURRENT_SCENE === 6 && scene_4_to_5.totalProgress() === 1 && scene5Parallax.getInit() === false) {
     scene5Parallax.init()
+  } else if (CURRENT_SCENE === 7 && scene_5_to_6.totalProgress() === 1 && scene6Parallax.getInit() === false) {
+    scene6Parallax.init()
   }
 
   requestAnimationFrame(parallax)
