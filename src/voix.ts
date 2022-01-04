@@ -7,7 +7,7 @@ export class SlideSubtitle {
   numSentences: number;
   duration: number;
   step: number;
-  
+
   constructor(slideStep: number) {
     this.voice = text[slideStep];
     this.finish = false;
@@ -66,4 +66,64 @@ export class SlideSubtitle {
       return false
     }
   }
+}
+
+export class AudioVoix {
+  url: string
+  contexteAudio: any
+  yodelBuffer: any
+  source: any
+  isInit: boolean
+  gainNode: any
+  constructor(url: string) {
+    this.url = url
+    this.contexteAudio = new (window.AudioContext || window.webkitAudioContext)()
+    this.yodelBuffer
+    this.source
+    this.isInit = false
+    this.gainNode
+  }
+
+  init() {
+    this.gainNode = this.contexteAudio.createGain();
+    this.gainNode.connect(this.contexteAudio.destination)
+
+    window.fetch(this.url)
+      .then(response => response.arrayBuffer())
+      .then(arrayBuffer => this.contexteAudio.decodeAudioData(arrayBuffer))
+      .then(audioBuffer => {
+        this.yodelBuffer = audioBuffer
+        this.isInit = true
+      })
+  }
+
+  start() {
+    if (this.isInit === true) {
+      this.source = this.contexteAudio.createBufferSource();
+      this.source.buffer = this.yodelBuffer;
+      this.source.connect(this.gainNode)
+
+
+      this.source.start();
+      this.gainNode.gain.setValueAtTime(0.01, this.contexteAudio.currentTime);
+
+      this.gainNode.gain.exponentialRampToValueAtTime(1, this.contexteAudio.currentTime + 0.3)
+
+    }
+  }
+
+  stop() {
+    if (this.isInit === true) {
+
+      this.gainNode.gain.setValueAtTime(this.gainNode.gain.value, this.contexteAudio.currentTime)
+
+      this.gainNode.gain.exponentialRampToValueAtTime(0.001, this.contexteAudio.currentTime + 0.3)
+
+      setTimeout(
+        () => this.source.stop()
+        , 2000
+      )
+    }
+  }
+
 }

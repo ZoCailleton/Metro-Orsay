@@ -1,9 +1,9 @@
 import './style.scss'
-import { SlideSubtitle } from './voix'
+import { AudioVoix, SlideSubtitle } from './voix'
+import { MouseParallax } from './mouse'
 
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { MouseParallax } from './mouse'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -27,6 +27,8 @@ const subtitles2: SlideSubtitle = new SlideSubtitle(2)
 const subtitles3: SlideSubtitle = new SlideSubtitle(3)
 const subtitles4: SlideSubtitle = new SlideSubtitle(4)
 
+const scene0Voix = new AudioVoix('public/audio/scene1.wav')
+
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
 const slide3 = document.querySelector<HTMLInputElement>('.slide-3')
@@ -36,8 +38,6 @@ const scene1Parallax = new MouseParallax(slide1!)
 const scene2Parallax = new MouseParallax(slide2!)
 const scene3Parallax = new MouseParallax(slide3!)
 const scene4Parallax = new MouseParallax(slide4!)
-
-
 
 
 
@@ -70,6 +70,7 @@ const checkSlide = () => {
     // Si l'animation d'intro est terminée
     if (intro.totalProgress() === 1 && subtitles0.isFinish()) {
       scene_1_to_2.play()
+      scene0Voix.stop()
       CURRENT_SCENE = 2
       setTimeout(() => {
         launchSubtitles(subtitles1)
@@ -118,7 +119,7 @@ const checkSlide = () => {
 
 
 
-document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', checkSlide)
+document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', () => { checkSlide() })
 
 
 
@@ -128,14 +129,14 @@ document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', c
 const intro = gsap.timeline({ paused: true })
 
 intro
-.to('.intro', { scale: 1.3, duration: 1, ease: Power2.easeInOut })
-.to('.intro .btn', { y: 50, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-1', { width: '100vw', height: '100vh', marginTop: 0, borderRadius: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-1 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.intro', { opacity: 0 })
+  .to('.intro', { scale: 1.3, duration: 1, ease: Power2.easeInOut })
+  .to('.intro .btn', { y: 50, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-1', { width: '100vw', height: '100vh', marginTop: 0, borderRadius: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-1 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.intro', { opacity: 0 })
 
 
 
@@ -151,10 +152,12 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 
   intro.play()
   CURRENT_SCENE = 1
+  scene0Voix.init()
 
   setTimeout(() => {
 
     launchSubtitles(subtitles0)
+    scene0Voix.start()
 
   }, 1000)
 
@@ -200,10 +203,10 @@ scene_1_to_2
 const scene_2_to_3 = gsap.timeline({ paused: true })
 
 scene_2_to_3
-.to('.slide-1 .layer:nth-child(9)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut })
-.to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-1 .layer:nth-child(9)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut })
+  .to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 
 
@@ -213,19 +216,19 @@ scene_2_to_3
 
 const scene_3_to_4 = gsap.timeline({ paused: true })
 scene_3_to_4
-.set('.slide-3 .layer:nth-child(1)', { y: -500 })
-.set('.slide-3 .layer:nth-child(2)', { y: -400 })
-.set('.slide-3 .layer:nth-child(3)', { y: -300 })
-.set('.slide-3 .layer:nth-child(4)', { y: -200 })
-.set('.slide-3 .layer:nth-child(5)', { y: -100 })
-.to('.wrapper-concours', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-.to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.wrapper-concours', { opacity: 0 })
+  .set('.slide-3 .layer:nth-child(1)', { y: -500 })
+  .set('.slide-3 .layer:nth-child(2)', { y: -400 })
+  .set('.slide-3 .layer:nth-child(3)', { y: -300 })
+  .set('.slide-3 .layer:nth-child(4)', { y: -200 })
+  .set('.slide-3 .layer:nth-child(5)', { y: -100 })
+  .to('.wrapper-concours', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-concours', { opacity: 0 })
 
 
 
@@ -236,12 +239,12 @@ scene_3_to_4
 
 const scene_4_to_5 = gsap.timeline({ paused: true })
 scene_4_to_5
-.to('.slide-3 .layer:nth-child(1)', { scale: 1.1, opacity: 0, duration: 1, ease: Power2.easeInOut })
-.to('.slide-3 .layer:nth-child(2)', { scale: 1.2, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer:nth-child(3)', { scale: 1.3, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer:nth-child(4)', { scale: 1.4, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer:nth-child(5)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-4 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(1)', { scale: 1.1, opacity: 0, duration: 1, ease: Power2.easeInOut })
+  .to('.slide-3 .layer:nth-child(2)', { scale: 1.2, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(3)', { scale: 1.3, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(4)', { scale: 1.4, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(5)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-4 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 
 
