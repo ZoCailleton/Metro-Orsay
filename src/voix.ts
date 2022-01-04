@@ -86,7 +86,7 @@ export class AudioVoix {
 
   init() {
     this.gainNode = this.contexteAudio.createGain();
-    this.gainNode.connect(this.contexteAudio.destination)
+    this.gainNode.connect(this.contexteAudio.destination);
 
     window.fetch(this.url)
       .then(response => response.arrayBuffer())
