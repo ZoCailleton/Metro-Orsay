@@ -27,7 +27,8 @@ const subtitles2: SlideSubtitle = new SlideSubtitle(2)
 const subtitles3: SlideSubtitle = new SlideSubtitle(3)
 const subtitles4: SlideSubtitle = new SlideSubtitle(4)
 
-const scene0Voix = new AudioVoix('public/audio/scene1.wav')
+const scene0Voix = new AudioVoix('public/assets/audio/slide1.wav')
+const scene1Voix = new AudioVoix('public/assets/audio/slide2.wav')
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
@@ -71,8 +72,10 @@ const checkSlide = () => {
     if (intro.totalProgress() === 1 && subtitles0.isFinish()) {
       scene_1_to_2.play()
       scene0Voix.stop()
+      scene1Voix.init()
       CURRENT_SCENE = 2
       setTimeout(() => {
+        scene1Voix.start()
         launchSubtitles(subtitles1)
       }, 1000)
     }
@@ -83,6 +86,8 @@ const checkSlide = () => {
     if (scene_1_to_2.totalProgress() === 1 && subtitles1.isFinish()) {
       scene1Parallax.stop()
       scene_2_to_3.play()
+      scene1Voix.stop()
+
       CURRENT_SCENE = 3
       setTimeout(() => {
         launchSubtitles(subtitles2)
