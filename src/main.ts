@@ -29,6 +29,9 @@ const subtitles4: SlideSubtitle = new SlideSubtitle(4)
 
 const scene0Voix = new AudioVoix('/assets/audio/slide1.mp3')
 const scene1Voix = new AudioVoix('/assets/audio/slide2.mp3')
+const scene2Voix = new AudioVoix('/assets/audio/slide3.mp3')
+const scene3Voix = new AudioVoix('/assets/audio/slide4.mp3')
+const scene4Voix = new AudioVoix('/assets/audio/slide5.mp3')
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
@@ -72,6 +75,7 @@ const checkSlide = () => {
     if (intro.totalProgress() === 1 && subtitles0.isFinish()) {
       scene_1_to_2.play()
       scene0Voix.stop()
+      scene1Voix.init()
       CURRENT_SCENE = 2
       setTimeout(() => {
         scene1Voix.start()
@@ -86,9 +90,11 @@ const checkSlide = () => {
       scene1Parallax.stop()
       scene_2_to_3.play()
       scene1Voix.stop()
+      scene2Voix.init()
 
       CURRENT_SCENE = 3
       setTimeout(() => {
+        scene2Voix.start()
         launchSubtitles(subtitles2)
       }, 1000)
     }
@@ -98,8 +104,12 @@ const checkSlide = () => {
     if (scene_2_to_3.totalProgress() === 1 && subtitles2.isFinish()) {
       scene2Parallax.stop()
       scene_3_to_4.play()
+      scene2Voix.stop()
+      scene3Voix.init()
+
       CURRENT_SCENE = 4
       setTimeout(() => {
+        scene3Voix.start()
         launchSubtitles(subtitles3)
       }, 1000)
     }
@@ -109,8 +119,11 @@ const checkSlide = () => {
     if (scene_3_to_4.totalProgress() === 1 && subtitles3.isFinish()) {
       scene3Parallax.stop()
       scene_4_to_5.play()
+      scene3Voix.stop()
+      scene4Voix.init()
       CURRENT_SCENE = 5
       setTimeout(() => {
+        scene4Voix.start()
         launchSubtitles(subtitles4)
       }, 1000)
     }
@@ -153,7 +166,6 @@ const loader = document.querySelector<HTMLInputElement>('.loader')
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
 
   scene0Voix.init()
-  scene1Voix.init()
 
   cursor?.classList.add('active')
 
