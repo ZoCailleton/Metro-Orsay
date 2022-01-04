@@ -33,6 +33,8 @@ const subtitles3: SlideSubtitle = new SlideSubtitle(3)
 const subtitles4: SlideSubtitle = new SlideSubtitle(4)
 const subtitles5: SlideSubtitle = new SlideSubtitle(5)
 const subtitles6: SlideSubtitle = new SlideSubtitle(6)
+const subtitles7: SlideSubtitle = new SlideSubtitle(7)
+const subtitles8: SlideSubtitle = new SlideSubtitle(8)
 
 const scene0Voix = new Audio('/assets/audio/slide1.mp3')
 const scene1Voix = new Audio('/assets/audio/slide2.mp3')
@@ -41,6 +43,7 @@ const scene3Voix = new Audio('/assets/audio/slide4.mp3')
 const scene4Voix = new Audio('/assets/audio/slide5.mp3')
 const scene5Voix = new Audio('/assets/audio/slide6.mp3')
 const scene6Voix = new Audio('/assets/audio/slide7.mp3')
+const scene7Voix = new Audio('/assets/audio/slide8.mp3')
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
@@ -48,6 +51,8 @@ const slide3 = document.querySelector<HTMLInputElement>('.slide-3')
 const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
 const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
 const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
+const slide7 = document.querySelector<HTMLInputElement>('.slide-7')
+const slide8 = document.querySelector<HTMLInputElement>('.slide-8')
 
 const scene1Parallax = new MouseParallax(slide1!)
 const scene2Parallax = new MouseParallax(slide2!)
@@ -55,6 +60,8 @@ const scene3Parallax = new MouseParallax(slide3!)
 const scene4Parallax = new MouseParallax(slide4!)
 const scene5Parallax = new MouseParallax(slide5!)
 const scene6Parallax = new MouseParallax(slide6!)
+const scene7Parallax = new MouseParallax(slide7!)
+const scene8Parallax = new MouseParallax(slide8!)
 
 
 
@@ -169,7 +176,37 @@ const checkSlide = () => {
       }, 1000)
     }
 
+  } else if (CURRENT_SCENE === 7) {
+
+    if (scene_6_to_7.totalProgress() === 1 && subtitles6.isFinish()) {
+      scene6Parallax.stop()
+      scene_7_to_8.play()
+      scene6Voix.stop()
+      scene6Voix.init()
+      CURRENT_SCENE = 8
+      setTimeout(() => {
+        scene6Voix.start()
+        launchSubtitles(subtitles7)
+      }, 1000)
+    }
+
+  } else if (CURRENT_SCENE === 8) {
+
+    if (scene_7_to_8.totalProgress() === 1 && subtitles7.isFinish()) {
+      scene7Parallax.stop()
+      scene_8_to_9.play()
+      scene7Voix.stop()
+      scene7Voix.init()
+      CURRENT_SCENE = 9
+      setTimeout(() => {
+        scene7Voix.start()
+        launchSubtitles(subtitles8)
+      }, 1000)
+    }
+
   }
+
+  console.log(CURRENT_SCENE);
 
 }
 
@@ -187,12 +224,13 @@ document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', (
 const intro = gsap.timeline({ paused: true })
 
 intro
-  .to('.intro', { scale: 1.3, duration: 1, ease: Power2.easeInOut })
-  .to('.intro .btn', { y: 50, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-intro', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.band--top', { top: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.band--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.band--left', { left: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.band--right', { right: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-1', { width: '100vw', height: '100vh', marginTop: 0, borderRadius: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-1 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.intro', { opacity: 0 })
 
@@ -227,8 +265,6 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 
 
 /* Scène 1 */
-
-slide1?.setAttribute('style', 'margin-top: -100px')
 
 const scene_1_to_2 = gsap.timeline({ paused: true })
 
@@ -332,10 +368,18 @@ scene_6_to_7
 
 const scene_7_to_8 = gsap.timeline({ paused: true })
 scene_7_to_8
-  .to('.slide6 .item:nth-child(1)', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-  .to('.slide6 .item:nth-child(2)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
-  .to('.slide6 .item:nth-child(3)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+  .to('.slide-6 .item:nth-child(1)', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.slide-6 .item:nth-child(2)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+  .to('.slide-6 .item:nth-child(3)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
   .to('.wrapper-desk', { y: '-300vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+
+
+
+
+
+const scene_8_to_9 = gsap.timeline({ paused: true })
+scene_8_to_9
+  .to('.wrapper-usine', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
 
 
 
@@ -364,6 +408,8 @@ function parallax() {
     scene5Parallax.init()
   } else if (CURRENT_SCENE === 7 && scene_5_to_6.totalProgress() === 1 && scene6Parallax.getInit() === false) {
     scene6Parallax.init()
+  } else if (CURRENT_SCENE === 8 && scene_6_to_7.totalProgress() === 1 && scene7Parallax.getInit() === false) {
+    scene7Parallax.init()
   }
 
   requestAnimationFrame(parallax)
