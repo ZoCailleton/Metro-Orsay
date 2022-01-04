@@ -27,8 +27,8 @@ const subtitles2: SlideSubtitle = new SlideSubtitle(2)
 const subtitles3: SlideSubtitle = new SlideSubtitle(3)
 const subtitles4: SlideSubtitle = new SlideSubtitle(4)
 
-const scene0Voix = new AudioVoix('public/assets/audio/slide1.mp3')
-const scene1Voix = new AudioVoix('public/assets/audio/slide2.mp3')
+const scene0Voix = new AudioVoix('/assets/audio/slide1.mp3')
+const scene1Voix = new AudioVoix('/assets/audio/slide2.mp3')
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
