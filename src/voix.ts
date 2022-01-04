@@ -1,4 +1,4 @@
-import text from './dev.json'
+import text from './text.json'
 
 export class SlideSubtitle {
 

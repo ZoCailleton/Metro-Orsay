@@ -225,13 +225,6 @@ scene_1_to_2
 
 
 
-
-
-
-
-
-
-
 /* Scène 2 */
 
 const scene_2_to_3 = gsap.timeline({ paused: true })
@@ -317,12 +310,16 @@ function parallax() {
   if (CURRENT_SCENE === 1 && intro.totalProgress() === 1 && scene1Parallax.getInit() === false) {
     scene1Parallax.init()
   } else if (CURRENT_SCENE === 3 && scene_1_to_2.totalProgress() === 1 && scene2Parallax.getInit() === false) {
+    scene1Parallax.stop()
     scene2Parallax.init()
   } else if (CURRENT_SCENE === 4 && scene_2_to_3.totalProgress() === 1 && scene3Parallax.getInit() === false) {
+    scene2Parallax.stop()
     scene3Parallax.init()
   } else if (CURRENT_SCENE === 5 && scene_3_to_4.totalProgress() === 1 && scene4Parallax.getInit() === false) {
+    scene3Parallax.stop()
     scene4Parallax.init()
   } else if (CURRENT_SCENE === 6 && scene_4_to_5.totalProgress() === 1 && scene5Parallax.getInit() === false) {
+    scene4Parallax.stop()
     scene5Parallax.init()
   }
 
