@@ -223,9 +223,6 @@ const scene_3_to_4 = gsap.timeline({ paused: true })
 scene_3_to_4
   .set('.slide-3 .layer:nth-child(1)', { y: -500 })
   .set('.slide-3 .layer:nth-child(2)', { y: -400 })
-  .set('.slide-3 .layer:nth-child(3)', { y: -300 })
-  .set('.slide-3 .layer:nth-child(4)', { y: -200 })
-  .set('.slide-3 .layer:nth-child(5)', { y: -100 })
   .to('.wrapper-concours', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
   .to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
@@ -233,7 +230,7 @@ scene_3_to_4
   .to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.wrapper-concours', { opacity: 0 })
+  //.to('.wrapper-concours', { opacity: 0 })
 
 
 
