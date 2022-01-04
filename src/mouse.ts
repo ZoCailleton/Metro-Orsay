@@ -9,7 +9,7 @@ function getShift(mouse: number, window: number, coef: number) {
 	return mouseShift
 }
 
-export class MouseParalax {
+export class MouseParallax {
 	isInit: boolean;
 	isStart: boolean;
 	containerEl: HTMLInputElement;

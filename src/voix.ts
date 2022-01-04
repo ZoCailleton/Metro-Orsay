@@ -17,7 +17,7 @@ export class SlideSubtitle {
   }
 
   init() {
-    const containerSubtitle = document.querySelector<HTMLInputElement>('.subtitles')
+    const containerSubtitle = document.querySelector<HTMLInputElement>('.subtitles--wrapper')
     const textSubtitle = document.createElement('p')
 
     if (containerSubtitle) {
@@ -33,9 +33,11 @@ export class SlideSubtitle {
       if (this.voice[this.step + 1]) {
         this.step++
         this.getNewSentence(textSubtitle)
+        textSubtitle.classList.remove('hidden')
       } else {
         this.finish = true
         textSubtitle.innerHTML = ''
+        textSubtitle.classList.add('hidden')
       }
     }, this.voice[this.step].duration * 1000);
   }
