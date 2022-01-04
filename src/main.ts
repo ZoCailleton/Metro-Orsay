@@ -20,6 +20,14 @@ window.addEventListener('mousemove', (e: MouseEvent) => {
 
 let CURRENT_SCENE: number = 0
 
+const scene_1_to_2 = gsap.timeline({ paused: true })
+const scene_2_to_3 = gsap.timeline({ paused: true })
+const scene_3_to_4 = gsap.timeline({ paused: true })
+const scene_4_to_5 = gsap.timeline({ paused: true })
+const scene_5_to_6 = gsap.timeline({ paused: true })
+const scene_6_to_7 = gsap.timeline({ paused: true })
+const scene_7_to_8 = gsap.timeline({ paused: true })
+const scene_8_to_9 = gsap.timeline({ paused: true })
 
 const subtitles0: SlideSubtitle = new SlideSubtitle(0)
 const subtitles1: SlideSubtitle = new SlideSubtitle(1)
@@ -58,7 +66,32 @@ const scene6Parallax = new MouseParallax(slide6!)
 const scene7Parallax = new MouseParallax(slide7!)
 const scene8Parallax = new MouseParallax(slide8!)
 
+/* Lazy Loading */
 
+const slides: Array<Element> = [];
+
+for(let slide of document.querySelectorAll('.story--slide')) {
+  slides.push(slide)
+}
+
+const loadSlideImg = () => {
+  
+  // On décharge les images précédentes
+  if(slides[CURRENT_SCENE-2] != null) {
+    for(let layer of slides[CURRENT_SCENE-2].querySelectorAll('.layer img')) {
+      layer.setAttribute('src', '')
+    }
+  }
+
+  // On charge les images de la slide suivante
+  for(let layer of slides[CURRENT_SCENE+1].querySelectorAll('.layer img')) {
+    let _src = (layer as HTMLImageElement).dataset.src || ''
+    layer.setAttribute('src', _src)
+  }
+
+}
+
+loadSlideImg()
 
 const launchSubtitles = (subtitles: SlideSubtitle) => {
 
@@ -80,9 +113,9 @@ const launchSubtitles = (subtitles: SlideSubtitle) => {
 
 }
 
-
-
 const checkSlide = () => {
+
+  loadSlideImg();
 
   if (CURRENT_SCENE === 1) {
 
@@ -205,21 +238,24 @@ const checkSlide = () => {
 
 }
 
-
-
-
-
 document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', () => { checkSlide() })
-
-
-
 
 /* Intro */
 
 const intro = gsap.timeline({ paused: true })
 
 intro
+.set('.slide-1 .layer:nth-child(1)', {y: -500})
+.set('.slide-1 .layer:nth-child(2)', {y: -450})
+.set('.slide-1 .layer:nth-child(3)', {y: -400})
+.set('.slide-1 .layer:nth-child(4)', {y: -350})
+.set('.slide-1 .layer:nth-child(5)', {y: -300})
+.set('.slide-1 .layer:nth-child(6)', {y: -250})
+.set('.slide-1 .layer:nth-child(7)', {y: -200})
+.set('.slide-1 .layer:nth-child(8)', {y: -150})
+.set('.slide-1 .layer:nth-child(9)', {y: -100})
 .to('.wrapper-intro', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+.to('.slide-1 .layer', {y: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.band--top', {top: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.band--bottom', {bottom: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.band--left', {left: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
@@ -228,12 +264,6 @@ intro
 .to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 .to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 .to('.intro', { opacity: 0 })
-
-
-
-
-
-
 
 const loader = document.querySelector<HTMLInputElement>('.loader')
 
@@ -255,13 +285,7 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 
 })
 
-
-
-
-
 /* Scène 1 */
-
-const scene_1_to_2 = gsap.timeline({ paused: true })
 
 scene_1_to_2
 .to('.slide-1 .layer img', { x: 0, y: 0, duration: 0.5, ease: Power2.easeInOut })
@@ -275,66 +299,40 @@ scene_1_to_2
 //.to('.slide-1 .layer:nth-child(9)', {scale: 1.25, duration: 4, ease: Power0.easeNone})
 //.to('.slide-1 .layer:nth-child(1)', {scale: 1.1, duration: 4, ease: Power0.easeNone}, '-=4')
 
-
-
-
-
-
-
 /* Scène 2 */
 
-const scene_2_to_3 = gsap.timeline({ paused: true })
-
 scene_2_to_3
-  .to('.slide-1 .layer:nth-child(9)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut })
-  .to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
-
-
-
-
+.to('.slide-1 .layer:nth-child(9)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut })
+.to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 /* Scène 3 */
 
-const scene_3_to_4 = gsap.timeline({ paused: true })
 scene_3_to_4
-  .set('.slide-3 .layer:nth-child(1)', { y: -500 })
-  .set('.slide-3 .layer:nth-child(2)', { y: -400 })
-  .to('.wrapper-concours', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-  .to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-
-
-
-
-
+.set('.slide-3 .layer:nth-child(1)', { y: -500 })
+.set('.slide-3 .layer:nth-child(2)', { y: -400 })
+.to('.wrapper-concours', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+.to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-2 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 /* Scène 4 */
 
-const scene_4_to_5 = gsap.timeline({ paused: true })
 scene_4_to_5
-  .to('.slide-3 .layer:nth-child(1)', { scale: 1.1, opacity: 0, duration: 1, ease: Power2.easeInOut })
-  .to('.slide-3 .layer:nth-child(2)', { scale: 1.2, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-3 .layer:nth-child(3)', { scale: 1.3, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-3 .layer:nth-child(4)', { scale: 1.4, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-3 .layer:nth-child(5)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.wrapper-concours', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-4 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
-
-
-
-
-
-
+.to('.slide-3 .layer:nth-child(1)', { scale: 1.1, opacity: 0, duration: 1, ease: Power2.easeInOut })
+.to('.slide-3 .layer:nth-child(2)', { scale: 1.2, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-3 .layer:nth-child(3)', { scale: 1.3, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-3 .layer:nth-child(4)', { scale: 1.4, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-3 .layer:nth-child(5)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.wrapper-concours', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-4 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 /* Scène 5 */
 
-const scene_5_to_6 = gsap.timeline({ paused: true })
 scene_5_to_6
 .set('.slide-5 .layer:nth-child(1)', { y: 500 })
 .set('.slide-5 .layer:nth-child(2)', { y: 400 })
@@ -352,40 +350,21 @@ scene_5_to_6
 .to('.wrapper-desk .slide-4 .layer:nth-child(7)', {y: 100, duration: 1, ease: Power2.easeInOut}, '-=1')
 .to('.wrapper-desk .slide-5 .layer', {y: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
 
-
-
-
-const scene_6_to_7 = gsap.timeline({ paused: true })
 scene_6_to_7
 .to('.wrapper-desk', {y: '-200vh', duration: 1, ease: Power2.easeInOut})
 
-
-
-const scene_7_to_8 = gsap.timeline({ paused: true })
 scene_7_to_8
 .to('.slide-6 .item:nth-child(1)', {y: '-100vh', duration: 1, ease: Power2.easeInOut})
 .to('.slide-6 .item:nth-child(2)', {y: '-100vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
 .to('.slide-6 .item:nth-child(3)', {y: '-100vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
 .to('.wrapper-desk', {y: '-300vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
 
-
-
-
-
-const scene_8_to_9 = gsap.timeline({ paused: true })
 scene_8_to_9
 .to('.wrapper-usine', {y: '-100vh', duration: 1, ease: Power2.easeInOut})
 
-
-
-
-
-
 /* Parallax sur toutes les sections */
 
-
-
-function parallax() {
+const parallax = () => {
 
   if (CURRENT_SCENE === 1 && intro.totalProgress() === 1 && scene1Parallax.getInit() === false) {
     scene1Parallax.init()
@@ -409,6 +388,7 @@ function parallax() {
 
   requestAnimationFrame(parallax)
 }
+
 parallax()
 
 
