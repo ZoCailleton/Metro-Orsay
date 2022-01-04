@@ -75,13 +75,15 @@ export class Audio {
   source: any
   isInit: boolean
   gainNode: any
-  constructor(url: string) {
+  startInstant: boolean
+  constructor(url: string, startInstant: boolean) {
     this.url = url
     this.contexteAudio = new AudioContext()
     this.yodelBuffer
     this.source
     this.isInit = false
     this.gainNode
+    this.startInstant = startInstant || false
   }
 
   init() {
@@ -94,6 +96,7 @@ export class Audio {
       .then(audioBuffer => {
         this.yodelBuffer = audioBuffer
         this.isInit = true
+        if (this.startInstant) this.start()
       })
   }
 
