@@ -4,11 +4,6 @@ import { MouseParallax } from './mouse'
 
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { LoaderTrigger } from './loader'
-
-const SiteLoader = new LoaderTrigger()
-SiteLoader.init()
-
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -76,22 +71,22 @@ const scene8Parallax = new MouseParallax(slide8!)
 
 const slides: Array<Element> = [];
 
-for(let slide of document.querySelectorAll('.story--slide')) {
+for (let slide of document.querySelectorAll('.story--slide')) {
   slides.push(slide)
 }
 
 const loadSlideImg = () => {
-  
+
   // On décharge les images précédentes
-  if(slides[CURRENT_SCENE-2] != null) {
-    for(let layer of slides[CURRENT_SCENE-2].querySelectorAll('.layer img')) {
+  if (slides[CURRENT_SCENE - 2] != null) {
+    for (let layer of slides[CURRENT_SCENE - 2].querySelectorAll('.layer img')) {
       layer.setAttribute('src', '')
     }
   }
 
   // On charge les images de la slide suivante
-  if(slides[CURRENT_SCENE+1] != null) {
-    for(let layer of slides[CURRENT_SCENE+1].querySelectorAll('.layer img')) {
+  if (slides[CURRENT_SCENE + 1] != null) {
+    for (let layer of slides[CURRENT_SCENE + 1].querySelectorAll('.layer img')) {
       let _src = (layer as HTMLImageElement).dataset.src || ''
       layer.setAttribute('src', _src)
     }
@@ -253,25 +248,25 @@ document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', (
 const intro = gsap.timeline({ paused: true })
 
 intro
-.set('.slide-1 .layer:nth-child(1)', {y: -500})
-.set('.slide-1 .layer:nth-child(2)', {y: -450})
-.set('.slide-1 .layer:nth-child(3)', {y: -400})
-.set('.slide-1 .layer:nth-child(4)', {y: -350})
-.set('.slide-1 .layer:nth-child(5)', {y: -300})
-.set('.slide-1 .layer:nth-child(6)', {y: -250})
-.set('.slide-1 .layer:nth-child(7)', {y: -200})
-.set('.slide-1 .layer:nth-child(8)', {y: -150})
-.set('.slide-1 .layer:nth-child(9)', {y: -100})
-.to('.wrapper-intro', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-.to('.slide-1 .layer', {y: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.band--top', {top: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.band--bottom', {bottom: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.band--left', {left: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.band--right', {right: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.intro', { opacity: 0 })
+  .set('.slide-1 .layer:nth-child(1)', { y: -500 })
+  .set('.slide-1 .layer:nth-child(2)', { y: -450 })
+  .set('.slide-1 .layer:nth-child(3)', { y: -400 })
+  .set('.slide-1 .layer:nth-child(4)', { y: -350 })
+  .set('.slide-1 .layer:nth-child(5)', { y: -300 })
+  .set('.slide-1 .layer:nth-child(6)', { y: -250 })
+  .set('.slide-1 .layer:nth-child(7)', { y: -200 })
+  .set('.slide-1 .layer:nth-child(8)', { y: -150 })
+  .set('.slide-1 .layer:nth-child(9)', { y: -100 })
+  .to('.wrapper-intro', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.slide-1 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.band--top', { top: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.band--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.band--left', { left: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.band--right', { right: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.intro', { opacity: 0 })
 
 const loader = document.querySelector<HTMLInputElement>('.loader')
 
@@ -310,34 +305,34 @@ scene_1_to_2
 /* Scène 2 */
 
 scene_2_to_3
-.to('.slide-1 .layer:nth-child(9)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut })
-.to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-1 .layer:nth-child(9)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut })
+  .to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 /* Scène 3 */
 
 scene_3_to_4
-.set('.slide-3 .layer:nth-child(1)', { y: -500 })
-.set('.slide-3 .layer:nth-child(2)', { y: -400 })
-.to('.wrapper-concours', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-.to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .set('.slide-3 .layer:nth-child(1)', { y: -500 })
+  .set('.slide-3 .layer:nth-child(2)', { y: -400 })
+  .to('.wrapper-concours', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 /* Scène 4 */
 
 scene_4_to_5
-.to('.slide-3 .layer:nth-child(1)', { scale: 1.1, opacity: 0, duration: 1, ease: Power2.easeInOut })
-.to('.slide-3 .layer:nth-child(2)', { scale: 1.2, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer:nth-child(3)', { scale: 1.3, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer:nth-child(4)', { scale: 1.4, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer:nth-child(5)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.wrapper-concours', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-4 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(1)', { scale: 1.1, opacity: 0, duration: 1, ease: Power2.easeInOut })
+  .to('.slide-3 .layer:nth-child(2)', { scale: 1.2, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(3)', { scale: 1.3, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(4)', { scale: 1.4, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(5)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-concours', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-4 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 /* Scène 5 */
 

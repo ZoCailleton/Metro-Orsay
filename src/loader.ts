@@ -16,6 +16,9 @@ export class LoaderTrigger {
 
     init() {
         this.imagesOnLoad = this.imagesList
+
+        console.log('nombre d\'images a load :' + this.numberImages);
+
         this.checkLoad()
     }
 
