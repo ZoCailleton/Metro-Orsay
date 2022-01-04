@@ -34,6 +34,9 @@ body {
 
 .flex {
   display: flex;
+  &.items-center {
+    align-items: center;
+  }
 }
 
 .btn {
@@ -161,18 +164,34 @@ figure {
       font-size: 44px;
     }
     .side {
-      width: 200px;
+      width: 300px;
       height: 300px;
-      background-color: #aaa;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     .shadow-elt {
       width: 400px;
       height: 400px;
     }
+    .btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      img {
+        position: absolute;
+      }
+      p {
+        z-index: 1;
+      }
+    }
     .aile {
-      width: 200px;
-      height: 50px;
-      background-color: #aaa;
+      width: 300px;
+      img {
+        width: 100%;
+      }
     }
   }
   &.slide-1 {
