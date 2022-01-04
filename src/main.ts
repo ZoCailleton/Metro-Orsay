@@ -26,6 +26,7 @@ const subtitles1: SlideSubtitle = new SlideSubtitle(1)
 const subtitles2: SlideSubtitle = new SlideSubtitle(2)
 const subtitles3: SlideSubtitle = new SlideSubtitle(3)
 const subtitles4: SlideSubtitle = new SlideSubtitle(4)
+const subtitles5: SlideSubtitle = new SlideSubtitle(5)
 
 const scene0Voix = new Audio('/assets/audio/slide1.mp3')
 const scene1Voix = new Audio('/assets/audio/slide2.mp3')
@@ -37,11 +38,13 @@ const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
 const slide3 = document.querySelector<HTMLInputElement>('.slide-3')
 const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
+const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
 
 const scene1Parallax = new MouseParallax(slide1!)
 const scene2Parallax = new MouseParallax(slide2!)
 const scene3Parallax = new MouseParallax(slide3!)
 const scene4Parallax = new MouseParallax(slide4!)
+const scene5Parallax = new MouseParallax(slide5!)
 
 
 
@@ -125,6 +128,20 @@ const checkSlide = () => {
       setTimeout(() => {
         scene4Voix.start()
         launchSubtitles(subtitles4)
+      }, 1000)
+    }
+
+  } else if (CURRENT_SCENE === 5) {
+
+    if (scene_4_to_5.totalProgress() === 1 && subtitles4.isFinish()) {
+      scene4Parallax.stop()
+      scene_5_to_6.play()
+      scene4Voix.stop()
+      scene5Voix.init()
+      CURRENT_SCENE = 6
+      setTimeout(() => {
+        scene5Voix.start()
+        launchSubtitles(subtitles5)
       }, 1000)
     }
 
@@ -266,6 +283,32 @@ scene_4_to_5
 
 
 
+
+/* Scène 5 */
+
+const scene_5_to_6 = gsap.timeline({ paused: true })
+scene_5_to_6
+  .set('.slide-5 .layer:nth-child(1)', { y: -500 })
+  .set('.slide-5 .layer:nth-child(2)', { y: -400 })
+  .set('.slide-5 .layer:nth-child(3)', { y: -300 })
+  .set('.slide-5 .layer:nth-child(4)', { y: -200 })
+  .set('.slide-5 .layer:nth-child(5)', { y: -100 })
+  .to('.wrapper-desk', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.wrapper-desk .slide-4 .layer:nth-child(1)', { y: 450, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(2)', { y: 350, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(4)', { y: 250, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(5)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(6)', { y: 150, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(7)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-5 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+
+
+
+
+
+
 /* Parallax sur toutes les sections */
 
 
@@ -280,6 +323,8 @@ function parallax() {
     scene3Parallax.init()
   } else if (CURRENT_SCENE === 5 && scene_3_to_4.totalProgress() === 1 && scene4Parallax.getInit() === false) {
     scene4Parallax.init()
+  } else if (CURRENT_SCENE === 6 && scene_4_to_5.totalProgress() === 1 && scene5Parallax.getInit() === false) {
+    scene5Parallax.init()
   }
 
   requestAnimationFrame(parallax)

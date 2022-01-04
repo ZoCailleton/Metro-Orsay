@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Centrion';
+  src: url('./fonts/centrion.ttf');
+}
+
 body {
   margin: 0;
   color: #2c3e50;
@@ -5,6 +10,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+}
+
+.centrion {
+  font-family: 'Centrion';
 }
 
 .cursor {
@@ -31,6 +40,8 @@ body {
     height: 150px;
   }
 }
+
+.cursor:selector { cursor: none; }
 
 .flex {
   display: flex;
@@ -161,7 +172,9 @@ figure {
       grid-gap: 15px;
     }
     h1 {
-      font-size: 44px;
+      margin: 0 0 15px;
+      font-size: 52px;
+      font-weight: 400;
     }
     .side {
       width: 300px;
@@ -184,11 +197,12 @@ figure {
         position: absolute;
       }
       p {
+        font-size: 24px;
         z-index: 1;
       }
     }
     .aile {
-      width: 300px;
+      width: 350px;
       img {
         width: 100%;
       }
@@ -220,8 +234,12 @@ figure {
   .slide-3 {
     background-color: #040404;
   }
-  .slide-4 {
+  .wrapper-desk {
+    height: 200vh;
     position: absolute;
+  }
+  .slide-5 {
+    background-color: #BBE5DF;
   }
   .layer {
     width: 100%;
