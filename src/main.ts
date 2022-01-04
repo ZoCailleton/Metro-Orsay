@@ -407,8 +407,10 @@ function parallax() {
     scene4Parallax.stop()
     scene5Parallax.init()
   } else if (CURRENT_SCENE === 7 && scene_5_to_6.totalProgress() === 1 && scene6Parallax.getInit() === false) {
+    scene5Parallax.stop()
     scene6Parallax.init()
   } else if (CURRENT_SCENE === 8 && scene_6_to_7.totalProgress() === 1 && scene7Parallax.getInit() === false) {
+    scene6Parallax.stop()
     scene7Parallax.init()
   }
 
