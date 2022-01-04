@@ -31,6 +31,7 @@ body {
   transition: width 500ms, height 500ms;
   overflow: hidden;
   color: #fff;
+  cursor: none;
   &.active {
     width: 15px;
     height: 15px;
@@ -163,6 +164,7 @@ figure {
   height: 100vh;
   position: relative;
   overflow: hidden;
+  cursor: none;
   &.intro {
     background-color: #eee;
     display: flex;

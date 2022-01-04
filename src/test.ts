@@ -25,14 +25,15 @@ window.addEventListener('mousemove', (e: MouseEvent) => {
 
 let CURRENT_SCENE: number = 0
 
-const scene_1_to_2 = gsap.timeline({ paused: true })
-const scene_2_to_3 = gsap.timeline({ paused: true })
-const scene_3_to_4 = gsap.timeline({ paused: true })
-const scene_4_to_5 = gsap.timeline({ paused: true })
-const scene_5_to_6 = gsap.timeline({ paused: true })
-const scene_6_to_7 = gsap.timeline({ paused: true })
-const scene_7_to_8 = gsap.timeline({ paused: true })
-const scene_8_to_9 = gsap.timeline({ paused: true })
+const intro: GSAPTimeline = gsap.timeline({ paused: true })
+const scene_1_to_2: GSAPTimeline = gsap.timeline({ paused: true })
+const scene_2_to_3: GSAPTimeline = gsap.timeline({ paused: true })
+const scene_3_to_4: GSAPTimeline = gsap.timeline({ paused: true })
+const scene_4_to_5: GSAPTimeline = gsap.timeline({ paused: true })
+const scene_5_to_6: GSAPTimeline = gsap.timeline({ paused: true })
+const scene_6_to_7: GSAPTimeline = gsap.timeline({ paused: true })
+const scene_7_to_8: GSAPTimeline = gsap.timeline({ paused: true })
+const scene_8_to_9: GSAPTimeline = gsap.timeline({ paused: true })
 
 const subtitles0: SlideSubtitle = new SlideSubtitle(0)
 const subtitles1: SlideSubtitle = new SlideSubtitle(1)
@@ -122,153 +123,93 @@ const launchSubtitles = (subtitles: SlideSubtitle) => {
 
 }
 
+interface setupScenes {
+    previous_scene: MouseParallax,
+    previous_animation: GSAPTimeline,
+    next_animation: GSAPTimeline,
+    previous_subtitles: SlideSubtitle,
+    next_subtitles: SlideSubtitle,
+    previous_voice: Audio,
+    next_voice: Audio,
+    delay: number
+}
+
+const MATOS: Array<setupScenes> = [
+    {
+        previous_scene: scene1Parallax,
+        previous_animation: intro,
+        next_animation: scene_1_to_2,
+        previous_subtitles: subtitles0,
+        next_subtitles: subtitles1,
+        previous_voice: scene0Voix,
+        next_voice: scene1Voix,
+        delay: 1000
+    },
+    {
+        previous_scene: scene1Parallax,
+        previous_animation: scene_1_to_2,
+        next_animation: scene_2_to_3,
+        previous_subtitles: subtitles1,
+        next_subtitles: subtitles2,
+        previous_voice: scene1Voix,
+        next_voice: scene2Voix,
+        delay: 1000
+    },
+    {
+        previous_scene: scene2Parallax,
+        previous_animation: scene_2_to_3,
+        next_animation: scene_3_to_4,
+        previous_subtitles: subtitles2,
+        next_subtitles: subtitles3,
+        previous_voice: scene2Voix,
+        next_voice: scene3Voix,
+        delay: 1000
+    },
+    {
+        previous_scene: scene3Parallax,
+        previous_animation: scene_3_to_4,
+        next_animation: scene_4_to_5,
+        previous_subtitles: subtitles3,
+        next_subtitles: subtitles4,
+        previous_voice: scene3Voix,
+        next_voice: scene4Voix,
+        delay: 1000
+    }
+]
+
+
+
 const checkSlide = () => {
 
-  loadSlideImg();
+    if (1==1) {
 
-  if (CURRENT_SCENE === 1) {
+        loadSlideImg();
 
-    // Si l'animation d'intro est terminée
-    if (intro.totalProgress() === 1 && subtitles0.isFinish()) {
-      scene_1_to_2.play()
-      scene0Voix.stop()
-      scene1Voix.init()
-      CURRENT_SCENE = 2
-      setTimeout(() => {
-        scene1Voix.start()
-        launchSubtitles(subtitles1)
-      }, 1000)
-    }
+        MATOS[CURRENT_SCENE].previous_scene.stop()
+        MATOS[CURRENT_SCENE].next_animation.play()
 
-  } else if (CURRENT_SCENE === 2) {
+        MATOS[CURRENT_SCENE].previous_voice.stop()
+        MATOS[CURRENT_SCENE].next_voice.init()
 
-    // Si la scène 1 est terminée
-    if (scene_1_to_2.totalProgress() === 1 && subtitles1.isFinish()) {
-      scene1Parallax.stop()
-      scene_2_to_3.play()
-      scene1Voix.stop()
-      scene2Voix.init()
+        CURRENT_SCENE = 1
 
-      CURRENT_SCENE = 3
-      setTimeout(() => {
-        scene2Voix.start()
-        launchSubtitles(subtitles2)
-      }, 1000)
-    }
+        setTimeout(() => {
 
-  } else if (CURRENT_SCENE === 3) {
+            MATOS[CURRENT_SCENE].next_voice.start()
 
-    if (scene_2_to_3.totalProgress() === 1 && subtitles2.isFinish()) {
+            launchSubtitles(MATOS[CURRENT_SCENE].next_subtitles)
 
-      scene2Parallax.stop()
-      scene_3_to_4.play()
-
-      scene2Voix.stop()
-      scene3Voix.init()
-
-      scene4Ambiance.init()
-
-      CURRENT_SCENE = 4
-
-      setTimeout(() => {
-
-        scene3Voix.start()
-        scene4Ambiance.start()
-        
-        launchSubtitles(subtitles3)
-
-      }, 1000)
+        }, MATOS[CURRENT_SCENE].delay)
 
     }
 
-  } else if (CURRENT_SCENE === 4) {
-
-    if (scene_3_to_4.totalProgress() === 1 && subtitles3.isFinish()) {
-
-      CURRENT_SCENE = 5
-
-      scene3Parallax.stop()
-      scene_4_to_5.play()
-      
-      scene3Voix.stop()
-      scene4Voix.init()
-
-      setTimeout(() => {
-
-        scene4Voix.start()
-        launchSubtitles(subtitles4)
-
-      }, 1000)
-
-    }
-
-  } else if (CURRENT_SCENE === 5) {
-
-    if (scene_4_to_5.totalProgress() === 1 && subtitles4.isFinish()) {
-      scene4Parallax.stop()
-      scene_5_to_6.play()
-      scene4Voix.stop()
-      scene5Voix.init()
-      CURRENT_SCENE = 6
-      setTimeout(() => {
-        scene5Voix.start()
-        launchSubtitles(subtitles5)
-      }, 1000)
-    }
-
-  } else if (CURRENT_SCENE === 6) {
-
-    if (scene_5_to_6.totalProgress() === 1 && subtitles5.isFinish()) {
-      scene5Parallax.stop()
-      scene_6_to_7.play()
-      scene5Voix.stop()
-      scene6Voix.init()
-      CURRENT_SCENE = 7
-      setTimeout(() => {
-        scene6Voix.start()
-        launchSubtitles(subtitles6)
-      }, 1000)
-    }
-
-  } else if (CURRENT_SCENE === 7) {
-
-    if (scene_6_to_7.totalProgress() === 1 && subtitles6.isFinish()) {
-      scene6Parallax.stop()
-      scene_7_to_8.play()
-      scene6Voix.stop()
-      scene6Voix.init()
-      CURRENT_SCENE = 8
-      setTimeout(() => {
-        scene6Voix.start()
-        launchSubtitles(subtitles7)
-      }, 1000)
-    }
-
-  } else if (CURRENT_SCENE === 8) {
-
-    if (scene_7_to_8.totalProgress() === 1 && subtitles7.isFinish()) {
-      scene7Parallax.stop()
-      scene_8_to_9.play()
-      scene7Voix.stop()
-      scene7Voix.init()
-      CURRENT_SCENE = 9
-      setTimeout(() => {
-        scene7Voix.start()
-        launchSubtitles(subtitles8)
-      }, 1000)
-    }
-
-  }
-
-  console.log(CURRENT_SCENE);
+    console.log(CURRENT_SCENE);
 
 }
 
 document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', () => { checkSlide() })
 
 /* Intro */
-
-const intro = gsap.timeline({ paused: true })
 
 intro
 .set('.slide-1 .layer:nth-child(1)', {y: -500})
