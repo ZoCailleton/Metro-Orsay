@@ -72,7 +72,6 @@ const checkSlide = () => {
     if (intro.totalProgress() === 1 && subtitles0.isFinish()) {
       scene_1_to_2.play()
       scene0Voix.stop()
-      scene1Voix.init()
       CURRENT_SCENE = 2
       setTimeout(() => {
         scene1Voix.start()
@@ -153,11 +152,13 @@ const loader = document.querySelector<HTMLInputElement>('.loader')
 
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
 
+  scene0Voix.init()
+  scene1Voix.init()
+
   cursor?.classList.add('active')
 
   intro.play()
   CURRENT_SCENE = 1
-  scene0Voix.init()
 
   setTimeout(() => {
 
@@ -230,7 +231,7 @@ scene_3_to_4
   .to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  //.to('.wrapper-concours', { opacity: 0 })
+//.to('.wrapper-concours', { opacity: 0 })
 
 
 
