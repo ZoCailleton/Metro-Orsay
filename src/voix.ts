@@ -68,7 +68,7 @@ export class SlideSubtitle {
   }
 }
 
-export class AudioVoix {
+export class Audio {
   url: string
   contexteAudio: any
   yodelBuffer: any

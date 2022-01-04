@@ -1,5 +1,5 @@
 import './style.scss'
-import { AudioVoix, SlideSubtitle } from './voix'
+import { Audio, SlideSubtitle } from './voix'
 import { MouseParallax } from './mouse'
 
 import gsap, { Power2 } from 'gsap'
@@ -27,11 +27,11 @@ const subtitles2: SlideSubtitle = new SlideSubtitle(2)
 const subtitles3: SlideSubtitle = new SlideSubtitle(3)
 const subtitles4: SlideSubtitle = new SlideSubtitle(4)
 
-const scene0Voix = new AudioVoix('/assets/audio/slide1.mp3')
-const scene1Voix = new AudioVoix('/assets/audio/slide2.mp3')
-const scene2Voix = new AudioVoix('/assets/audio/slide3.mp3')
-const scene3Voix = new AudioVoix('/assets/audio/slide4.mp3')
-const scene4Voix = new AudioVoix('/assets/audio/slide5.mp3')
+const scene0Voix = new Audio('/assets/audio/slide1.mp3')
+const scene1Voix = new Audio('/assets/audio/slide2.mp3')
+const scene2Voix = new Audio('/assets/audio/slide3.mp3')
+const scene3Voix = new Audio('/assets/audio/slide4.mp3')
+const scene4Voix = new Audio('/assets/audio/slide5.mp3')
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
@@ -234,15 +234,15 @@ scene_2_to_3
 
 const scene_3_to_4 = gsap.timeline({ paused: true })
 scene_3_to_4
-.set('.slide-3 .layer:nth-child(1)', { y: -500 })
-.set('.slide-3 .layer:nth-child(2)', { y: -400 })
-.to('.wrapper-concours', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-.to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .set('.slide-3 .layer:nth-child(1)', { y: -500 })
+  .set('.slide-3 .layer:nth-child(2)', { y: -400 })
+  .to('.wrapper-concours', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 
 
@@ -253,13 +253,13 @@ scene_3_to_4
 
 const scene_4_to_5 = gsap.timeline({ paused: true })
 scene_4_to_5
-.to('.slide-3 .layer:nth-child(1)', { scale: 1.1, opacity: 0, duration: 1, ease: Power2.easeInOut })
-.to('.slide-3 .layer:nth-child(2)', { scale: 1.2, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer:nth-child(3)', { scale: 1.3, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer:nth-child(4)', { scale: 1.4, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-3 .layer:nth-child(5)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.wrapper-concours', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-.to('.slide-4 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(1)', { scale: 1.1, opacity: 0, duration: 1, ease: Power2.easeInOut })
+  .to('.slide-3 .layer:nth-child(2)', { scale: 1.2, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(3)', { scale: 1.3, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(4)', { scale: 1.4, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-3 .layer:nth-child(5)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-concours', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-4 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 
 
