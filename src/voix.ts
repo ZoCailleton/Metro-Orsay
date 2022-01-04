@@ -77,7 +77,7 @@ export class AudioVoix {
   gainNode: any
   constructor(url: string) {
     this.url = url
-    this.contexteAudio = new (window.AudioContext || window.webkitAudioContext)()
+    this.contexteAudio = new AudioContext()
     this.yodelBuffer
     this.source
     this.isInit = false
