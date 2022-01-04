@@ -4,6 +4,11 @@ import { MouseParallax } from './mouse'
 
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { LoaderTrigger } from './loader'
+
+const SiteLoader = new LoaderTrigger()
+SiteLoader.init()
+
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -300,37 +305,37 @@ scene_4_to_5
 
 const scene_5_to_6 = gsap.timeline({ paused: true })
 scene_5_to_6
-.set('.slide-5 .layer:nth-child(1)', { y: 500 })
-.set('.slide-5 .layer:nth-child(2)', { y: 400 })
-.set('.slide-5 .layer:nth-child(3)', { y: 300 })
-.set('.slide-5 .layer:nth-child(4)', { y: 200 })
-.set('.slide-5 .layer:nth-child(5)', { y: 100 })
-.to('.wrapper-desk', {y: '-100vh', duration: 1, ease: Power2.easeInOut})
-.to('.wrapper-desk .slide-4 .layer:nth-child(1)', {y: 450, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(2)', {y: 400, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(2)', {y: 350, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(3)', {y: 300, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(4)', {y: 250, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(5)', {y: 200, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(6)', {y: 150, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-4 .layer:nth-child(7)', {y: 100, duration: 1, ease: Power2.easeInOut}, '-=1')
-.to('.wrapper-desk .slide-5 .layer', {y: 0, duration: 1, ease: Power2.easeInOut}, '-=1')
+  .set('.slide-5 .layer:nth-child(1)', { y: 500 })
+  .set('.slide-5 .layer:nth-child(2)', { y: 400 })
+  .set('.slide-5 .layer:nth-child(3)', { y: 300 })
+  .set('.slide-5 .layer:nth-child(4)', { y: 200 })
+  .set('.slide-5 .layer:nth-child(5)', { y: 100 })
+  .to('.wrapper-desk', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.wrapper-desk .slide-4 .layer:nth-child(1)', { y: 450, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(2)', { y: 350, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(4)', { y: 250, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(5)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(6)', { y: 150, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-4 .layer:nth-child(7)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-desk .slide-5 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
 
 
 
 const scene_6_to_7 = gsap.timeline({ paused: true })
 scene_6_to_7
-.to('.wrapper-desk', {y: '-200vh', duration: 1, ease: Power2.easeInOut})
+  .to('.wrapper-desk', { y: '-200vh', duration: 1, ease: Power2.easeInOut })
 
 
 
 const scene_7_to_8 = gsap.timeline({ paused: true })
 scene_7_to_8
-.to('.slide6 .item:nth-child(1)', {y: '-100vh', duration: 1, ease: Power2.easeInOut})
-.to('.slide6 .item:nth-child(2)', {y: '-100vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
-.to('.slide6 .item:nth-child(3)', {y: '-100vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
-.to('.wrapper-desk', {y: '-300vh', duration: 1, ease: Power2.easeInOut}, '-=0.5')
+  .to('.slide6 .item:nth-child(1)', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.slide6 .item:nth-child(2)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+  .to('.slide6 .item:nth-child(3)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+  .to('.wrapper-desk', { y: '-300vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
 
 
 
