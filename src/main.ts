@@ -46,7 +46,7 @@ const scene5Voix = new Audio('/assets/audio/slide6.mp3', false)
 // const scene6Voix = new Audio('/assets/audio/slide7.mp3', false)
 const scene7Voix = new Audio('/assets/audio/slide8.mp3', false)
 
-const scene4Ambiance = new Audio('/assets/audio/ambiance_slide_4.mp3', false)
+const scene4Ambiance = new Audio('/assets/audio/ambiance_slide_4.mp3', true)
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
@@ -115,6 +115,7 @@ interface config {
   parallax?: MouseParallax
   date?: number
   subtitle?: SlideSubtitle
+  voix?: Audio
   delayVoixSubtitle?: number
 }
 
@@ -127,23 +128,25 @@ const CONFIG: Array<config> = [
     parallax: scene1Parallax,
     date: new Date().getFullYear(),
     subtitle: subtitles0,
+    voix: scene0Voix,
     delayVoixSubtitle: 2000
   },
   //Scène 1 :
   {
-    timecode: 3,
+    timecode: 4,
     parallax: scene2Parallax,
     date: 1900,
     subtitle: subtitles1,
+    voix: scene1Voix,
     delayVoixSubtitle: 2000
   },
   //Scène 2 :
   {
-    timecode: 4
+    timecode: 5
   },
   //Scène 3 :
   {
-    timecode: 5
+    timecode: 6
   },
   // Scène 4 :
   {
@@ -171,13 +174,20 @@ const slideTo = (num: number, animated: boolean = true) => {
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
   CONFIG[CURRENT_SCENE].subtitle?.stop()
+  CONFIG[CURRENT_SCENE].voix?.stop()
+
   // CURRENT_SCENE = new scene
   CURRENT_SCENE = num
+
   if (CONFIG[num].date) date.updateDate(CONFIG[num].date)
   GLOBAL_SCENE.tweenTo(CONFIG[num].timecode)
   if (CONFIG[num].subtitle && CONFIG[num].delayVoixSubtitle) {
+    CONFIG[num].voix?.init()
     setTimeout(
-      () => CONFIG[num].subtitle?.init()
+      () => {
+        CONFIG[num].subtitle?.init()
+        CONFIG[num].voix?.start()
+      }
       ,
       CONFIG[num].delayVoixSubtitle
     )
@@ -217,7 +227,7 @@ const loader = document.querySelector<HTMLInputElement>('.loader')
 
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
 
-  scene0Voix.init()
+  // scene0Voix.init()
 
   cursor?.classList.add('active')
 
