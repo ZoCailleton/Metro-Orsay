@@ -157,14 +157,10 @@ const CONFIG: Array<config> = [
   },
   // Scène 8 : Objets - Apparition
   {
-<<<<<<< HEAD
-    timecode: 22,
+    timecode: 22.5,
     subtitle: subtitles6,
     // voix: scene6Voix,
     delayVoixSubtitle: 2000
-=======
-    timecode: 22.5
->>>>>>> 93306654fbd27be8c909094c0bd3a87a56958696
   },
   // Scène 8 : Objets - Disparition
   {
