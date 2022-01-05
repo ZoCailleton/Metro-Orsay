@@ -16,6 +16,16 @@ body {
   font-family: 'Centrion';
 }
 
+.transition {
+  width: 100%;
+  height: 100vh;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 .timeline--wrapper {
   width: 50px;
   height: 100vh;
@@ -36,6 +46,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0.5;
+    &.active {
+      opacity: 1;
+    }
   }
 }
 
@@ -310,30 +324,41 @@ figure {
   }
 }
 
-.wrapper {
+.wrapper-intro {
   width: 100%;
   height: 200vh;
   position: absolute;
   top: 0;
-}
-
-.wrapper-intro {
   z-index: 6;
 }
 
 .wrapper-concours {
+  width: 100%;
+  height: 300vh;
   background-color: #000;
+  position: absolute;
+  top: 0;
   z-index: 4;
+}
+
+.wrapper-plans {
+  width: 200vw;
+  height: 100vh;
+  display: flex;
+}
+
+.wrapper-herbe {
+  width: 100%;
+  height: 200vh;
+  display: flex;
+  flex-direction: column-reverse;
+  transform: translateY(-100vh);
 }
 
 .wrapper-desk {
   width: 100%;
   height: 300vh;
+  position: absolute;
+  top: 0;
   z-index: 3;
-  .transition {
-    width: 100vw;
-    position: absolute;
-    top: 100vh;
-    z-index: 1;
-  }
 }

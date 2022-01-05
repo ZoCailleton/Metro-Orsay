@@ -75,6 +75,24 @@ const scene6Parallax = new MouseParallax(slide6!)
 const scene7Parallax = new MouseParallax(slide7!)
 const scene8Parallax = new MouseParallax(slide8!)
 
+
+
+
+
+
+
+
+
+
+
+const reset = (collection: string, classe: string) => {
+  for(let elt of document.querySelectorAll(collection)) {
+    elt.classList.remove(classe)
+  }
+}
+
+
+
 /* Lazy Loading */
 
 const slides: Array<Element> = [];
@@ -280,29 +298,35 @@ const CONFIG: Array<config> = [
   {
     timecode: 0
   },
+  //Scène 1 :
   {
-    timecode: 2
+    timecode: 1
   },
-  {
-    timecode: 3
-  },
+  //Scène 2 :
   {
     timecode: 4
   },
+  //Scène 3 :
   {
-    timecode: 6
+    timecode: 5
   },
+  // Scène 4 :
+  {
+    timecode: 7
+  },
+  // Scène 5 :
   {
     timecode: 8
   },
   {
-    timecode: 10
-  },
-  {
+    // Scène 6 :
     timecode: 12
   },
   {
     timecode: 14
+  },
+  {
+    timecode: 15
   }
 ]
 
@@ -314,7 +338,7 @@ const CONFIG: Array<config> = [
 
 
 
-const slideTo = (num: number) => {
+const slideTo = (num: number, animated: boolean = true) => {
   CURRENT_SCENE = num
   GLOBAL_SCENE.tweenTo(CONFIG[num].timecode)
 }
@@ -323,11 +347,13 @@ if (window.location.hash) {
   let _slide = window.location.hash.replace('#slide', '')
   console.log(_slide)
   var y: number = +_slide;
-  slideTo(y)
+  slideTo(y, false)
 }
 
 for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')) {
   tick.addEventListener('click', () => {
+    reset('.timeline--wrapper .timeline--tick', 'active')
+    tick.classList.add('active')
     let _tick = (tick as HTMLInputElement).dataset.tick || ''
     var y: number = +_tick;
     slideTo(y)
@@ -365,6 +391,7 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 
 
 GLOBAL_SCENE
+<<<<<<< HEAD
   // Intro
   .set('.slide-1 .layer:nth-child(1)', { y: -500 })
   .set('.slide-1 .layer:nth-child(2)', { y: -450 })
@@ -452,6 +479,94 @@ GLOBAL_SCENE
 
   // Scène 8
   .to('.wrapper-usine', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+=======
+// Intro
+.set('.slide-1 .layer:nth-child(1)', { y: -500 })
+.set('.slide-1 .layer:nth-child(2)', { y: -450 })
+.set('.slide-1 .layer:nth-child(3)', { y: -400 })
+.set('.slide-1 .layer:nth-child(4)', { y: -350 })
+.set('.slide-1 .layer:nth-child(5)', { y: -300 })
+.set('.slide-1 .layer:nth-child(6)', { y: -250 })
+.set('.slide-1 .layer:nth-child(7)', { y: -200 })
+.set('.slide-1 .layer:nth-child(8)', { y: -150 })
+.set('.slide-1 .layer:nth-child(9)', { y: -100 })
+.to('.wrapper-intro', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+.to('.slide-1 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.band--top', { top: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.band--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.band--left', { left: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.band--right', { right: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.intro', { opacity: 0 })
+
+// Scène 1
+.to('.slide-1 .layer img', { x: 0, y: 0, duration: 0.5, ease: Power2.easeInOut })
+.to('.slide-1 .layer:nth-child(8)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
+.to('.slide-1 .layer:nth-child(7)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
+.to('.slide-1 .layer:nth-child(6)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
+.to('.slide-1 .layer:nth-child(2)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut })
+.to('.slide-1 .layer:nth-child(3)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut }, '-=0.5')
+.to('.slide-1 .layer:nth-child(4)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut }, '-=0.5')
+.to('.slide-1 .layer:nth-child(5)', { opacity: 0, duration: 0.5, ease: Power2.easeInOut }, '-=0.5')
+//.to('.slide-1 .layer:nth-child(9)', {scale: 1.25, duration: 4, ease: Power0.easeNone})
+//.to('.slide-1 .layer:nth-child(1)', {scale: 1.1, duration: 4, ease: Power0.easeNone}, '-=4')
+
+// Scène 2
+.to('.slide-1 .layer:nth-child(9)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut })
+.to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+
+// Scène 3 - Contrat sombre
+.set('.slide-3 .layer:nth-child(1)', { y: -500 })
+.set('.slide-3 .layer:nth-child(2)', { y: -400 })
+.to('.wrapper-concours', { y: '-200vh', duration: 2, ease: Power2.easeInOut })
+.to('.slide-2 .layer:nth-child(1)', { y: 600, duration: 2, ease: Power2.easeInOut }, '-=2')
+.to('.slide-2 .layer:nth-child(2)', { y: 500, duration: 2, ease: Power2.easeInOut }, '-=2')
+.to('.slide-2 .layer:nth-child(3)', { y: 400, duration: 2, ease: Power2.easeInOut }, '-=2')
+.to('.slide-2 .layer:nth-child(4)', { y: 300, duration: 2, ease: Power2.easeInOut }, '-=2')
+.to('.slide-2 .layer:nth-child(5)', { y: 200, duration: 2, ease: Power2.easeInOut }, '-=2')
+.to('.slide-3 .layer', { y: 0, duration: 2, ease: Power2.easeInOut }, '-=2')
+
+// Scène 4 - Bureau Guimard
+.set('.slide-4 .layer:nth-child(1)', {x: -500})
+.set('.slide-4 .layer:nth-child(2)', {x: -400})
+.set('.slide-4 .layer:nth-child(3)', {x: -300})
+.set('.slide-4 .layer:nth-child(4)', {x: -200})
+.set('.slide-4 .layer:nth-child(4)', {x: -100})
+
+.to('.slide-3 .layer:nth-child(1)', { x: 500, duration: 1, ease: Power2.easeInOut })
+.to('.slide-3 .layer:nth-child(2)', { x: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-3 .layer:nth-child(3)', { x: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-3 .layer:nth-child(4)', { x: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-3 .layer:nth-child(5)', { x: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.wrapper-plans', { x: '-100vw', duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-4 .layer', { x: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+
+// Scène 5 - Herbe
+.set('.slide-5 .layer', { y: '100vh' })
+.to('.wrapper-herbe', { y: '100vh', duration: 1, ease: Power2.easeInOut })
+.to('.slide-5 .layer:nth-child(6)', { y: 0, duration: 5, ease: Power2.easeInOut })
+.to('.slide-5 .layer:nth-child(5)', { y: 0, duration: 5, ease: Power2.easeInOut })
+.to('.slide-5 .layer:nth-child(4)', { y: 0, duration: 5, ease: Power2.easeInOut })
+.to('.slide-5 .layer:nth-child(3)', { y: 0, duration: 5, ease: Power2.easeInOut })
+.to('.slide-5 .layer:nth-child(2)', { y: 0, duration: 5, ease: Power2.easeInOut })
+.to('.slide-5 .layer:nth-child(1)', { y: 0, duration: 5, ease: Power2.easeInOut })
+
+// Scène 6
+.to('.wrapper-desk', { y: '-200vh', duration: 1, ease: Power2.easeInOut })
+
+// Scène 7
+.to('.slide-6 .item:nth-child(1)', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+.to('.slide-6 .item:nth-child(2)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+.to('.slide-6 .item:nth-child(3)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+.to('.wrapper-desk', { y: '-300vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+
+// Scène 8
+.to('.wrapper-usine', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+>>>>>>> feat-timeline
 
 /* Parallax sur toutes les sections */
 
