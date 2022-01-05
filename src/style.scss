@@ -102,9 +102,6 @@ body {
 }
 
 .btn {
-  width: 200px;
-  height: 50px;
-  background-color: #ddd;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -215,7 +212,7 @@ figure {
   position: relative;
   overflow: hidden;
   &.intro {
-    background-color: #eee;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -224,12 +221,14 @@ figure {
       grid-gap: 15px;
     }
     h1 {
+      max-width: 1000px;
       margin: 0 0 15px;
-      font-size: 52px;
+      font-size: 84px;
       font-weight: 400;
+      text-align: center;
     }
     .side {
-      width: 300px;
+      width: 275px;
       &:first-child {
         margin-right: -50px;
         margin-bottom: 50px;
@@ -243,17 +242,20 @@ figure {
       }
     }
     .arche {
-      width: 450px;
+      width: 400px;
       img {
         width: 100%;
       }
     }
     .btn {
+      width: 100%;
+      max-width: 250px;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
       img {
+        width: 100%;
         position: absolute;
       }
       p {
@@ -262,7 +264,7 @@ figure {
       }
     }
     .aile {
-      width: 350px;
+      width: 300px;
       img {
         width: 100%;
       }
