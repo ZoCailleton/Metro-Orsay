@@ -24,6 +24,14 @@ body {
     height: 100%;
     object-fit: cover;
   }
+  &.smoke {
+    margin-top: -22vh;
+    position: relative;
+    z-index: 1;
+    img {
+      object-fit: fill;
+    }
+  }
 }
 
 .timeline--wrapper {
@@ -47,6 +55,7 @@ body {
     justify-content: center;
     align-items: center;
     opacity: 0.5;
+    cursor: pointer;
     &.active {
       opacity: 1;
     }
@@ -260,6 +269,9 @@ figure {
   }
   &.slide-1 {
     overflow: hidden;
+    .layer {
+      filter: grayscale(0%);
+    }
   }
   &.slide-2 {
     z-index: 4;
@@ -275,10 +287,15 @@ figure {
   &.slide-5 {
     background-color: #BBE5DF;
   }
-  &.slide-6 {
+  &.slide-7 {
+    margin-top: -32vh;
+  }
+  &.slide-8 {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    z-index: 3;
     .item {
       height: 100vh;
       background-color: #fff;
@@ -288,9 +305,6 @@ figure {
       align-items: center;
       flex-direction: column;
       cursor: pointer;
-      &:nth-child(even) {
-        background-color: #eee;
-      }
       p {
         font-size: 32px;
         opacity: 0;
@@ -337,7 +351,7 @@ figure {
   background-color: #000;
   position: absolute;
   top: 0;
-  z-index: 4;
+  z-index: 5;
 }
 
 .wrapper-plans {
@@ -354,10 +368,10 @@ figure {
   transform: translateY(-100vh);
 }
 
-.wrapper-desk {
+.wrapper-usine {
   width: 100%;
   height: 300vh;
   position: absolute;
   top: 0;
-  z-index: 3;
+  z-index: 4;
 }
