@@ -76,6 +76,8 @@ export class SlideSubtitle {
 
   stop() {
     this.play = false
+    this.finish = false
+    this.step = 0
     this.getNewSentence(this.play)
   }
 }

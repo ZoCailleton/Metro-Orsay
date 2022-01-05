@@ -69,10 +69,10 @@ const launchScreenTransition = () => {
 
   const screenTransition = gsap.timeline()
   screenTransition
-  .set('.screen-transition', { y: '100vh' })
-  .to('.screen-transition', { y: 0, duration: 1, ease: Power2.easeInOut })
-  .to('.screen-transition', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-  
+    .set('.screen-transition', { y: '100vh' })
+    .to('.screen-transition', { y: 0, duration: 1, ease: Power2.easeInOut })
+    .to('.screen-transition', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+
 }
 
 /* Lazy Loading */
@@ -109,7 +109,7 @@ const CONFIG: Array<config> = [
   //Scène 2 - Paris 1900
   {
     timecode: 4.5,
-    parallax: scene2Parallax,
+    parallax: scene1Parallax,
     date: 1900,
     subtitle: subtitles1,
     voix: scene1Voix,
@@ -118,6 +118,7 @@ const CONFIG: Array<config> = [
   //Scène 3 :
   {
     timecode: 9.5,
+    parallax: scene2Parallax,
     subtitle: subtitles2,
     voix: scene2Voix,
     delayVoixSubtitle: 2000
@@ -125,6 +126,7 @@ const CONFIG: Array<config> = [
   // Scène 3 : Contrat sombre
   {
     timecode: 11.25,
+    parallax: scene3Parallax,
     subtitle: subtitles3,
     voix: scene3Voix,
     delayVoixSubtitle: 2000
@@ -132,6 +134,7 @@ const CONFIG: Array<config> = [
   // Scène 4 : 
   {
     timecode: 12.5,
+    parallax: scene4Parallax,
     subtitle: subtitles4,
     voix: scene4Voix,
     delayVoixSubtitle: 2000
@@ -139,6 +142,7 @@ const CONFIG: Array<config> = [
   // Scène 5 : Herbe
   {
     timecode: 14.5,
+    parallax: scene5Parallax,
     subtitle: subtitles5,
     voix: scene5Voix,
     delayVoixSubtitle: 2000
@@ -146,6 +150,7 @@ const CONFIG: Array<config> = [
   // Scène 5 : Herbe - Apparition monstre
   {
     timecode: 16.5,
+    parallax: scene6Parallax,
     subtitle: subtitles7,
     voix: scene7Voix,
     delayVoixSubtitle: 2000
@@ -153,6 +158,7 @@ const CONFIG: Array<config> = [
   // Scène 6 : Usine - Start
   {
     timecode: 18,
+    parallax: scene7Parallax,
     subtitle: subtitles8,
     // voix: scene8Voix,
     delayVoixSubtitle: 2000
@@ -160,12 +166,14 @@ const CONFIG: Array<config> = [
   // Scène 6 : Usine - Ciel
   {
     timecode: 19.5,
+    parallax: scene8Parallax,
     // subtitle: subtitles9,
     // voix: scene9Voix,
   },
   // Scène 8 : Objets - Apparition
   {
     timecode: 22.5,
+    // parallax: scene9Parallax,
     subtitle: subtitles6,
     // voix: scene6Voix,
     delayVoixSubtitle: 2000
@@ -186,6 +194,7 @@ const slideTo = (num: number, animated: boolean = true) => {
   // CURRENT_SCENE = new scene
   CURRENT_SCENE = num
 
+
   if (CONFIG[num].date) date.updateDate(CONFIG[num].date)
   if (CONFIG[num].subtitle && CONFIG[num].delayVoixSubtitle) {
     CONFIG[num].voix?.init()
@@ -198,9 +207,9 @@ const slideTo = (num: number, animated: boolean = true) => {
       CONFIG[num].delayVoixSubtitle
     )
   }
-
   CONFIG[num].parallax?.init()
-  CONFIG[num].parallax?.start()
+  // CONFIG[num].parallax?.start()
+
   animated ? GLOBAL_SCENE.tweenTo(CONFIG[num].timecode) : GLOBAL_SCENE.time(CONFIG[num].timecode)
 }
 
@@ -221,10 +230,10 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
     // On récupère le tick choisi
     let _tick = (tick as HTMLInputElement).dataset.tick || ''
     var y: number = +_tick;
-    
-    if(y === CURRENT_SCENE + 1 || y === CURRENT_SCENE - 1) {
+
+    if (y === CURRENT_SCENE + 1 || y === CURRENT_SCENE - 1) {
       slideTo(y)
-    } else if(y === CURRENT_SCENE) {
+    } else if (y === CURRENT_SCENE) {
       console.log('On a déjà lancé la scène')
     } else {
       launchScreenTransition()
@@ -237,7 +246,7 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
     }
 
   });
-  
+
 }
 
 const loader = document.querySelector<HTMLInputElement>('.loader')

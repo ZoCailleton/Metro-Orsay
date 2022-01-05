@@ -18,13 +18,13 @@ export class MouseParallax {
 	_mouseX: number;
 	_mouseY: number;
 	constructor(containerEl: HTMLInputElement) {
+		this.isInit = false
 		this.isStart = false
 		this.containerEl = containerEl
 		this._w = window.innerWidth
 		this._h = window.innerHeight
 		this._mouseX = 0
 		this._mouseY = 0
-		this.isInit = false
 	}
 
 	init() {
@@ -60,7 +60,7 @@ export class MouseParallax {
 
 	private loop() {
 		if (this.isStart === true) {
-			for (let layer of this.containerEl!.querySelectorAll('.layer img')) {
+			for (let layer of this.containerEl!.querySelectorAll('.layer > img')) {
 				let _coefBase = (layer as HTMLImageElement).dataset.coef || ''
 				let _coef: number = +_coefBase
 				layer?.setAttribute('style', 'transform: translate(' + getShift(this._mouseX, this._w, _coef * 0.01) + '%,' + getShift(this._mouseY, this._h, _coef * 0.01) + '%)')
