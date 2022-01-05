@@ -305,17 +305,20 @@ const CONFIG: Array<config> = [
 
 
 
-if(window.location.hash) {
-  
-} else {
-  // Fragment doesn't exist
-}
+
 
 
 
 const slideTo = (num: number) => {
   CURRENT_SCENE = num
   GLOBAL_SCENE.tweenTo(CONFIG[num].timecode)
+}
+
+if(window.location.hash) {
+  let _slide = window.location.hash.replace('#slide', '')
+  console.log(_slide)
+  var y: number = +_slide;
+  slideTo(y)
 }
 
 for(let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')) {
