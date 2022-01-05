@@ -296,16 +296,19 @@ const CONFIG: Array<config> = [
     timecode: 6
   },
   {
+    timecode: 7
+  },
+  {
     timecode: 8
+  },
+  {
+    timecode: 9
   },
   {
     timecode: 10
   },
   {
     timecode: 12
-  },
-  {
-    timecode: 14
   }
 ]
 
@@ -317,7 +320,7 @@ const CONFIG: Array<config> = [
 
 
 
-const slideTo = (num: number) => {
+const slideTo = (num: number, animated: boolean = true) => {
   CONFIG[CURRENT_SCENE].parallax?.stop()
   CURRENT_SCENE = num
   GLOBAL_SCENE.tweenTo(CONFIG[num].timecode)
@@ -329,7 +332,7 @@ if (window.location.hash) {
   let _slide = window.location.hash.replace('#slide', '')
   console.log(_slide)
   var y: number = +_slide;
-  slideTo(y)
+  slideTo(y, false)
 }
 
 for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')) {
@@ -411,13 +414,13 @@ GLOBAL_SCENE
   // Scène 3
   .set('.slide-3 .layer:nth-child(1)', { y: -500 })
   .set('.slide-3 .layer:nth-child(2)', { y: -400 })
-  .to('.wrapper-concours', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-  .to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .layer:nth-child(3)', { y: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-3 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.wrapper-concours', { y: '-200vh', duration: 2, ease: Power2.easeInOut })
+  .to('.slide-2 .layer:nth-child(1)', { y: 500, duration: 2, ease: Power2.easeInOut }, '-=2')
+  .to('.slide-2 .layer:nth-child(2)', { y: 400, duration: 2, ease: Power2.easeInOut }, '-=2')
+  .to('.slide-2 .layer:nth-child(3)', { y: 300, duration: 2, ease: Power2.easeInOut }, '-=2')
+  .to('.slide-2 .layer:nth-child(4)', { y: 200, duration: 2, ease: Power2.easeInOut }, '-=2')
+  .to('.slide-2 .layer:nth-child(5)', { y: 100, duration: 2, ease: Power2.easeInOut }, '-=2')
+  .to('.slide-3 .layer', { y: 0, duration: 2, ease: Power2.easeInOut }, '-=2')
 
   // Scène 4
   .to('.slide-3 .layer:nth-child(1)', { scale: 1.1, opacity: 0, duration: 1, ease: Power2.easeInOut })
