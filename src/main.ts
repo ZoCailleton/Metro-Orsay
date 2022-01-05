@@ -192,6 +192,7 @@ const cursor = new Cursor()
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
   cursor.draw()
   cursorTrigger()
+  ui()
 
   slideTo(1)
 })
@@ -201,10 +202,8 @@ function cursorTrigger() {
   let listener = true
 
   const navPoints = document.querySelectorAll('.timeline--tick')
-  console.log(navPoints);
 
   for (let i = 0; i < navPoints.length; i++) {
-    console.log(navPoints[i]);
 
     navPoints[i].addEventListener('mouseenter', () => {
       cursor.remove()
@@ -246,6 +245,30 @@ function cursorTrigger() {
       10
     )
   }
+
+}
+
+function ui() {
+  setTimeout(
+    () => {
+      const timelineTick = document.querySelectorAll<HTMLElement>('.timeline--tick')
+
+      for (let i = 0; i < timelineTick.length; i++) {
+        setTimeout(
+          () => {
+            timelineTick[i].style.opacity = '0.5'
+
+
+          },
+          i * 200
+        )
+
+      }
+
+      date.show()
+    },
+    2000
+  )
 
 }
 

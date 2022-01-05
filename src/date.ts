@@ -22,4 +22,8 @@ export class DateTrigger {
             this.dateContainer.innerHTML = this.date
         }, 20)
     }
+
+    show() {
+        this.dateContainer.style.opacity = 1
+    }
 }
