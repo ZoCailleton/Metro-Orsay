@@ -25,6 +25,7 @@ const subtitles5: SlideSubtitle = new SlideSubtitle(5)
 const subtitles6: SlideSubtitle = new SlideSubtitle(6)
 const subtitles7: SlideSubtitle = new SlideSubtitle(7)
 const subtitles8: SlideSubtitle = new SlideSubtitle(8)
+const subtitles9: SlideSubtitle = new SlideSubtitle(9)
 
 const scene0Voix = new Audio('/assets/audio/slide1.mp3', false)
 const scene1Voix = new Audio('/assets/audio/slide2.mp3', false)
@@ -116,35 +117,58 @@ const CONFIG: Array<config> = [
   },
   //Scène 3 :
   {
-    timecode: 9.5
+    timecode: 9.5,
+    subtitle: subtitles2,
+    voix: scene2Voix,
+    delayVoixSubtitle: 2000
   },
-  // Scène 3 :
+  // Scène 3 : Contrat sombre
   {
-    timecode: 11.25
+    timecode: 11.25,
+    subtitle: subtitles3,
+    voix: scene3Voix,
+    delayVoixSubtitle: 2000
   },
-  // Scène 4 : Contrat sombre
+  // Scène 4 : 
   {
-    timecode: 12.5
+    timecode: 12.5,
+    subtitle: subtitles4,
+    voix: scene4Voix,
+    delayVoixSubtitle: 2000
   },
   // Scène 5 : Herbe
   {
-    timecode: 14.5
+    timecode: 14.5,
+    subtitle: subtitles5,
+    voix: scene5Voix,
+    delayVoixSubtitle: 2000
   },
   // Scène 5 : Herbe - Apparition monstre
   {
-    timecode: 16.5
+    timecode: 16.5,
+    subtitle: subtitles7,
+    voix: scene7Voix,
+    delayVoixSubtitle: 2000
   },
   // Scène 6 : Usine - Start
   {
-    timecode: 18
+    timecode: 18,
+    subtitle: subtitles8,
+    // voix: scene8Voix,
+    delayVoixSubtitle: 2000
   },
   // Scène 6 : Usine - Ciel
   {
-    timecode: 19.5
+    timecode: 19.5,
+    // subtitle: subtitles9,
+    // voix: scene9Voix,
   },
   // Scène 8 : Objets - Apparition
   {
-    timecode: 22.5
+    timecode: 22.5,
+    subtitle: subtitles6,
+    // voix: scene6Voix,
+    delayVoixSubtitle: 2000
   },
   // Scène 8 : Objets - Disparition
   {
@@ -163,7 +187,6 @@ const slideTo = (num: number, animated: boolean = true) => {
   CURRENT_SCENE = num
 
   if (CONFIG[num].date) date.updateDate(CONFIG[num].date)
-  animated ? GLOBAL_SCENE.tweenTo(CONFIG[num].timecode) : GLOBAL_SCENE.time(CONFIG[num].timecode)
   if (CONFIG[num].subtitle && CONFIG[num].delayVoixSubtitle) {
     CONFIG[num].voix?.init()
     setTimeout(
@@ -178,6 +201,7 @@ const slideTo = (num: number, animated: boolean = true) => {
 
   CONFIG[num].parallax?.init()
   CONFIG[num].parallax?.start()
+  animated ? GLOBAL_SCENE.tweenTo(CONFIG[num].timecode) : GLOBAL_SCENE.time(CONFIG[num].timecode)
 }
 
 if (window.location.hash) {
@@ -259,24 +283,25 @@ function cursorTrigger() {
       listener = false
     }
 
-    setInterval(
-      () => {
-        if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
-          if (cursor.isHover()) {
-            cursor.remove()
-          } else {
-            cursor.big()
-          }
-
-          if (!listener) {
-            window.addEventListener('click', cursorClicker)
-            listener = true
-          }
-        }
-      },
-      10
-    )
   }
+
+  setInterval(
+    () => {
+      if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
+        if (cursor.isHover()) {
+          cursor.remove()
+        } else {
+          cursor.big()
+        }
+
+        if (!listener) {
+          window.addEventListener('click', cursorClicker)
+          listener = true
+        }
+      }
+    },
+    10
+  )
 
 }
 
