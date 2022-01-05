@@ -74,27 +74,6 @@ for (let slide of document.querySelectorAll('.story--slide')) {
   slides.push(slide)
 }
 
-const loadSlideImg = () => {
-
-  // On décharge les images précédentes
-  if (slides[CURRENT_SCENE - 2] != null) {
-    for (let layer of slides[CURRENT_SCENE - 2].querySelectorAll('.layer img')) {
-      layer.setAttribute('src', '')
-    }
-  }
-
-  // On charge les images de la slide suivante
-  if (slides[CURRENT_SCENE + 1] != null) {
-    for (let layer of slides[CURRENT_SCENE + 1].querySelectorAll('.layer img, .item img')) {
-      let _src = (layer as HTMLImageElement).dataset.src || ''
-      layer.setAttribute('src', _src)
-    }
-  }
-
-}
-
-//loadSlideImg()
-
 
 interface config {
   timecode: number
