@@ -132,7 +132,8 @@ const CONFIG: Array<config> = [
   },
   //Scène 2 :
   {
-    timecode: 5
+    timecode: 5,
+    parallax: scene3Parallax,
   },
   //Scène 3 :
   {
