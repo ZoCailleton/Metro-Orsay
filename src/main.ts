@@ -24,15 +24,6 @@ window.addEventListener('mousemove', (e: MouseEvent) => {
 
 let CURRENT_SCENE: number = 0
 
-const scene_1_to_2 = gsap.timeline({ paused: true })
-const scene_2_to_3 = gsap.timeline({ paused: true })
-const scene_3_to_4 = gsap.timeline({ paused: true })
-const scene_4_to_5 = gsap.timeline({ paused: true })
-const scene_5_to_6 = gsap.timeline({ paused: true })
-const scene_6_to_7 = gsap.timeline({ paused: true })
-const scene_7_to_8 = gsap.timeline({ paused: true })
-const scene_8_to_9 = gsap.timeline({ paused: true })
-
 const GLOBAL_SCENE = gsap.timeline({ paused: true })
 
 const subtitles0: SlideSubtitle = new SlideSubtitle(0)
@@ -124,150 +115,7 @@ const launchSubtitles = (subtitles: SlideSubtitle) => {
 
 }
 
-const checkSlide = () => {
-
-  loadSlideImg();
-
-  if (CURRENT_SCENE === 1) {
-
-    // Si l'animation d'intro est terminée
-    if (intro.totalProgress() === 1 && subtitles0.isFinish()) {
-      date.updateDate(1900)
-      scene_1_to_2.play()
-      scene0Voix.stop()
-      scene1Voix.init()
-      CURRENT_SCENE = 2
-      setTimeout(() => {
-        scene1Voix.start()
-        launchSubtitles(subtitles1)
-      }, 1000)
-    }
-
-  } else if (CURRENT_SCENE === 2) {
-
-    // Si la scène 1 est terminée
-    if (scene_1_to_2.totalProgress() === 1 && subtitles1.isFinish()) {
-      scene1Parallax.stop()
-      scene_2_to_3.play()
-      scene1Voix.stop()
-      scene2Voix.init()
-
-      CURRENT_SCENE = 3
-      setTimeout(() => {
-        scene2Voix.start()
-        launchSubtitles(subtitles2)
-      }, 1000)
-    }
-
-  } else if (CURRENT_SCENE === 3) {
-
-    if (scene_2_to_3.totalProgress() === 1 && subtitles2.isFinish()) {
-
-      scene2Parallax.stop()
-      scene_3_to_4.play()
-
-      scene2Voix.stop()
-      scene3Voix.init()
-
-      scene4Ambiance.init()
-
-      CURRENT_SCENE = 4
-
-      setTimeout(() => {
-
-        scene3Voix.start()
-        scene4Ambiance.start()
-
-        launchSubtitles(subtitles3)
-
-      }, 1000)
-
-    }
-
-  } else if (CURRENT_SCENE === 4) {
-
-    if (scene_3_to_4.totalProgress() === 1 && subtitles3.isFinish()) {
-
-      CURRENT_SCENE = 5
-
-      scene3Parallax.stop()
-      scene_4_to_5.play()
-
-      scene3Voix.stop()
-      scene4Voix.init()
-
-      setTimeout(() => {
-
-        scene4Voix.start()
-        launchSubtitles(subtitles4)
-
-      }, 1000)
-
-    }
-
-  } else if (CURRENT_SCENE === 5) {
-
-    if (scene_4_to_5.totalProgress() === 1 && subtitles4.isFinish()) {
-      scene4Parallax.stop()
-      scene_5_to_6.play()
-      scene4Voix.stop()
-      scene5Voix.init()
-      CURRENT_SCENE = 6
-      setTimeout(() => {
-        scene5Voix.start()
-        launchSubtitles(subtitles5)
-      }, 1000)
-    }
-
-  } else if (CURRENT_SCENE === 6) {
-
-    if (scene_5_to_6.totalProgress() === 1 && subtitles5.isFinish()) {
-      scene5Parallax.stop()
-      scene_6_to_7.play()
-      scene5Voix.stop()
-      // scene6Voix.init()
-      CURRENT_SCENE = 7
-      setTimeout(() => {
-        // scene6Voix.start()
-        launchSubtitles(subtitles6)
-      }, 1000)
-    }
-
-  } else if (CURRENT_SCENE === 7) {
-
-    if (scene_6_to_7.totalProgress() === 1 && subtitles6.isFinish()) {
-      scene6Parallax.stop()
-      scene_7_to_8.play()
-      // scene6Voix.stop()
-      scene7Voix.init()
-      CURRENT_SCENE = 8
-      setTimeout(() => {
-        scene7Voix.start()
-        launchSubtitles(subtitles7)
-      }, 1000)
-    }
-
-  } else if (CURRENT_SCENE === 8) {
-
-    if (scene_7_to_8.totalProgress() === 1 && subtitles7.isFinish()) {
-      scene7Parallax.stop()
-      scene_8_to_9.play()
-      scene7Voix.stop()
-      scene7Voix.init()
-      CURRENT_SCENE = 9
-      setTimeout(() => {
-        scene7Voix.start()
-        launchSubtitles(subtitles8)
-      }, 1000)
-    }
-
-  }
-
-  console.log(CURRENT_SCENE);
-
-}
-
-document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', () => { checkSlide() })
+// document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', () => { checkSlide() })
 
 
 
@@ -275,6 +123,9 @@ document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', (
 interface config {
   timecode: number
   parallax?: MouseParallax
+  date?: number
+  subtitle?: SlideSubtitle
+  delayVoixSubtitle?: number
 }
 
 const CONFIG: Array<config> = [
@@ -283,11 +134,15 @@ const CONFIG: Array<config> = [
   },
   {
     timecode: 2,
-    parallax: scene1Parallax
+    parallax: scene1Parallax,
+    date: new Date().getFullYear(),
+    subtitle: subtitles0,
+    delayVoixSubtitle: 2000
   },
   {
     timecode: 3,
-    parallax: scene2Parallax
+    parallax: scene2Parallax,
+    date: 1900
   },
   {
     timecode: 4
@@ -314,16 +169,22 @@ const CONFIG: Array<config> = [
 
 
 
-
-
-
-
-
-
 const slideTo = (num: number, animated: boolean = true) => {
+  // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
+
+  // CURRENT_SCENE = new scene
   CURRENT_SCENE = num
+  if (CONFIG[num].date) date.updateDate(CONFIG[num].date)
   GLOBAL_SCENE.tweenTo(CONFIG[num].timecode)
+  if (CONFIG[num].subtitle && CONFIG[num].delayVoixSubtitle) {
+    setTimeout(
+      () => CONFIG[num].subtitle?.init()
+      ,
+      CONFIG[num].delayVoixSubtitle
+    )
+  }
+
   CONFIG[num].parallax?.init()
   CONFIG[num].parallax?.start()
 }
@@ -363,10 +224,6 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
   slideTo(1)
 
 })
-
-
-
-
 
 
 
@@ -460,33 +317,4 @@ GLOBAL_SCENE
   // Scène 8
   .to('.wrapper-usine', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
 
-/* Parallax sur toutes les sections */
 
-const parallax = () => {
-
-  if (CURRENT_SCENE === 1 && intro.totalProgress() === 1 && scene1Parallax.getInit() === false) {
-    scene1Parallax.init()
-  } else if (CURRENT_SCENE === 3 && scene_1_to_2.totalProgress() === 1 && scene2Parallax.getInit() === false) {
-    scene1Parallax.stop()
-    scene2Parallax.init()
-  } else if (CURRENT_SCENE === 4 && scene_2_to_3.totalProgress() === 1 && scene3Parallax.getInit() === false) {
-    scene2Parallax.stop()
-    scene3Parallax.init()
-  } else if (CURRENT_SCENE === 5 && scene_3_to_4.totalProgress() === 1 && scene4Parallax.getInit() === false) {
-    scene3Parallax.stop()
-    scene4Parallax.init()
-  } else if (CURRENT_SCENE === 6 && scene_4_to_5.totalProgress() === 1 && scene5Parallax.getInit() === false) {
-    scene4Parallax.stop()
-    scene5Parallax.init()
-  } else if (CURRENT_SCENE === 7 && scene_5_to_6.totalProgress() === 1 && scene6Parallax.getInit() === false) {
-    scene5Parallax.stop()
-    scene6Parallax.init()
-  } else if (CURRENT_SCENE === 8 && scene_6_to_7.totalProgress() === 1 && scene7Parallax.getInit() === false) {
-    scene6Parallax.stop()
-    scene7Parallax.init()
-  }
-
-  requestAnimationFrame(parallax)
-}
-
-parallax()

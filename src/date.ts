@@ -10,7 +10,7 @@ export class DateTrigger {
         this.dateContainer.innerHTML = this.date
     }
 
-    updateDate(newDate: number) {
+    updateDate(newDate: any) {
         let update = setInterval(() => {
             if (newDate < this.date) {
                 this.date--
