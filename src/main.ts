@@ -64,7 +64,15 @@ const reset = (collection: string, classe: string) => {
   }
 }
 
+const launchScreenTransition = () => {
 
+  const screenTransition = gsap.timeline()
+  screenTransition
+  .set('.screen-transition', { y: '100vh' })
+  .to('.screen-transition', { y: 0, duration: 1, ease: Power2.easeInOut })
+  .to('.screen-transition', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  
+}
 
 /* Lazy Loading */
 
@@ -144,11 +152,7 @@ const CONFIG: Array<config> = [
   }
 ]
 
-let first = false
-
 const slideTo = (num: number, animated: boolean = true) => {
-
-  if (!first) first = true
 
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
@@ -184,13 +188,32 @@ if (window.location.hash) {
 }
 
 for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')) {
+
   tick.addEventListener('click', () => {
+
     reset('.timeline--wrapper .timeline--tick', 'active')
     tick.classList.add('active')
+
+    // On récupère le tick choisi
     let _tick = (tick as HTMLInputElement).dataset.tick || ''
     var y: number = +_tick;
-    slideTo(y, first)
+    
+    if(y === CURRENT_SCENE + 1 || y === CURRENT_SCENE - 1) {
+      slideTo(y)
+    } else if(y === CURRENT_SCENE) {
+      console.log('On a déjà lancé la scène')
+    } else {
+      launchScreenTransition()
+      setTimeout(() => {
+        slideTo(y - 1, false)
+      }, 1000)
+      setTimeout(() => {
+        slideTo(y)
+      }, 1000)
+    }
+
   });
+  
 }
 
 const loader = document.querySelector<HTMLInputElement>('.loader')
@@ -307,6 +330,9 @@ GLOBAL_SCENE
 
   // Scène 6 - Setup
   .set('.wrapper-usine', { y: '-100vh' })
+  .set('.slide-6 .layer:nth-child(1)', { y: 300 })
+  .set('.slide-6 .layer:nth-child(2)', { y: 150 })
+  .set('.transition.smoke', { top: '25%' })
 
   // Scène 7 - Setup
   .set('.slide-7 .layer:nth-child(1)', { scale: 0.85 })
@@ -393,13 +419,14 @@ GLOBAL_SCENE
   // Scène 6 - Apparition usine
   .to('.slide-5 .m2', { scale: 2.5, duration: 1, ease: Power2.easeInOut })
   .to('.slide-5 .bg-dark', { scale: 1.5, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-7 .layer:nth-child(1)', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-7 .layer:nth-child(1)', { y: 0, scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.transition.smoke', { top: '35%', duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.wrapper-concours', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
   // Scène 7 - Apparition ciel
   .to('.wrapper-usine', { y: 0, duration: 1, ease: Power2.easeInOut })
   .to('.transition.smoke', { top: '65%', duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.slide-6 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-7 .layer:nth-child(1)', { y: -300, duration: 1, ease: Power2.easeInOut })
 
   // Scène 8 - Objets start
