@@ -68,14 +68,6 @@ const scene8Parallax = new MouseParallax(slide8!)
 
 
 
-
-
-
-
-
-
-
-
 const reset = (collection: string, classe: string) => {
   for (let elt of document.querySelectorAll(collection)) {
     elt.classList.remove(classe)
@@ -113,26 +105,6 @@ const loadSlideImg = () => {
 
 //loadSlideImg()
 
-const launchSubtitles = (subtitles: SlideSubtitle) => {
-
-  cursor?.classList.remove('big')
-
-  // On initialise les sous-titres passés en paramètres
-  subtitles.init()
-
-  // On lance un compteur toutes les 10ms
-  let _i: number = 0
-  let _interval = setInterval(() => {
-    _i += 10
-    loader?.setAttribute('style', 'width: ' + getAverage(_i, subtitles.getDuration()) + '%')
-    if (getAverage(_i, subtitles.getDuration()) >= 100) {
-      cursor?.classList.add('big')
-      clearInterval(_interval)
-    }
-  }, 10)
-
-}
-
 // document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', () => { checkSlide() })
 
 
@@ -161,7 +133,9 @@ const CONFIG: Array<config> = [
   {
     timecode: 3,
     parallax: scene2Parallax,
-    date: 1900
+    date: 1900,
+    subtitle: subtitles1,
+    delayVoixSubtitle: 2000
   },
   //Scène 2 :
   {
@@ -196,7 +170,7 @@ const CONFIG: Array<config> = [
 const slideTo = (num: number, animated: boolean = true) => {
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
-
+  CONFIG[CURRENT_SCENE].subtitle?.stop()
   // CURRENT_SCENE = new scene
   CURRENT_SCENE = num
   if (CONFIG[num].date) date.updateDate(CONFIG[num].date)
