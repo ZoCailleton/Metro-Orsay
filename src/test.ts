@@ -191,7 +191,7 @@ const checkSlide = () => {
         MATOS[CURRENT_SCENE].previous_voice.stop()
         MATOS[CURRENT_SCENE].next_voice.init()
 
-        CURRENT_SCENE = 1
+        CURRENT_SCENE++
 
         setTimeout(() => {
 
