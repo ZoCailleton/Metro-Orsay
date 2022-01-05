@@ -25,8 +25,9 @@ body {
     object-fit: cover;
   }
   &.smoke {
-    margin-top: -22vh;
-    position: relative;
+    position: absolute;
+    top: 25%;
+    transform: translateY(-50%);
     z-index: 1;
     img {
       object-fit: fill;
@@ -47,8 +48,8 @@ body {
   right: 0;
   z-index: 99;
   .timeline--tick {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color: #fff;
     border-radius: 50%;
     display: flex;
@@ -107,9 +108,6 @@ body {
 }
 
 .btn {
-  width: 200px;
-  height: 50px;
-  background-color: #ddd;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,7 +220,7 @@ figure {
   position: relative;
   overflow: hidden;
   &.intro {
-    background-color: #eee;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -231,12 +229,14 @@ figure {
       grid-gap: 15px;
     }
     h1 {
+      max-width: 1000px;
       margin: 0 0 15px;
-      font-size: 52px;
+      font-size: 84px;
       font-weight: 400;
+      text-align: center;
     }
     .side {
-      width: 300px;
+      width: 275px;
       &:first-child {
         margin-right: -50px;
         margin-bottom: 50px;
@@ -250,17 +250,20 @@ figure {
       }
     }
     .arche {
-      width: 450px;
+      width: 400px;
       img {
         width: 100%;
       }
     }
     .btn {
+      width: 100%;
+      max-width: 250px;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
       img {
+        width: 100%;
         position: absolute;
       }
       p {
@@ -269,7 +272,7 @@ figure {
       }
     }
     .aile {
-      width: 350px;
+      width: 300px;
       img {
         width: 100%;
       }
@@ -304,7 +307,7 @@ figure {
     justify-content: center;
     align-items: center;
     position: absolute;
-    z-index: 3;
+    z-index: 5;
     .item {
       height: 100vh;
       background-color: #fff;
@@ -379,7 +382,10 @@ figure {
 
 .wrapper-usine {
   width: 100%;
-  height: 300vh;
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   top: 0;
   z-index: 4;
