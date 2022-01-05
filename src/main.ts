@@ -295,11 +295,9 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 
   cursor?.classList.add('active')
 
-  intro.tweenTo(0.5)
   CURRENT_SCENE = 1
 
   setTimeout(() => {
-    intro.tweenTo(0)
 
     launchSubtitles(subtitles0)
     scene0Voix.start()
