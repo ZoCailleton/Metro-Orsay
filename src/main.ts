@@ -136,7 +136,7 @@ const CONFIG: Array<config> = [
   },
   // Scène 8 : Objets - Apparition
   {
-    timecode: 22
+    timecode: 22.5
   },
   // Scène 8 : Objets - Disparition
   {
