@@ -56,15 +56,16 @@ body {
 .cursor {
   width: 0px;
   height: 0px;
-  background-color: #000;
+  background-color: #FFF;
+  border: #000 1px;
   border-radius: 50%;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 99;
+  z-index: 99999;
   transition: width 500ms, height 500ms;
   overflow: hidden;
   color: #fff;
@@ -74,12 +75,11 @@ body {
     height: 15px;
   }
   &.big {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
+    color: black;
   }
 }
-
-.cursor:selector { cursor: none; }
 
 .flex {
   display: flex;
@@ -204,7 +204,6 @@ figure {
   height: 100vh;
   position: relative;
   overflow: hidden;
-  cursor: none;
   &.intro {
     background-color: #eee;
     display: flex;

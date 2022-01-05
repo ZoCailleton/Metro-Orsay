@@ -5,6 +5,7 @@ import { MouseParallax } from './mouse'
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DateTrigger } from './date'
+import { Cursor } from './cursor'
 
 const date = new DateTrigger()
 date.init()
@@ -14,13 +15,6 @@ gsap.registerPlugin(ScrollTrigger)
 const getAverage = (first: number, second: number) => {
   return Math.round((first / second) * 100)
 }
-
-const cursor = document.querySelector<HTMLInputElement>('.cursor')
-window.addEventListener('mousemove', (e: MouseEvent) => {
-  let _x = e.clientX - cursor!.offsetWidth / 2
-  let _y = e.clientY - cursor!.offsetHeight / 2
-  cursor?.setAttribute('style', 'transform: translate(' + _x + 'px, ' + _y + 'px)')
-})
 
 let CURRENT_SCENE: number = 0
 
@@ -105,10 +99,6 @@ const loadSlideImg = () => {
 
 //loadSlideImg()
 
-// document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', () => { checkSlide() })
-
-
-
 
 interface config {
   timecode: number
@@ -156,8 +146,8 @@ const CONFIG: Array<config> = [
   {
     timecode: 8
   },
+  // Scène 6 :
   {
-    // Scène 6 :
     timecode: 12
   },
   {
@@ -225,17 +215,42 @@ const intro = gsap.timeline({ paused: true })
 
 const loader = document.querySelector<HTMLInputElement>('.loader')
 
+const cursor = new Cursor()
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
-
-  // scene0Voix.init()
-
-  cursor?.classList.add('active')
+  cursor.draw()
+  cursorTrigger()
 
   slideTo(1)
-
 })
 
+function cursorTrigger() {
+  window.addEventListener('click', cursorClicker)
+  let listener = true
 
+  function cursorClicker() {
+
+    if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
+      cursor.small()
+      slideTo(CURRENT_SCENE + 1)
+      window.removeEventListener('click', cursorClicker)
+      listener = false
+    }
+
+  }
+
+  setInterval(
+    () => {
+      if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
+        cursor.big()
+        if (!listener) {
+          window.addEventListener('click', cursorClicker)
+          listener = true
+        }
+      }
+    },
+    50
+  )
+}
 
 
 GLOBAL_SCENE
