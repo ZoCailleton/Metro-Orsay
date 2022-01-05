@@ -25,7 +25,7 @@ const subtitles5: SlideSubtitle = new SlideSubtitle(5)
 const subtitles6: SlideSubtitle = new SlideSubtitle(6)
 const subtitles7: SlideSubtitle = new SlideSubtitle(7)
 const subtitles8: SlideSubtitle = new SlideSubtitle(8)
-const subtitles9: SlideSubtitle = new SlideSubtitle(9)
+// const subtitles9: SlideSubtitle = new SlideSubtitle(9)
 
 const scene0Voix = new Audio('/assets/audio/slide1.mp3', false)
 const scene1Voix = new Audio('/assets/audio/slide2.mp3', false)
@@ -37,25 +37,25 @@ const scene5Voix = new Audio('/assets/audio/slide6.mp3', false)
 // const scene6Voix = new Audio('/assets/audio/slide7.mp3', false)
 const scene7Voix = new Audio('/assets/audio/slide8.mp3', false)
 
-const scene4Ambiance = new Audio('/assets/audio/ambiance_slide_4.mp3', true)
+// const scene4Ambiance = new Audio('/assets/audio/ambiance_slide_4.mp3', true)
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
-const slide3 = document.querySelector<HTMLInputElement>('.slide-3')
-const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
-const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
-const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
-const slide7 = document.querySelector<HTMLInputElement>('.slide-7')
-const slide8 = document.querySelector<HTMLInputElement>('.slide-8')
+// const slide3 = document.querySelector<HTMLInputElement>('.slide-3')
+// const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
+// const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
+// const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
+// const slide7 = document.querySelector<HTMLInputElement>('.slide-7')
+// const slide8 = document.querySelector<HTMLInputElement>('.slide-8')
 
 const scene1Parallax = new MouseParallax(slide1!)
 const scene2Parallax = new MouseParallax(slide2!)
-const scene3Parallax = new MouseParallax(slide3!)
-const scene4Parallax = new MouseParallax(slide4!)
-const scene5Parallax = new MouseParallax(slide5!)
-const scene6Parallax = new MouseParallax(slide6!)
-const scene7Parallax = new MouseParallax(slide7!)
-const scene8Parallax = new MouseParallax(slide8!)
+// const scene3Parallax = new MouseParallax(slide3!)
+// const scene4Parallax = new MouseParallax(slide4!)
+// const scene5Parallax = new MouseParallax(slide5!)
+// const scene6Parallax = new MouseParallax(slide6!)
+// const scene7Parallax = new MouseParallax(slide7!)
+// const scene8Parallax = new MouseParallax(slide8!)
 
 
 
@@ -69,10 +69,10 @@ const launchScreenTransition = () => {
 
   const screenTransition = gsap.timeline()
   screenTransition
-  .set('.screen-transition', { y: '100vh' })
-  .to('.screen-transition', { y: 0, duration: 1, ease: Power2.easeInOut })
-  .to('.screen-transition', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-  
+    .set('.screen-transition', { y: '100vh' })
+    .to('.screen-transition', { y: 0, duration: 1, ease: Power2.easeInOut })
+    .to('.screen-transition', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+
 }
 
 /* Lazy Loading */
@@ -221,10 +221,10 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
     // On récupère le tick choisi
     let _tick = (tick as HTMLInputElement).dataset.tick || ''
     var y: number = +_tick;
-    
-    if(y === CURRENT_SCENE + 1 || y === CURRENT_SCENE - 1) {
+
+    if (y === CURRENT_SCENE + 1 || y === CURRENT_SCENE - 1) {
       slideTo(y)
-    } else if(y === CURRENT_SCENE) {
+    } else if (y === CURRENT_SCENE) {
       console.log('On a déjà lancé la scène')
     } else {
       launchScreenTransition()
@@ -237,10 +237,10 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
     }
 
   });
-  
+
 }
 
-const loader = document.querySelector<HTMLInputElement>('.loader')
+// const loader = document.querySelector<HTMLInputElement>('.loader')
 
 const cursor = new Cursor()
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
