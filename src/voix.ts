@@ -1,4 +1,4 @@
-import text from './dev.json'
+import text from './text.json'
 
 export class SlideSubtitle {
 
@@ -7,6 +7,9 @@ export class SlideSubtitle {
   numSentences: number;
   duration: number;
   step: number;
+  containerSubtitle: any
+  textSubtitle: HTMLParagraphElement
+  play: boolean
 
   constructor(slideStep: number) {
     this.voice = text[slideStep];
@@ -14,32 +17,36 @@ export class SlideSubtitle {
     this.numSentences = 0;
     this.duration = 0;
     this.step = 0;
+    this.containerSubtitle = document.querySelector<HTMLInputElement>('.subtitles--wrapper')
+    this.textSubtitle = document.createElement('p')
+    this.play = true
   }
 
   init() {
-    const containerSubtitle = document.querySelector<HTMLInputElement>('.subtitles--wrapper')
-    const textSubtitle = document.createElement('p')
-
-    if (containerSubtitle) {
-      containerSubtitle.appendChild(textSubtitle)
+    if (this.containerSubtitle) {
+      this.containerSubtitle.appendChild(this.textSubtitle)
     }
+    this.step = 0
+    this.play = true
     this.durationVoice()
-    this.getNewSentence(textSubtitle)
+    this.getNewSentence(this.play)
+    this.textSubtitle.classList.remove('hidden')
   }
 
-  private getNewSentence(textSubtitle: HTMLParagraphElement) {
-    textSubtitle.innerHTML = this.voice[this.step].text
+  private getNewSentence(play: boolean) {
+    this.textSubtitle.innerHTML = this.voice[this.step].text
+    const duration = play ? this.voice[this.step].duration * 1000 : 0
     setTimeout(() => {
-      if (this.voice[this.step + 1]) {
+      if (this.voice[this.step + 1] && play === true) {
         this.step++
-        this.getNewSentence(textSubtitle)
-        textSubtitle.classList.remove('hidden')
+        this.getNewSentence(this.play)
       } else {
         this.finish = true
-        textSubtitle.innerHTML = ''
-        textSubtitle.classList.add('hidden')
+        this.textSubtitle.innerHTML = ''
+        this.textSubtitle.classList.add('hidden')
+        this.step = 0
       }
-    }, this.voice[this.step].duration * 1000);
+    }, duration);
   }
 
   private durationVoice() {
@@ -65,6 +72,11 @@ export class SlideSubtitle {
     } else {
       return false
     }
+  }
+
+  stop() {
+    this.play = false
+    this.getNewSentence(this.play)
   }
 }
 

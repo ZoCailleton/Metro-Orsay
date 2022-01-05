@@ -36,14 +36,18 @@ export class MouseParallax {
 		this.isInit = true
 		this.isStart = true
 		this.loop()
+		console.log('Parallax Init');
+
 	}
 
 	start() {
 		this.isStart = true
+		console.log('Parallax Start');
 	}
 
 	stop() {
 		this.isStart = false
+		console.log('Parallax Stop');
 	}
 
 	getInit() {

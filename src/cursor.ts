@@ -1,23 +1,39 @@
 export class Cursor {
 
+    cursor: any
     size: number
     x!: number
     y!: number
+    isBig: boolean
 
     constructor() {
-        this.size = 10
+        this.cursor = document.querySelector<HTMLInputElement>('.cursor')
+        this.isBig = false
+        this.size = 15
     }
-    
-    draw() {
 
-        const cursor = document.querySelector<HTMLInputElement>('.cursor')
+    draw() {
 
         window.addEventListener('mousemove', (e: MouseEvent) => {
             this.x = e.clientX - this.size / 2
             this.y = e.clientY - this.size / 2
-            cursor?.setAttribute('style', 'transform: translate(' + this.x + 'px, ' + this.y + 'px)')
+            this.cursor?.setAttribute('style', 'transform: translate(' + this.x + 'px, ' + this.y + 'px)')
         })
 
+        this.small()
+
+    }
+
+    small() {
+        this.size = 15
+        this.cursor.classList.add('active')
+        this.cursor.classList.remove('big')
+    }
+
+    big() {
+        this.size = 120
+        this.cursor.classList.add('big')
+        this.cursor.classList.remove('active')
     }
 
 }
