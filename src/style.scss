@@ -16,12 +16,35 @@ body {
   font-family: 'Centrion';
 }
 
+.timeline--wrapper {
+  width: 50px;
+  height: 100vh;
+  padding: 0 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 15px;
+  position: fixed;
+  right: 0;
+  z-index: 11;
+  .timeline--tick {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .cursor {
   width: 0px;
   height: 0px;
   background-color: #000;
   border-radius: 50%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -78,7 +101,7 @@ figure {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 2;
+  z-index: 10;
   .date {
     font-size: 44px;
   }
