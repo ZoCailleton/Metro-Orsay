@@ -267,8 +267,9 @@ figure {
   }
   &.slide-1 {
     overflow: hidden;
+    filter: grayscale(0%);
     .layer {
-      filter: grayscale(0%);
+      
     }
   }
   &.slide-2 {

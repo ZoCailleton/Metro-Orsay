@@ -428,13 +428,13 @@ GLOBAL_SCENE
 .to('.intro', { opacity: 0 })
 
 // Scène 1 - Paris 1900
-.to('.slide-1 .layer', { filter: 'grayscale(100%)', duration: 1, ease: Power2.easeInOut })
+.to('.slide-1', { filter: 'grayscale(100%)', duration: 1, ease: Power2.easeInOut })
 .to('.slide-1 .layer.tour-eiffel', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 .to('.slide-1 .layer:nth-child(8)', { opacity: 0, duration: 1, ease: Power2.easeInOut })
 .to('.slide-1 .layer:nth-child(9)', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
 .to('.slide-1 .layer:nth-child(10)', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
 
-// Scène 2
+// Scène 2 - Concours
 .to('.slide-1 .layer:nth-child(9)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut })
 .to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 .to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
