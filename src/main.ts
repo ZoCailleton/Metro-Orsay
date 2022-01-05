@@ -172,7 +172,7 @@ const checkSlide = () => {
 
         scene3Voix.start()
         scene4Ambiance.start()
-        
+
         launchSubtitles(subtitles3)
 
       }, 1000)
@@ -187,7 +187,7 @@ const checkSlide = () => {
 
       scene3Parallax.stop()
       scene_4_to_5.play()
-      
+
       scene3Voix.stop()
       scene4Voix.init()
 
@@ -479,6 +479,7 @@ const parallax = () => {
 
 parallax()
 
+// test
 
 
 
