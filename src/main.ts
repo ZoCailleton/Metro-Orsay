@@ -274,17 +274,20 @@ document.querySelector<HTMLInputElement>('.cursor')?.addEventListener('click', (
 
 interface config {
   timecode: number
+  parallax?: MouseParallax
 }
 
 const CONFIG: Array<config> = [
   {
-    timecode: 0
+    timecode: 0,
   },
   {
-    timecode: 2
+    timecode: 2,
+    parallax: scene1Parallax
   },
   {
-    timecode: 3
+    timecode: 3,
+    parallax: scene2Parallax
   },
   {
     timecode: 4
@@ -315,8 +318,11 @@ const CONFIG: Array<config> = [
 
 
 const slideTo = (num: number) => {
+  CONFIG[CURRENT_SCENE].parallax?.stop()
   CURRENT_SCENE = num
   GLOBAL_SCENE.tweenTo(CONFIG[num].timecode)
+  CONFIG[num].parallax?.init()
+  CONFIG[num].parallax?.start()
 }
 
 if (window.location.hash) {
@@ -333,8 +339,6 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
     slideTo(y)
   });
 }
-
-
 
 
 
