@@ -200,6 +200,25 @@ function cursorTrigger() {
   window.addEventListener('click', cursorClicker)
   let listener = true
 
+  const navPoints = document.querySelectorAll('.timeline--tick')
+  console.log(navPoints);
+
+  for (let i = 0; i < navPoints.length; i++) {
+    console.log(navPoints[i]);
+
+    navPoints[i].addEventListener('mouseenter', () => {
+      cursor.remove()
+    })
+
+    navPoints[i].addEventListener('mouseout', () => {
+      if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
+        cursor.big()
+      } else {
+        cursor.small()
+      }
+    })
+  }
+
   function cursorClicker() {
 
     if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
@@ -212,14 +231,19 @@ function cursorTrigger() {
     setInterval(
       () => {
         if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
-          cursor.big()
+          if (cursor.isHover()) {
+            cursor.remove()
+          } else {
+            cursor.big()
+          }
+
           if (!listener) {
             window.addEventListener('click', cursorClicker)
             listener = true
           }
         }
       },
-      50
+      10
     )
   }
 

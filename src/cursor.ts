@@ -28,12 +28,25 @@ export class Cursor {
         this.size = 15
         this.cursor.classList.add('active')
         this.cursor.classList.remove('big')
+        this.cursor.classList.remove('hover')
     }
 
     big() {
         this.size = 120
         this.cursor.classList.add('big')
         this.cursor.classList.remove('active')
+        this.cursor.classList.remove('hover')
+    }
+
+    remove() {
+        this.size = 30
+        this.cursor.classList.add('hover')
+        this.cursor.classList.remove('active')
+        this.cursor.classList.remove('big')
+    }
+
+    isHover() {
+        return this.cursor.classList.contains('hover') ? true : false
     }
 
 }
