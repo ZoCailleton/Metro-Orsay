@@ -4,6 +4,10 @@ import { MouseParallax } from './mouse'
 
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { DateTrigger } from './date'
+
+const date = new DateTrigger()
+date.init()
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -126,6 +130,7 @@ const checkSlide = () => {
 
     // Si l'animation d'intro est terminée
     if (intro.totalProgress() === 1 && subtitles0.isFinish()) {
+      date.updateDate(1900)
       scene_1_to_2.play()
       scene0Voix.stop()
       scene1Voix.init()
@@ -170,7 +175,7 @@ const checkSlide = () => {
 
         scene3Voix.start()
         scene4Ambiance.start()
-        
+
         launchSubtitles(subtitles3)
 
       }, 1000)
@@ -185,7 +190,7 @@ const checkSlide = () => {
 
       scene3Parallax.stop()
       scene_4_to_5.play()
-      
+
       scene3Voix.stop()
       scene4Voix.init()
 

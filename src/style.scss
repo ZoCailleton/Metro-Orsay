@@ -78,9 +78,12 @@ figure {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 2;
+  z-index: 10;
   .date {
-    font-size: 44px;
+    p{
+      font-size: 44px;
+      margin: 0;
+    }
   }
 }
 
