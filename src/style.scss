@@ -57,7 +57,8 @@ body {
     justify-content: center;
     align-items: center;
     .spaceship {
-      height: 100px;
+      width: 600px;
+      height: 300px;
       position: absolute;
       z-index: 1;
       img {
@@ -85,8 +86,8 @@ body {
 .timeline--wrapper {
   width: 50px;
   height: 100vh;
-  padding: 0 35px;
-  display: none;
+  padding-right: 50px;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -94,22 +95,18 @@ body {
   position: fixed;
   right: 0;
   z-index: 99;
-  &.active {
-    display: flex;
-  }
   .timeline--tick {
     width: 30px;
     height: 30px;
-    background-color: #fff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.5;
     transition: opacity .3s;
+    opacity: 0;
     cursor: none;
-    &.active {
-      opacity: 1;
+    img {
+      width: 100%;
     }
   }
 }
@@ -172,20 +169,29 @@ figure {
   position: absolute;
 }
 
-.nav--wrapper {
-  width: 100%;
-  padding: 75px 75px 0;
+.date {
+  width: 200px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
-  left: 0;
-  top: 0;
+  left: 20px;
+  top: 20px;
+  transform: translateY(-100px);
   z-index: 10;
-  .date {
-    p{
-      font-size: 44px;
-      margin: 0;
-      opacity: 0;
-      transition: opacity .3s;
-    }
+  img {
+    width: 100%;
+    position: absolute;
+  }
+  p {
+    margin: 0;
+    position: relative;
+    opacity: 0;
+    transform: translate(-5%, 5%);
+    transition: opacity .3s;
+    font-size: 36px;
+    font-family: 'Centrion';
   }
 }
 
@@ -211,42 +217,45 @@ figure {
   }
 }
 
-.band--top,
-.band--bottom,
-.band--left,
-.band--right {
-  background-color: #fff;
+.band {
   position: fixed;
+  opacity: 0;
   z-index: 10;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .band--top,
 .band--bottom {
   width: 100%;
-  height: 20px;
   left: 0;
 }
 
 .band--left,
 .band--right {
-  width: 20px;
   height: 100%;
 }
 
 .band--top {
-  top: -20px;
+  height: 18px;
+  top: 0;
 }
 
 .band--bottom {
-  bottom: -20px;
+  height: 16px;
+  bottom: 0;
 }
 
 .band--left {
-  left: -20px;
+  width: 20px;
+  left: 0;
 }
 
 .band--right {
-  right: -20px;
+  width: 125px;
+  right: 0;
 }
 
 .loader {
@@ -281,7 +290,7 @@ figure {
     h1 {
       max-width: 733px;
       margin: -30px 0 15px;
-      font-size: 55px;
+      font-size: 72px;
       font-weight: 400;
       text-align: center;
       line-height: 1em;
@@ -327,7 +336,7 @@ figure {
         position: absolute;
       }
       p {
-        font-size: 24px;
+        font-size: 20px;
         margin-top: 31px;
         z-index: 1;
       }

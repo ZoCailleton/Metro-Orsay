@@ -53,14 +53,6 @@ const scene3Parallax = new MouseParallax(slide3!)
 const scene4Parallax = new MouseParallax(slide4!)
 const scene5Parallax = new MouseParallax(slide5!)
 
-
-
-const reset = (collection: string, classe: string) => {
-  for (let elt of document.querySelectorAll(collection)) {
-    elt.classList.remove(classe)
-  }
-}
-
 const launchScreenTransition = () => {
 
   const screenTransition = gsap.timeline()
@@ -248,8 +240,7 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
   tick.addEventListener('click', () => {
     CONFIG[CURRENT_SCENE].subtitle?.init()
 
-    reset('.timeline--wrapper .timeline--tick', 'active')
-    tick.classList.add('active')
+    tick.querySelector('img')?.setAttribute('src', 'assets/ui/tick-active.png')
 
     // On récupère le tick choisi
     let _tick = (tick as HTMLInputElement).dataset.tick || ''
@@ -277,11 +268,12 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
 
 const cursor = new Cursor()
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
+
+  document.querySelector('.timeline--tick:first-child img')?.setAttribute('src', 'assets/ui/tick-active.png')
+
   cursor.draw()
   date.show()
   cursorTrigger()
-  document.querySelector('.timeline--wrapper')?.classList.add('active')
-  document.querySelector('.timeline--tick:first-child')?.classList.add('active')
   slideTo(1)
 })
 
@@ -407,10 +399,9 @@ GLOBAL_SCENE
   // Intro - Start
   .to('.wrapper-intro', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
   .to('.slide-1 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.band--top', { top: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.band--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.band--left', { left: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.band--right', { right: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.band', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.timeline--tick', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.date', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
