@@ -69,7 +69,9 @@
     {
       "text": "au début du 20e siècle.",
       "duration": 2
-    },
+    }
+  ],
+  [
     {
       "text": "Cet architecte n’est autre qu’Hector Guimard.",
       "duration": 2.2
@@ -77,9 +79,7 @@
     {
       "text": "Né en 1867, il est prisé pour ses villas et ses immeubles.",
       "duration": 4.2
-    }
-  ],
-  [
+    },
     {
       "text": "En 1899, la ville de Paris",
       "duration": 3
@@ -201,13 +201,29 @@
   ],
   [
     {
-      "text": "cela va permettre la production massive de nombreux produits Art nouveau.",
+      "text": "cela va permettre la production massive",
+      "duration": 2
+    },
+    {
+      "text": "de nombreux produits dans un style novateur",
+      "duration": 2
+    },
+    {
+      "text": "au début du 20e siècle",
+      "duration": 2
+    },
+    {
+      "text": "dont Guimard est l’un des plus grands représentants :",
+      "duration": 2
+    },
+    {
+      "text": "le style Art Nouveau",
       "duration": 2
     }
   ],
   [
     {
-      "text": "D’un point de vue artistique, se mouvement,",
+      "text": "D’un point de vue artistique, se mouvement Art Nouveau ",
       "duration": 2
     },
     {
@@ -235,7 +251,109 @@
       "duration": 2
     },
     {
-      "text": " En somme, des éléments qui introduisent du sensible dans le décor du quotidien.",
+      "text": " En somme, des éléments qui introduisent du sensible",
+      "duration": 2
+    },
+    {
+      "text": "dans le décor du quotidien.",
+      "duration": 2
+    }
+  ],
+  [
+    {
+      "text": "De nombreux artistes vont émerger de ce mouvement,",
+      "duration": 2
+    },
+    {
+      "text": "tels que Gaudi, Victor Horta, Alfons Mucha...",
+      "duration": 2
+    },
+    {
+      "text": "Outre les arches du métro parisien",
+      "duration": 2
+    },
+    {
+      "text": "des oeuvres reconnues mondialement",
+      "duration": 2
+    },
+    {
+      "text": "ont découlées du style art nouveau.",
+      "duration": 2
+    },
+    {
+      "text": "C’est par exemple le cas de la Sagrada Familia, à Barcelone",
+      "duration": 2
+    },
+    {
+      "text": "pour laquelle Antoni Gaudi est resté fidèle aux principe du mouvement,",
+      "duration": 2
+    },
+    {
+      "text": "ou encore Beethoven par Gustave Klint.",
+      "duration": 2
+    }
+  ],
+  [
+    {
+      "text": "Même si l’ère de l’art nouveau est aujourd’hui révolue",
+      "duration": 2
+    },
+    {
+      "text": "on peut retrouver de nombreuses références au mouvement",
+      "duration": 2
+    },
+    {
+      "text": "dans des œuvres plus récentes.",
+      "duration": 2
+    },
+    {
+      "text": "Le mouvement psychédélique qui a suivi",
+      "duration": 2
+    },
+    {
+      "text": "en est par exemple fortement inspiré.",
+      "duration": 2
+    }
+  ],
+  [
+    {
+      "text": "De façon plus contemporaine,",
+      "duration": 2
+    },
+    {
+      "text": "on retrouve des références à l’art nouveau dans la pop culture",
+      "duration": 2
+    },
+    {
+      "text": "Les oeuvres d’Hans Giger ont été influencées par le mouvement.",
+      "duration": 2
+    },
+    {
+      "text": "Les oeuvres d’Hans Giger ont été influencées par le mouvement.",
+      "duration": 2
+    },
+    {
+      "text": "L’artiste suisse a fusionné avec brio la machine et l’organique,",
+      "duration": 2
+    },
+    {
+      "text": "donnant naissance à l’univers et à la créature mythique",
+      "duration": 2
+    },
+    {
+      "text": "de la saga Alien",
+      "duration": 2
+    },
+    {
+      "text": "Enfin, les décors de la trilogie du Seigneur des Anneaux",
+      "duration": 2
+    },
+    {
+      "text": "ainsi que du film Arthur et les Minimoys sont d’autres exemples",
+      "duration": 2
+    },
+    {
+      "text": "d’influence de l’art nouveau dans des oeuvres modernes.",
       "duration": 2
     }
   ]
