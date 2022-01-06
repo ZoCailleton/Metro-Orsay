@@ -1,5 +1,5 @@
 import './style.scss'
-import { Audio, SlideSubtitle } from './voix'
+import { AudioClass, SlideSubtitle } from './voix'
 import { MouseParallax } from './mouse'
 
 import gsap, { Power2 } from 'gsap'
@@ -16,46 +16,40 @@ let CURRENT_SCENE: number = 0
 
 const GLOBAL_SCENE = gsap.timeline({ paused: true })
 
-const subtitles0: SlideSubtitle = new SlideSubtitle(0)
-const subtitles1: SlideSubtitle = new SlideSubtitle(1)
-const subtitles2: SlideSubtitle = new SlideSubtitle(2)
-const subtitles3: SlideSubtitle = new SlideSubtitle(3)
-const subtitles4: SlideSubtitle = new SlideSubtitle(4)
-const subtitles5: SlideSubtitle = new SlideSubtitle(5)
-const subtitles6: SlideSubtitle = new SlideSubtitle(6)
-const subtitles7: SlideSubtitle = new SlideSubtitle(7)
-const subtitles8: SlideSubtitle = new SlideSubtitle(8)
-const subtitles9: SlideSubtitle = new SlideSubtitle(9)
+const subtitles1: SlideSubtitle = new SlideSubtitle(0)
+const subtitles2: SlideSubtitle = new SlideSubtitle(1)
+const subtitles3: SlideSubtitle = new SlideSubtitle(2)
+const subtitles4: SlideSubtitle = new SlideSubtitle(3)
+const subtitles5: SlideSubtitle = new SlideSubtitle(4)
+const subtitles6: SlideSubtitle = new SlideSubtitle(5)
+const subtitles7: SlideSubtitle = new SlideSubtitle(6)
+const subtitles8: SlideSubtitle = new SlideSubtitle(7)
+const subtitles9: SlideSubtitle = new SlideSubtitle(8)
+const subtitles10: SlideSubtitle = new SlideSubtitle(9)
 
-const scene0Voix = new Audio('/assets/audio/slide1.mp3', false)
-const scene1Voix = new Audio('/assets/audio/slide2.mp3', false)
-const scene2Voix = new Audio('/assets/audio/slide3.mp3', false)
-const scene3Voix = new Audio('/assets/audio/slide4.mp3', false)
-const scene4Voix = new Audio('/assets/audio/slide5.mp3', false)
-const scene5Voix = new Audio('/assets/audio/slide6.mp3', false)
+const scene1Voix = new AudioClass('/assets/audio/slide1.mp3', false)
+const scene2Voix = new AudioClass('/assets/audio/slide2.mp3', false)
+const scene3Voix = new AudioClass('/assets/audio/slide3.mp3', false)
+const scene4Voix = new AudioClass('/assets/audio/slide4.mp3', false)
+const scene5Voix = new AudioClass('/assets/audio/slide5.mp3', false)
+const scene6Voix = new AudioClass('/assets/audio/slide6.mp3', false)
 // pas encore de voix ici
-// const scene6Voix = new Audio('/assets/audio/slide7.mp3', false)
-const scene7Voix = new Audio('/assets/audio/slide8.mp3', false)
+// const scene7Voix = new AudioClass('/assets/audio/slide7.mp3', false)
+const scene8Voix = new AudioClass('/assets/audio/slide8.mp3', false)
 
-const scene4Ambiance = new Audio('/assets/audio/ambiance_slide_4.mp3', true)
+// const scene4Ambiance = new AudioClass('/assets/audio/ambiance_slide_4.mp3', true)
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
 const slide3 = document.querySelector<HTMLInputElement>('.slide-3')
 const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
 const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
-const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
-const slide7 = document.querySelector<HTMLInputElement>('.slide-7')
-const slide8 = document.querySelector<HTMLInputElement>('.slide-8')
 
 const scene1Parallax = new MouseParallax(slide1!)
 const scene2Parallax = new MouseParallax(slide2!)
 const scene3Parallax = new MouseParallax(slide3!)
 const scene4Parallax = new MouseParallax(slide4!)
 const scene5Parallax = new MouseParallax(slide5!)
-const scene6Parallax = new MouseParallax(slide6!)
-const scene7Parallax = new MouseParallax(slide7!)
-const scene8Parallax = new MouseParallax(slide8!)
 
 
 
@@ -69,10 +63,10 @@ const launchScreenTransition = () => {
 
   const screenTransition = gsap.timeline()
   screenTransition
-  .set('.screen-transition', { y: '100vh' })
-  .to('.screen-transition', { y: 0, duration: 1, ease: Power2.easeInOut })
-  .to('.screen-transition', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-  
+    .set('.screen-transition', { y: '100vh' })
+    .to('.screen-transition', { y: 0, duration: 1, ease: Power2.easeInOut })
+    .to('.screen-transition', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+
 }
 
 /* Lazy Loading */
@@ -89,7 +83,7 @@ interface config {
   parallax?: MouseParallax
   date?: number
   subtitle?: SlideSubtitle
-  voix?: Audio
+  voix?: AudioClass
   delayVoixSubtitle?: number
 }
 
@@ -102,72 +96,75 @@ const CONFIG: Array<config> = [
     timecode: 1,
     parallax: scene1Parallax,
     date: new Date().getFullYear(),
-    subtitle: subtitles0,
-    voix: scene0Voix,
+    subtitle: subtitles1,
+    voix: scene1Voix,
     delayVoixSubtitle: 2000
   },
   //Scène 2 - Paris 1900
   {
     timecode: 4.5,
-    parallax: scene2Parallax,
+    parallax: scene1Parallax,
     date: 1900,
-    subtitle: subtitles1,
-    voix: scene1Voix,
-    delayVoixSubtitle: 2000
-  },
-  //Scène 3 :
-  {
-    timecode: 9.5,
     subtitle: subtitles2,
     voix: scene2Voix,
     delayVoixSubtitle: 2000
   },
-  // Scène 3 : Contrat sombre
+  //Scene 3 : Construction du metro
   {
-    timecode: 11.25,
+    timecode: 9.5,
+    parallax: scene2Parallax,
     subtitle: subtitles3,
     voix: scene3Voix,
+    delayVoixSubtitle: 2000
+  },
+  // Scène 4 : Contrat sombre
+  {
+    timecode: 11.25,
+    parallax: scene3Parallax,
+    subtitle: subtitles4,
+    voix: scene4Voix,
     delayVoixSubtitle: 2000
   },
   // Scène 4 : 
   {
     timecode: 12.5,
-    subtitle: subtitles4,
-    voix: scene4Voix,
+    parallax: scene4Parallax,
+    subtitle: subtitles5,
+    voix: scene5Voix,
     delayVoixSubtitle: 2000
   },
   // Scène 5 : Herbe
   {
     timecode: 14.5,
-    subtitle: subtitles5,
-    voix: scene5Voix,
+    parallax: scene5Parallax,
+    subtitle: subtitles6,
+    voix: scene6Voix,
     delayVoixSubtitle: 2000
   },
   // Scène 5 : Herbe - Apparition monstre
   {
     timecode: 16.5,
     subtitle: subtitles7,
-    voix: scene7Voix,
+    // voix: scene7Voix,
     delayVoixSubtitle: 2000
   },
   // Scène 6 : Usine - Start
   {
     timecode: 18,
     subtitle: subtitles8,
-    // voix: scene8Voix,
+    voix: scene8Voix,
     delayVoixSubtitle: 2000
   },
   // Scène 6 : Usine - Ciel
   {
     timecode: 19.5,
-    // subtitle: subtitles9,
-    // voix: scene9Voix,
+    subtitle: subtitles9,
+    delayVoixSubtitle: 2000
   },
   // Scène 8 : Objets - Apparition
   {
     timecode: 22.5,
-    subtitle: subtitles6,
-    // voix: scene6Voix,
+    subtitle: subtitles10,
     delayVoixSubtitle: 2000
   },
   // Scène 8 : Objets - Disparition
@@ -176,7 +173,26 @@ const CONFIG: Array<config> = [
   }
 ]
 
+const slideToTransition = (num: number) => {
+  const cursorSmall = setInterval(() => cursor.small(), 10)
+  setTimeout(() => {
+    clearInterval(cursorSmall)
+  }, 2000)
+  // CURRENT_SCENE = prev scene
+  CONFIG[CURRENT_SCENE].parallax?.stop()
+  CONFIG[CURRENT_SCENE].subtitle?.stop()
+  CONFIG[CURRENT_SCENE].voix?.stop()
+
+  // CURRENT_SCENE = new scene
+  CURRENT_SCENE = num
+
+  GLOBAL_SCENE.time(CONFIG[num].timecode)
+
+}
+
 const slideTo = (num: number, animated: boolean = true) => {
+
+  cursor.small()
 
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
@@ -185,6 +201,7 @@ const slideTo = (num: number, animated: boolean = true) => {
 
   // CURRENT_SCENE = new scene
   CURRENT_SCENE = num
+
 
   if (CONFIG[num].date) date.updateDate(CONFIG[num].date)
   if (CONFIG[num].subtitle && CONFIG[num].delayVoixSubtitle) {
@@ -198,9 +215,9 @@ const slideTo = (num: number, animated: boolean = true) => {
       CONFIG[num].delayVoixSubtitle
     )
   }
-
   CONFIG[num].parallax?.init()
-  CONFIG[num].parallax?.start()
+  // CONFIG[num].parallax?.start()
+
   animated ? GLOBAL_SCENE.tweenTo(CONFIG[num].timecode) : GLOBAL_SCENE.time(CONFIG[num].timecode)
 }
 
@@ -214,6 +231,7 @@ if (window.location.hash) {
 for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')) {
 
   tick.addEventListener('click', () => {
+    CONFIG[CURRENT_SCENE].subtitle?.init()
 
     reset('.timeline--wrapper .timeline--tick', 'active')
     tick.classList.add('active')
@@ -221,15 +239,15 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
     // On récupère le tick choisi
     let _tick = (tick as HTMLInputElement).dataset.tick || ''
     var y: number = +_tick;
-    
-    if(y === CURRENT_SCENE + 1 || y === CURRENT_SCENE - 1) {
+
+    if (y === CURRENT_SCENE + 1 || y === CURRENT_SCENE - 1) {
       slideTo(y)
-    } else if(y === CURRENT_SCENE) {
+    } else if (y === CURRENT_SCENE) {
       console.log('On a déjà lancé la scène')
     } else {
       launchScreenTransition()
       setTimeout(() => {
-        slideTo(y - 1, false)
+        slideToTransition(y - 1)
       }, 1000)
       setTimeout(() => {
         slideTo(y)
@@ -237,10 +255,10 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
     }
 
   });
-  
+
 }
 
-const loader = document.querySelector<HTMLInputElement>('.loader')
+// const loader = document.querySelector<HTMLInputElement>('.loader')
 
 const cursor = new Cursor()
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
@@ -260,15 +278,31 @@ function cursorTrigger() {
   for (let i = 0; i < navPoints.length; i++) {
 
     navPoints[i].addEventListener('mouseenter', () => {
-      cursor.remove()
+      cursor.hover()
     })
 
     navPoints[i].addEventListener('mouseout', () => {
+
       if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
         cursor.big()
       } else {
         cursor.small()
       }
+    })
+
+    navPoints[i].addEventListener('mouseout', () => {
+
+      if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
+        cursor.big()
+      } else {
+        cursor.small()
+      }
+    })
+    navPoints[i].addEventListener('click', () => {
+      console.log('click');
+
+      CONFIG[CURRENT_SCENE].subtitle?.stop()
+      cursor.small()
     })
   }
 
@@ -285,9 +319,10 @@ function cursorTrigger() {
 
   setInterval(
     () => {
+      console.log(cursor.getStatus());
       if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
-        if (cursor.isHover()) {
-          cursor.remove()
+        if (cursor.getStatus() === 'hover') {
+          cursor.hover()
         } else {
           cursor.big()
         }

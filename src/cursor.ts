@@ -38,7 +38,7 @@ export class Cursor {
         this.cursor.classList.remove('hover')
     }
 
-    remove() {
+    hover() {
         this.size = 30
         this.cursor.classList.add('hover')
         this.cursor.classList.remove('active')
@@ -47,6 +47,18 @@ export class Cursor {
 
     isHover() {
         return this.cursor.classList.contains('hover') ? true : false
+    }
+
+    getStatus() {
+        if (this.cursor.classList.contains('hover')) {
+            return 'hover'
+        } else if (this.cursor.classList.contains('big')) {
+            return 'big'
+        } else if (this.cursor.classList.contains('active')) {
+            return 'small'
+        } else {
+            return 'Le cursor n\'a pas de status'
+        }
     }
 
 }
