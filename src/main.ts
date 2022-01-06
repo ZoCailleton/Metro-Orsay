@@ -111,7 +111,7 @@ const CONFIG: Array<config> = [
   },
   //Scène 1 - Première scène
   {
-    timecode: 1,
+    timecode: 2,
     parallax: scene1Parallax,
     date: new Date().getFullYear(),
     subtitle: subtitles1,
@@ -121,7 +121,7 @@ const CONFIG: Array<config> = [
   },
   //Scène 2 - Paris 1900
   {
-    timecode: 4.5,
+    timecode: 5.5,
     parallax: scene1Parallax,
     date: 1900,
     subtitle: subtitles2,
@@ -130,23 +130,25 @@ const CONFIG: Array<config> = [
   },
   //Scene 3 : Construction du metro
   {
-    timecode: 9.5,
+    timecode: 10.5,
     parallax: scene2Parallax,
+    date: 1900,
     subtitle: subtitles3,
     voix: scene3Voix,
-    delayVoixSubtitle: 2000
+    delayVoixSubtitle: 1900
   },
   // Scène 4 : Contrat sombre
   {
-    timecode: 11.25,
+    timecode: 12.25,
     parallax: scene3Parallax,
+    date: 1900,
     subtitle: subtitles4,
     voix: scene4Voix,
     delayVoixSubtitle: 2000
   },
   // Scène 4 : 
   {
-    timecode: 12.5,
+    timecode: 13.5,
     parallax: scene4Parallax,
     subtitle: subtitles5,
     voix: scene5Voix,
@@ -154,7 +156,7 @@ const CONFIG: Array<config> = [
   },
   // Scène 5 : Herbe
   {
-    timecode: 14.5,
+    timecode: 15.5,
     parallax: scene5Parallax,
     subtitle: subtitles6,
     voix: scene6Voix,
@@ -162,7 +164,7 @@ const CONFIG: Array<config> = [
   },
   // Scène 5 : Herbe - Apparition monstre
   {
-    timecode: 16.5,
+    timecode: 17.5,
     parallax: scene5Parallax,
     subtitle: subtitles7,
     voix: scene7Voix,
@@ -170,49 +172,53 @@ const CONFIG: Array<config> = [
   },
   // Scène 8 : Usine - Start
   {
-    timecode: 18,
+    timecode: 19,
     parallax: scene7Parallax,
     subtitle: subtitles8,
     voix: scene8Voix,
-    delayVoixSubtitle: 2000
+    delayVoixSubtitle: 1910
   },
   // Scène 8 : Usine - Ciel
   {
-    timecode: 19.5,
+    timecode: 20.5,
     parallax: scene6Parallax,
     subtitle: subtitles9,
     voix: scene9Voix,
-    delayVoixSubtitle: 2000
+    delayVoixSubtitle: 1910
   },
   // Scène 9 : Objets - Apparition
   {
-    timecode: 22.5,
+    timecode: 23.5,
     subtitle: subtitles10,
     voix: scene10Voix,
-    delayVoixSubtitle: 2000
+    delayVoixSubtitle: 1920
   },
   // Scène 10 : Portraits artistes Art Nouveau
   {
-    timecode: 24.25,
+    timecode: 25.25,
     subtitle: subtitles11,
     voix: scene11Voix,
     delayVoixSubtitle: 2000
   },
-  // Scène 10 : Mouvement psychédélique
+  // Scène 12 : Mouvement psychédélique
   {
-    timecode: 25.25,
+    timecode: 26.25,
     // parallax: scene13Parallax,
     subtitle: subtitles12,
     voix: scene12Voix,
     delayVoixSubtitle: 2000
   },
-  // Scène 10 : Alien
+  // Scène 13 : Alien
   {
-    timecode: 28.25,
+    timecode: 29.25,
     // parallax: scene12Parallax,
     subtitle: subtitles13,
     voix: scene13Voix,
     delayVoixSubtitle: 2000
+  },
+  // Scène 14 : End
+  {
+    timecode: 30.25
   }
 ]
 
@@ -433,12 +439,13 @@ GLOBAL_SCENE
   .set('.slide-10 .layer:nth-child(1)', { y: 200 })
 
   // Transition Space - Setup
-  .set('.transition.space .spaceship', { x: 600 })
+  .set('.slide-11 .spaceship', { x: 800 })
 
   // Intro - Start
   .to('.wrapper-intro', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+  .to('.timeline--wrapper', { zIndex: 99, duration: 0, ease: Power2.easeInOut })
   .to('.slide-1 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.band', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.band', { opacity: 1, duration: 1, ease: Power2.easeInOut })
   .to('.timeline--tick', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.date', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
@@ -543,8 +550,9 @@ GLOBAL_SCENE
   .to('.slide-10 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
   // Scène 11 - Alien
-  .to('.wrapper-space', { y: '-300vh', duration: 3, ease: Power2.easeInOut })
-  .to('.transition.space .spaceship', { x: -600, duration: 3, ease: Power2.easeInOut }, '-=3')
+  .to('.wrapper-space', { y: '-400vh', duration: 3, ease: Power2.easeInOut })
+  .to('.slide-11 .spaceship', { x: -200, duration: 3, ease: Power2.easeInOut }, '-=3')
 
-// Scène 12 - Références Pop Culture
+  // Scène 14 - End
+  .to('.wrapper-space', { y: '-500vh', duration: 1, ease: Power2.easeInOut })
 
