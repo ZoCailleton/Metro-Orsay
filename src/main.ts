@@ -5,9 +5,13 @@ import { MouseParallax } from './mouse'
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DateTrigger } from './date'
+import { LoaderTrigger } from './loader'
 
 const date = new DateTrigger()
 date.init()
+
+const loader = new LoaderTrigger()
+loader.init()
 
 gsap.registerPlugin(ScrollTrigger)
 

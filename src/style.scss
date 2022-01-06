@@ -22,6 +22,26 @@ body {
   font-family: 'Centrion';
 }
 
+#loader{
+  z-index: 1000000;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFFFFC;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p{
+    font-size: 80px;
+    font-family:'Centrion' ;
+  }
+  &.remove{
+    display: none;
+  }
+}
+
 .warning--mobile {
   width: 100%;
   height: 100%;
