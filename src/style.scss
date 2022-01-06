@@ -51,6 +51,20 @@ body {
       object-fit: fill;
     }
   }
+  &.space {
+    height: 200vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .spaceship {
+      height: 100px;
+      position: absolute;
+      z-index: 1;
+      img {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .screen-transition {
@@ -327,9 +341,6 @@ figure {
   &.slide-1 {
     overflow: hidden;
     filter: grayscale(0%);
-    .layer {
-      
-    }
   }
   &.slide-2 {
     z-index: 4;
@@ -352,8 +363,6 @@ figure {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    z-index: 5;
     .item {
       height: 100vh;
       background-color: #fff;
@@ -378,6 +387,30 @@ figure {
         max-width: 250px;
         max-height: 500px;
         object-fit: contain;
+      }
+    }
+  }
+  &.slide-9 {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .plaque {
+      width: 100%;
+      max-width: 1000px;
+      position: absolute;
+      img {
+        width: 100%;
+      }
+    }
+    .artistes {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      .artiste {
+        width: 33%;
       }
     }
   }
@@ -436,4 +469,18 @@ figure {
   position: absolute;
   top: 0;
   z-index: 4;
+}
+
+.wrapper-objets {
+  width: 100%;
+  height: 200vh;
+  position: absolute;
+  z-index: 5;
+}
+
+.wrapper-space {
+  width: 100%;
+  height: 400vh;
+  position: absolute;
+  z-index: 3;
 }

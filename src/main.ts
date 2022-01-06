@@ -148,28 +148,36 @@ const CONFIG: Array<config> = [
     // voix: scene7Voix,
     delayVoixSubtitle: 2000
   },
-  // Scène 6 : Usine - Start
+  // Scène 8 : Usine - Start
   {
     timecode: 18,
     subtitle: subtitles8,
     voix: scene8Voix,
     delayVoixSubtitle: 2000
   },
-  // Scène 6 : Usine - Ciel
+  // Scène 8 : Usine - Ciel
   {
     timecode: 19.5,
     subtitle: subtitles9,
     delayVoixSubtitle: 2000
   },
-  // Scène 8 : Objets - Apparition
+  // Scène 9 : Objets - Apparition
   {
     timecode: 22.5,
     subtitle: subtitles10,
     delayVoixSubtitle: 2000
   },
-  // Scène 8 : Objets - Disparition
+  // Scène 10 : Portraits artistes Art Nouveau
+  {
+    timecode: 24.25
+  },
+  // Scène 10 : Mouvement psychédélique
   {
     timecode: 25.25
+  },
+  // Scène 10 : Alien
+  {
+    timecode: 28.25
   }
 ]
 
@@ -347,137 +355,158 @@ detectDevice()
 
 GLOBAL_SCENE
 
-  // Intro - Setup
-  .set('.slide-1 .layer:nth-child(1)', { y: -500 })
-  .set('.slide-1 .layer:nth-child(2)', { y: -450 })
-  .set('.slide-1 .layer:nth-child(3)', { y: -400 })
-  .set('.slide-1 .layer:nth-child(4)', { y: -350 })
-  .set('.slide-1 .layer:nth-child(5)', { y: -300 })
-  .set('.slide-1 .layer:nth-child(6)', { y: -250 })
-  .set('.slide-1 .layer:nth-child(7)', { y: -200 })
-  .set('.slide-1 .layer:nth-child(8)', { y: -150 })
-  .set('.slide-1 .layer:nth-child(9)', { y: -100 })
+// Intro - Setup
+.set('.slide-1 .layer:nth-child(1)', { y: -500 })
+.set('.slide-1 .layer:nth-child(2)', { y: -450 })
+.set('.slide-1 .layer:nth-child(3)', { y: -400 })
+.set('.slide-1 .layer:nth-child(4)', { y: -350 })
+.set('.slide-1 .layer:nth-child(5)', { y: -300 })
+.set('.slide-1 .layer:nth-child(6)', { y: -250 })
+.set('.slide-1 .layer:nth-child(7)', { y: -200 })
+.set('.slide-1 .layer:nth-child(8)', { y: -150 })
+.set('.slide-1 .layer:nth-child(9)', { y: -100 })
 
-  // Scène 5 - Setup
-  .set('.slide-5 .layer:nth-child(2)', { y: -200 })
-  .set('.slide-5 .layer:nth-child(3)', { y: '100vh' })
-  .set('.slide-5 .layer:nth-child(4)', { y: '100vh' })
-  .set('.slide-5 .layer:nth-child(5)', { y: '100vh' })
-  .set('.slide-5 .layer:nth-child(6)', { y: 200 })
-  .set('.slide-5 .layer:nth-child(7)', { y: 250 })
-  .set('.slide-5 .layer:nth-child(8)', { y: 300 })
+// Scène 5 - Setup
+.set('.slide-5 .layer:nth-child(2)', { y: -200 })
+.set('.slide-5 .layer:nth-child(3)', { y: '100vh' })
+.set('.slide-5 .layer:nth-child(4)', { y: '100vh' })
+.set('.slide-5 .layer:nth-child(5)', { y: '100vh' })
+.set('.slide-5 .layer:nth-child(6)', { y: 200 })
+.set('.slide-5 .layer:nth-child(7)', { y: 250 })
+.set('.slide-5 .layer:nth-child(8)', { y: 300 })
 
-  // Scène 6 - Setup
-  .set('.wrapper-usine', { y: '-100vh' })
-  .set('.slide-6 .layer:nth-child(1)', { y: 300 })
-  .set('.slide-6 .layer:nth-child(2)', { y: 150 })
-  .set('.transition.smoke', { top: '25%' })
+// Scène 6 - Setup
+.set('.wrapper-usine', { y: '-100vh' })
+.set('.slide-6 .layer:nth-child(1)', { y: 300 })
+.set('.slide-6 .layer:nth-child(2)', { y: 150 })
+.set('.transition.smoke', { top: '25%' })
 
-  // Scène 7 - Setup
-  .set('.slide-7 .layer:nth-child(1)', { scale: 0.85 })
+// Scène 7 - Setup
+.set('.slide-7 .layer:nth-child(1)', { scale: 0.85 })
 
-  // Scène 8 - Setup
-  .set('.slide-8 .item', { y: '100vh' })
+// Scène 8 - Setup
+.set('.slide-8 .item', { y: '100vh' })
 
-  // Intro - Start
-  .to('.wrapper-intro', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-  .to('.slide-1 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.band--top', { top: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.band--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.band--left', { left: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.band--right', { right: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.intro', { opacity: 0 })
+// Scène 9 - Artistes
+.set('.slide-9 .artiste', { y: 100, opacity: 0 })
 
-  // Scène 1 - Paris 1900
-  .to('.slide-1', { filter: 'grayscale(100%)', duration: 1, ease: Power2.easeInOut })
-  .to('.slide-1 .layer.tour-eiffel', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-1 .layer:nth-child(8)', { opacity: 0, duration: 1, ease: Power2.easeInOut })
-  .to('.slide-1 .layer:nth-child(9)', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
-  .to('.slide-1 .layer:nth-child(10)', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
+// Scène 10 - Setup
+.set('.slide-10 .layer:nth-child(1)', { y: 200 })
 
-  // Scène 2 - Concours
-  .to('.slide-1 .layer:nth-child(9)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut })
-  .to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .hidden', { opacity: 1, duration: 1, delay: 3, ease: Power2.easeInOut })
+// Transition Space - Setup
+.set('.transition.space .spaceship', { x: 600 })
 
-  // Scène 3 - Contrat sombre
-  .set('.slide-3 .layer:nth-child(1)', { y: -500 })
-  .set('.slide-3 .layer:nth-child(2)', { y: -400 })
-  .to('.wrapper-concours', { y: '-200vh', duration: 2, ease: Power2.easeInOut })
-  .to('.slide-2 .layer:nth-child(1)', { y: 600, duration: 2, ease: Power2.easeInOut }, '-=2')
-  .to('.slide-2 .layer:nth-child(2)', { y: 500, duration: 2, ease: Power2.easeInOut }, '-=2')
-  .to('.slide-2 .layer:nth-child(3)', { y: 400, duration: 2, ease: Power2.easeInOut }, '-=2')
-  .to('.slide-2 .layer:nth-child(4)', { y: 300, duration: 2, ease: Power2.easeInOut }, '-=2')
-  .to('.slide-2 .layer:nth-child(5)', { y: 200, duration: 2, ease: Power2.easeInOut }, '-=2')
-  .to('.slide-3 .layer', { y: 0, duration: 2, ease: Power2.easeInOut }, '-=2')
+// Intro - Start
+.to('.wrapper-intro', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+.to('.slide-1 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.band--top', { top: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.band--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.band--left', { left: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.band--right', { right: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.intro .side:last-child', { rotation: 10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.nav--bottom', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.intro', { opacity: 0 })
 
-  // Scène 4 - Bureau Guimard
-  .set('.slide-4 .layer:nth-child(1)', { x: -500 })
-  .set('.slide-4 .layer:nth-child(2)', { x: -400 })
-  .set('.slide-4 .layer:nth-child(3)', { x: -300 })
-  .set('.slide-4 .layer:nth-child(4)', { x: -200 })
-  .set('.slide-4 .layer:nth-child(5)', { x: -100 })
+// Scène 1 - Paris 1900
+.to('.slide-1', { filter: 'grayscale(100%)', duration: 1, ease: Power2.easeInOut })
+.to('.slide-1 .layer.tour-eiffel', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-1 .layer.hidden', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-1 .layer:nth-child(8)', { opacity: 0, duration: 1, ease: Power2.easeInOut })
+.to('.slide-1 .layer:nth-child(9)', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
+.to('.slide-1 .layer:nth-child(10)', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
 
-  .to('.slide-3 .layer:nth-child(1)', { x: 500, duration: 1, ease: Power2.easeInOut })
-  .to('.slide-3 .layer:nth-child(2)', { x: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-3 .layer:nth-child(3)', { x: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-3 .layer:nth-child(4)', { x: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-3 .layer:nth-child(5)', { x: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.wrapper-plans', { x: '-100vw', duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-4 .layer', { x: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+// Scène 2 - Concours
+.to('.slide-1 .layer:nth-child(9)', { scale: 1.5, opacity: 0, duration: 1, ease: Power2.easeInOut })
+.to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-2 .hidden', { opacity: 1, duration: 1, delay: 3, ease: Power2.easeInOut })
 
-  // Scène 5 - Herbe
-  .to('.wrapper-herbe', { y: '100vh', duration: 1, ease: Power2.easeInOut })
+// Scène 3 - Contrat sombre
+.set('.slide-3 .layer:nth-child(1)', { y: -500 })
+.set('.slide-3 .layer:nth-child(2)', { y: -400 })
+.to('.wrapper-concours', { y: '-200vh', duration: 2, ease: Power2.easeInOut })
+.to('.slide-2 .layer:nth-child(1)', { y: 600, duration: 2, ease: Power2.easeInOut }, '-=2')
+.to('.slide-2 .layer:nth-child(2)', { y: 500, duration: 2, ease: Power2.easeInOut }, '-=2')
+.to('.slide-2 .layer:nth-child(3)', { y: 400, duration: 2, ease: Power2.easeInOut }, '-=2')
+.to('.slide-2 .layer:nth-child(4)', { y: 300, duration: 2, ease: Power2.easeInOut }, '-=2')
+.to('.slide-2 .layer:nth-child(5)', { y: 200, duration: 2, ease: Power2.easeInOut }, '-=2')
+.to('.slide-3 .layer', { y: 0, duration: 2, ease: Power2.easeInOut }, '-=2')
 
-  .to('.slide-4 .layer:nth-child(1)', { y: -500, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-4 .layer:nth-child(2)', { y: -400, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-4 .layer:nth-child(3)', { y: -300, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-4 .layer:nth-child(4)', { y: -200, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-4 .layer:nth-child(5)', { y: -100, duration: 1, ease: Power2.easeInOut }, '-=1')
+// Scène 4 - Bureau Guimard
+.set('.slide-4 .layer:nth-child(1)', { x: -500 })
+.set('.slide-4 .layer:nth-child(2)', { x: -400 })
+.set('.slide-4 .layer:nth-child(3)', { x: -300 })
+.set('.slide-4 .layer:nth-child(4)', { x: -200 })
+.set('.slide-4 .layer:nth-child(5)', { x: -100 })
 
-  .to('.slide-5 .layer:nth-child(8)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-5 .layer:nth-child(7)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-5 .layer:nth-child(6)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
-  .to('.slide-5 .layer:nth-child(5)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.85')
-  .to('.slide-5 .layer:nth-child(4)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.85')
-  .to('.slide-5 .layer:nth-child(3)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-5 .layer:nth-child(2)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.85')
+.to('.slide-3 .layer:nth-child(1)', { x: 500, duration: 1, ease: Power2.easeInOut })
+.to('.slide-3 .layer:nth-child(2)', { x: 400, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-3 .layer:nth-child(3)', { x: 300, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-3 .layer:nth-child(4)', { x: 200, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-3 .layer:nth-child(5)', { x: 100, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.wrapper-plans', { x: '-100vw', duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-4 .layer', { x: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
-  // Scène 5 - Apparition monstre
-  .to('.slide-5 .monstre', { opacity: 1, duration: 1, ease: Power2.easeInOut })
-  .to('.slide-5 .bg-dark', { opacity: 1, duration: 1, ease: Power2.easeInOut })
-  .to('.slide-5 .m2', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-5 .layer.p1', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-5 .monstre', { opacity: 0, ease: Power2.easeInOut })
+// Scène 5 - Herbe
+.to('.wrapper-herbe', { y: '100vh', duration: 1, ease: Power2.easeInOut })
 
-  // Scène 6 - Apparition usine
-  .to('.slide-5 .m2', { scale: 2.5, duration: 1, ease: Power2.easeInOut })
-  .to('.slide-5 .bg-dark', { scale: 1.5, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-7 .layer:nth-child(1)', { y: 0, scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.transition.smoke', { top: '35%', duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.wrapper-concours', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-4 .layer:nth-child(1)', { y: -500, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-4 .layer:nth-child(2)', { y: -400, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-4 .layer:nth-child(3)', { y: -300, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-4 .layer:nth-child(4)', { y: -200, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-4 .layer:nth-child(5)', { y: -100, duration: 1, ease: Power2.easeInOut }, '-=1')
 
-  // Scène 7 - Apparition ciel
-  .to('.wrapper-usine', { y: 0, duration: 1, ease: Power2.easeInOut })
-  .to('.transition.smoke', { top: '60%', duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-6 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-7 .layer:nth-child(1)', { y: -300, duration: 1, ease: Power2.easeInOut })
+.to('.slide-5 .layer:nth-child(8)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-5 .layer:nth-child(7)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-5 .layer:nth-child(6)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
+.to('.slide-5 .layer:nth-child(5)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.85')
+.to('.slide-5 .layer:nth-child(4)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.85')
+.to('.slide-5 .layer:nth-child(3)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-5 .layer:nth-child(2)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.75')
 
-  // Scène 8 - Objets start
-  .to('.slide-8 .item:nth-child(1)', { y: 0, duration: 1, ease: Power2.easeInOut })
-  .to('.slide-8 .item:nth-child(2)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
-  .to('.slide-8 .item:nth-child(3)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
-  .to('.slide-8 .item:nth-child(4)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
-  .to('.slide-7 .layer:nth-child(1)', { y: -400, duration: 1, ease: Power2.easeInOut }, '-=1')
+// Scène 5 - Apparition monstre
+.to('.slide-5 .monstre', { opacity: 1, duration: 1, ease: Power2.easeInOut })
+.to('.slide-5 .bg-dark', { opacity: 1, duration: 1, ease: Power2.easeInOut })
+.to('.slide-5 .m2', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-5 .layer.p1', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-5 .monstre', { opacity: 0, ease: Power2.easeInOut })
 
-  // Scène 8 - Objets end
-  .to('.slide-8 .item:nth-child(1)', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
-  .to('.slide-8 .item:nth-child(2)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
-  .to('.slide-8 .item:nth-child(3)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
-  .to('.slide-8 .item:nth-child(4)', { y: '-100vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
-  .to('.wrapper-desk', { y: '-300vh', duration: 1, ease: Power2.easeInOut }, '-=0.5')
+// Scène 6 - Apparition usine
+.to('.slide-5 .m2', { scale: 2.5, duration: 1, ease: Power2.easeInOut })
+.to('.slide-5 .bg-dark', { scale: 1.5, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-7 .layer:nth-child(1)', { y: 0, scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.transition.smoke', { top: '35%', duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.wrapper-concours', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+
+// Scène 7 - Apparition ciel
+.to('.wrapper-usine', { y: 0, duration: 1, ease: Power2.easeInOut })
+.to('.transition.smoke', { top: '60%', duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-6 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+.to('.slide-7 .layer:nth-child(1)', { y: -300, duration: 1, ease: Power2.easeInOut })
+
+// Scène 8 - Objets start
+.to('.slide-8 .item:nth-child(1)', { y: 0, duration: 1, ease: Power2.easeInOut })
+.to('.slide-8 .item:nth-child(2)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
+.to('.slide-8 .item:nth-child(3)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
+.to('.slide-8 .item:nth-child(4)', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=0.5')
+.to('.slide-7 .layer:nth-child(1)', { y: -400, duration: 1, ease: Power2.easeInOut }, '-=1')
+.set('.wrapper-usine', { opacity: 0, duration: 0 })
+
+// Scène 8 - Objets end
+.to('.wrapper-objets', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
+.to('.slide-9 .artiste:nth-child(1)', { y: 0, opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=0.75')
+.to('.slide-9 .artiste:nth-child(2)', { y: 0, opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=0.75')
+.to('.slide-9 .artiste:nth-child(3)', { y: 0, opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=0.75')
+
+// Scène 10 - Mouvement psychédélique
+.to('.wrapper-objets', { y: '-200vh', duration: 1, ease: Power2.easeInOut })
+.to('.slide-10 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
+
+// Scène 11 - Alien
+.to('.wrapper-space', { y: '-300vh', duration: 3, ease: Power2.easeInOut })
+.to('.transition.space .spaceship', { x: -600, duration: 3, ease: Power2.easeInOut }, '-=3')
+
+// Scène 12 - Références Pop Culture
+
