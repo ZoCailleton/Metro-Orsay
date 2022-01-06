@@ -28,6 +28,7 @@ export class SlideSubtitle {
     }
     this.step = 0
     this.play = true
+    this.finish = false
     this.durationVoice()
     this.getNewSentence(this.play)
     this.textSubtitle.classList.remove('hidden')
@@ -36,6 +37,7 @@ export class SlideSubtitle {
   private getNewSentence(play: boolean) {
     this.textSubtitle.innerHTML = this.voice[this.step].text
     const duration = play ? this.voice[this.step].duration * 1000 : 0
+    this.finish = false
     setTimeout(() => {
       if (this.voice[this.step + 1] && play === true) {
         this.step++
@@ -82,7 +84,7 @@ export class SlideSubtitle {
   }
 }
 
-export class Audio {
+export class AudioClass {
   url: string
   contexteAudio: any
   yodelBuffer: any

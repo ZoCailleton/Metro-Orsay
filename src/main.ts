@@ -1,5 +1,5 @@
 import './style.scss'
-import { Audio, SlideSubtitle } from './voix'
+import { AudioClass, SlideSubtitle } from './voix'
 import { MouseParallax } from './mouse'
 
 import gsap, { Power2 } from 'gsap'
@@ -27,17 +27,17 @@ const subtitles8: SlideSubtitle = new SlideSubtitle(7)
 const subtitles9: SlideSubtitle = new SlideSubtitle(8)
 const subtitles10: SlideSubtitle = new SlideSubtitle(9)
 
-const scene1Voix = new Audio('/assets/audio/slide1.mp3', false)
-const scene2Voix = new Audio('/assets/audio/slide2.mp3', false)
-const scene3Voix = new Audio('/assets/audio/slide3.mp3', false)
-const scene4Voix = new Audio('/assets/audio/slide4.mp3', false)
-const scene5Voix = new Audio('/assets/audio/slide5.mp3', false)
-const scene6Voix = new Audio('/assets/audio/slide6.mp3', false)
+const scene1Voix = new AudioClass('/assets/audio/slide1.mp3', false)
+const scene2Voix = new AudioClass('/assets/audio/slide2.mp3', false)
+const scene3Voix = new AudioClass('/assets/audio/slide3.mp3', false)
+const scene4Voix = new AudioClass('/assets/audio/slide4.mp3', false)
+const scene5Voix = new AudioClass('/assets/audio/slide5.mp3', false)
+const scene6Voix = new AudioClass('/assets/audio/slide6.mp3', false)
 // pas encore de voix ici
-// const scene7Voix = new Audio('/assets/audio/slide7.mp3', false)
-const scene8Voix = new Audio('/assets/audio/slide8.mp3', false)
+// const scene7Voix = new AudioClass('/assets/audio/slide7.mp3', false)
+const scene8Voix = new AudioClass('/assets/audio/slide8.mp3', false)
 
-// const scene4Ambiance = new Audio('/assets/audio/ambiance_slide_4.mp3', true)
+// const scene4Ambiance = new AudioClass('/assets/audio/ambiance_slide_4.mp3', true)
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
@@ -83,7 +83,7 @@ interface config {
   parallax?: MouseParallax
   date?: number
   subtitle?: SlideSubtitle
-  voix?: Audio
+  voix?: AudioClass
   delayVoixSubtitle?: number
 }
 
@@ -174,6 +174,10 @@ const CONFIG: Array<config> = [
 ]
 
 const slideToTransition = (num: number) => {
+  const cursorSmall = setInterval(() => cursor.small(), 10)
+  setTimeout(() => {
+    clearInterval(cursorSmall)
+  }, 2000)
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
   CONFIG[CURRENT_SCENE].subtitle?.stop()
@@ -187,6 +191,8 @@ const slideToTransition = (num: number) => {
 }
 
 const slideTo = (num: number, animated: boolean = true) => {
+
+  cursor.small()
 
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
@@ -225,6 +231,7 @@ if (window.location.hash) {
 for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')) {
 
   tick.addEventListener('click', () => {
+    CONFIG[CURRENT_SCENE].subtitle?.init()
 
     reset('.timeline--wrapper .timeline--tick', 'active')
     tick.classList.add('active')
@@ -273,15 +280,31 @@ function cursorTrigger() {
   for (let i = 0; i < navPoints.length; i++) {
 
     navPoints[i].addEventListener('mouseenter', () => {
-      cursor.remove()
+      cursor.hover()
     })
 
     navPoints[i].addEventListener('mouseout', () => {
+
       if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
         cursor.big()
       } else {
         cursor.small()
       }
+    })
+
+    navPoints[i].addEventListener('mouseout', () => {
+
+      if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
+        cursor.big()
+      } else {
+        cursor.small()
+      }
+    })
+    navPoints[i].addEventListener('click', () => {
+      console.log('click');
+
+      CONFIG[CURRENT_SCENE].subtitle?.stop()
+      cursor.small()
     })
   }
 
@@ -298,9 +321,10 @@ function cursorTrigger() {
 
   setInterval(
     () => {
+      console.log(cursor.getStatus());
       if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
-        if (cursor.isHover()) {
-          cursor.remove()
+        if (cursor.getStatus() === 'hover') {
+          cursor.hover()
         } else {
           cursor.big()
         }
