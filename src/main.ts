@@ -26,6 +26,9 @@ const subtitles7: SlideSubtitle = new SlideSubtitle(6)
 const subtitles8: SlideSubtitle = new SlideSubtitle(7)
 const subtitles9: SlideSubtitle = new SlideSubtitle(8)
 const subtitles10: SlideSubtitle = new SlideSubtitle(9)
+const subtitles11: SlideSubtitle = new SlideSubtitle(10)
+const subtitles12: SlideSubtitle = new SlideSubtitle(11)
+const subtitles13: SlideSubtitle = new SlideSubtitle(12)
 
 const scene1Voix = new AudioClass('/assets/audio/slide1.mp3', false)
 const scene2Voix = new AudioClass('/assets/audio/slide2.mp3', false)
@@ -33,9 +36,13 @@ const scene3Voix = new AudioClass('/assets/audio/slide3.mp3', false)
 const scene4Voix = new AudioClass('/assets/audio/slide4.mp3', false)
 const scene5Voix = new AudioClass('/assets/audio/slide5.mp3', false)
 const scene6Voix = new AudioClass('/assets/audio/slide6.mp3', false)
-// pas encore de voix ici
-// const scene7Voix = new AudioClass('/assets/audio/slide7.mp3', false)
+const scene7Voix = new AudioClass('/assets/audio/slide7.mp3', false)
 const scene8Voix = new AudioClass('/assets/audio/slide8.mp3', false)
+const scene9Voix = new AudioClass('/assets/audio/slide9.mp3', false)
+const scene10Voix = new AudioClass('/assets/audio/slide10.mp3', false)
+const scene11Voix = new AudioClass('/assets/audio/slide11.mp3', false)
+const scene12Voix = new AudioClass('/assets/audio/slide12.mp3', false)
+const scene13Voix = new AudioClass('/assets/audio/slide13.mp3', false)
 
 const scene1Ambiance = new AudioClass('/assets/audio/slide1ambiance.mp3', true)
 
@@ -46,12 +53,28 @@ const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
 const slide3 = document.querySelector<HTMLInputElement>('.slide-3')
 const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
 const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
+const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
+const slide7 = document.querySelector<HTMLInputElement>('.slide-7')
+const slide8 = document.querySelector<HTMLInputElement>('.slide-8')
+const slide9 = document.querySelector<HTMLInputElement>('.slide-9')
+const slide10 = document.querySelector<HTMLInputElement>('.slide-10')
+const slide11 = document.querySelector<HTMLInputElement>('.slide-11')
+const slide12 = document.querySelector<HTMLInputElement>('.slide-12')
+const slide13 = document.querySelector<HTMLInputElement>('.slide-13')
 
 const scene1Parallax = new MouseParallax(slide1!)
 const scene2Parallax = new MouseParallax(slide2!)
 const scene3Parallax = new MouseParallax(slide3!)
 const scene4Parallax = new MouseParallax(slide4!)
 const scene5Parallax = new MouseParallax(slide5!)
+const scene6Parallax = new MouseParallax(slide6!)
+const scene7Parallax = new MouseParallax(slide7!)
+const scene8Parallax = new MouseParallax(slide8!)
+const scene9Parallax = new MouseParallax(slide9!)
+const scene10Parallax = new MouseParallax(slide10!)
+const scene11Parallax = new MouseParallax(slide11!)
+const scene12Parallax = new MouseParallax(slide12!)
+const scene13Parallax = new MouseParallax(slide13!)
 
 const launchScreenTransition = () => {
 
@@ -140,13 +163,15 @@ const CONFIG: Array<config> = [
   // Scène 5 : Herbe - Apparition monstre
   {
     timecode: 16.5,
+    parallax: scene6Parallax,
     subtitle: subtitles7,
-    // voix: scene7Voix,
+    voix: scene7Voix,
     delayVoixSubtitle: 2000
   },
   // Scène 8 : Usine - Start
   {
     timecode: 18,
+    parallax: scene7Parallax,
     subtitle: subtitles8,
     voix: scene8Voix,
     delayVoixSubtitle: 2000
@@ -154,26 +179,42 @@ const CONFIG: Array<config> = [
   // Scène 8 : Usine - Ciel
   {
     timecode: 19.5,
+    parallax: scene8Parallax,
     subtitle: subtitles9,
+    voix: scene9Voix,
     delayVoixSubtitle: 2000
   },
   // Scène 9 : Objets - Apparition
   {
     timecode: 22.5,
+    parallax: scene9Parallax,
     subtitle: subtitles10,
+    voix: scene10Voix,
     delayVoixSubtitle: 2000
   },
   // Scène 10 : Portraits artistes Art Nouveau
   {
-    timecode: 24.25
+    timecode: 24.25,
+    parallax: scene10Parallax,
+    subtitle: subtitles11,
+    voix: scene11Voix,
+    delayVoixSubtitle: 2000
   },
   // Scène 10 : Mouvement psychédélique
   {
-    timecode: 25.25
+    timecode: 25.25,
+    parallax: scene11Parallax,
+    subtitle: subtitles12,
+    voix: scene12Voix,
+    delayVoixSubtitle: 2000
   },
   // Scène 10 : Alien
   {
-    timecode: 28.25
+    timecode: 28.25,
+    parallax: scene12Parallax,
+    subtitle: subtitles13,
+    voix: scene13Voix,
+    delayVoixSubtitle: 2000
   }
 ]
 
