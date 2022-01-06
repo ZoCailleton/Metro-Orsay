@@ -246,10 +246,8 @@ const cursor = new Cursor()
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
   cursor.draw()
   cursorTrigger()
-  ui()
-
+  document.querySelector('.timeline--wrapper')?.classList.add('active')
   document.querySelector('.timeline--tick:first-child')?.classList.add('active')
-
   slideTo(1)
 })
 
@@ -305,31 +303,12 @@ function cursorTrigger() {
 
 }
 
-function ui() {
-  setTimeout(
-    () => {
-      const timelineTick = document.querySelectorAll<HTMLElement>('.timeline--tick')
-
-      for (let i = 0; i < timelineTick.length; i++) {
-        setTimeout(
-          () => {
-            timelineTick[i].style.opacity = '0.5'
-
-
-          },
-          i * 200
-        )
-
-      }
-
-      date.show()
-    },
-    2000
-  )
-
+function detectDevice(){
+  console.log(!!navigator.maxTouchPoints)
+  return !!navigator.maxTouchPoints ? 'mobile' : 'computer'
 }
 
-
+detectDevice()
 
 GLOBAL_SCENE
 
@@ -450,7 +429,7 @@ GLOBAL_SCENE
 
   // Scène 7 - Apparition ciel
   .to('.wrapper-usine', { y: 0, duration: 1, ease: Power2.easeInOut })
-  .to('.transition.smoke', { top: '65%', duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.transition.smoke', { top: '60%', duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-6 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-7 .layer:nth-child(1)', { y: -300, duration: 1, ease: Power2.easeInOut })
 
