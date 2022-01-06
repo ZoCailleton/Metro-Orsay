@@ -171,7 +171,7 @@ const CONFIG: Array<config> = [
   // Scène 5 : Herbe - Apparition monstre
   {
     timecode: 16.5,
-    parallax: scene6Parallax,
+    parallax: scene5Parallax,
     subtitle: subtitles7,
     voix: scene7Voix,
     delayVoixSubtitle: 2000
@@ -187,7 +187,7 @@ const CONFIG: Array<config> = [
   // Scène 8 : Usine - Ciel
   {
     timecode: 19.5,
-    parallax: scene8Parallax,
+    parallax: scene6Parallax,
     subtitle: subtitles9,
     voix: scene9Voix,
     delayVoixSubtitle: 2000
@@ -195,7 +195,6 @@ const CONFIG: Array<config> = [
   // Scène 9 : Objets - Apparition
   {
     timecode: 22.5,
-    parallax: scene9Parallax,
     subtitle: subtitles10,
     voix: scene10Voix,
     delayVoixSubtitle: 2000
@@ -203,7 +202,6 @@ const CONFIG: Array<config> = [
   // Scène 10 : Portraits artistes Art Nouveau
   {
     timecode: 24.25,
-    parallax: scene10Parallax,
     subtitle: subtitles11,
     voix: scene11Voix,
     delayVoixSubtitle: 2000
@@ -211,7 +209,7 @@ const CONFIG: Array<config> = [
   // Scène 10 : Mouvement psychédélique
   {
     timecode: 25.25,
-    parallax: scene11Parallax,
+    // parallax: scene13Parallax,
     subtitle: subtitles12,
     voix: scene12Voix,
     delayVoixSubtitle: 2000
@@ -219,7 +217,7 @@ const CONFIG: Array<config> = [
   // Scène 10 : Alien
   {
     timecode: 28.25,
-    parallax: scene12Parallax,
+    // parallax: scene12Parallax,
     subtitle: subtitles13,
     voix: scene13Voix,
     delayVoixSubtitle: 2000
