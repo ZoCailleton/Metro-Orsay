@@ -58,8 +58,6 @@ const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
 const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
 const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
 const slide7 = document.querySelector<HTMLInputElement>('.slide-7')
-const slide10 = document.querySelector<HTMLInputElement>('.slide-10')
-const slide11 = document.querySelector<HTMLInputElement>('.slide-11')
 
 const scene1Parallax = new MouseParallax(slide1!)
 const scene2Parallax = new MouseParallax(slide2!)
@@ -68,8 +66,6 @@ const scene4Parallax = new MouseParallax(slide4!)
 const scene5Parallax = new MouseParallax(slide5!)
 const scene6Parallax = new MouseParallax(slide6!)
 const scene7Parallax = new MouseParallax(slide7!)
-const scene10Parallax = new MouseParallax(slide10!)
-const scene11Parallax = new MouseParallax(slide11!)
 
 const launchScreenTransition = () => {
 
