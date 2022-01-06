@@ -112,35 +112,40 @@ body {
 }
 
 .cursor {
-  width: 0px;
-  height: 0px;
   background-color: #FFF;
   border: #000 1px;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: fixed;
   left: 0;
   top: 0;
   z-index: 98;
-  transition: width 500ms, height 500ms;
   overflow: hidden;
   color: #fff;
   cursor: none;
-  &.active {
-    width: 15px;
-    height: 15px;
-  }
-  &.big {
-    width: 120px;
-    height: 120px;
-    color: black;
-  }
-  &.hover {
-    width: 30px;
-    height: 30px;
-    color: #fff
+  .cursor-2{
+    cursor: none;
+    width: 0px;
+    height: 0px;
+    transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.big {
+      // width: 100px;
+      // height: 100px;
+      
+      color: #333;
+      p {
+        display: block;
+      }
+    }
+    &.small {
+      // width: 10px;
+      // height: 10px;
+      p {
+        display: none;
+      }
+    }
   }
 }
 

@@ -8,6 +8,7 @@ import { DateTrigger } from './date'
 import { Cursor } from './cursor'
 
 const date = new DateTrigger()
+const cursor = new Cursor()
 date.init()
 
 gsap.registerPlugin(ScrollTrigger)
@@ -55,12 +56,8 @@ const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
 const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
 const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
 const slide7 = document.querySelector<HTMLInputElement>('.slide-7')
-const slide8 = document.querySelector<HTMLInputElement>('.slide-8')
-const slide9 = document.querySelector<HTMLInputElement>('.slide-9')
 const slide10 = document.querySelector<HTMLInputElement>('.slide-10')
 const slide11 = document.querySelector<HTMLInputElement>('.slide-11')
-const slide12 = document.querySelector<HTMLInputElement>('.slide-12')
-const slide13 = document.querySelector<HTMLInputElement>('.slide-13')
 
 const scene1Parallax = new MouseParallax(slide1!)
 const scene2Parallax = new MouseParallax(slide2!)
@@ -69,12 +66,8 @@ const scene4Parallax = new MouseParallax(slide4!)
 const scene5Parallax = new MouseParallax(slide5!)
 const scene6Parallax = new MouseParallax(slide6!)
 const scene7Parallax = new MouseParallax(slide7!)
-const scene8Parallax = new MouseParallax(slide8!)
-const scene9Parallax = new MouseParallax(slide9!)
 const scene10Parallax = new MouseParallax(slide10!)
 const scene11Parallax = new MouseParallax(slide11!)
-const scene12Parallax = new MouseParallax(slide12!)
-const scene13Parallax = new MouseParallax(slide13!)
 
 const launchScreenTransition = () => {
 
@@ -217,10 +210,7 @@ const CONFIG: Array<config> = [
 ]
 
 const slideToTransition = (num: number) => {
-  const cursorSmall = setInterval(() => cursor.small(), 10)
-  setTimeout(() => {
-    clearInterval(cursorSmall)
-  }, 2000)
+  cursor.small()
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
   CONFIG[CURRENT_SCENE].subtitle?.stop()
@@ -235,7 +225,6 @@ const slideToTransition = (num: number) => {
 }
 
 const slideTo = (num: number, animated: boolean = true) => {
-
   cursor.small()
 
   // CURRENT_SCENE = prev scene
@@ -275,6 +264,7 @@ if (window.location.hash) {
 }
 
 for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')) {
+  cursor.small()
 
   tick.addEventListener('click', () => {
     CONFIG[CURRENT_SCENE].subtitle?.init()
@@ -292,9 +282,11 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
     } else {
       launchScreenTransition()
       setTimeout(() => {
+        cursor.small()
         slideToTransition(y - 1)
       }, 1000)
       setTimeout(() => {
+        cursor.small()
         slideTo(y)
       }, 1000)
     }
@@ -305,12 +297,12 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
 
 // const loader = document.querySelector<HTMLInputElement>('.loader')
 
-const cursor = new Cursor()
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
 
   document.querySelector('.timeline--tick:first-child img')?.setAttribute('src', 'assets/ui/tick-active.png')
 
   cursor.draw()
+
   date.show()
   cursorTrigger()
   slideTo(1)
@@ -319,39 +311,7 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 function cursorTrigger() {
   window.addEventListener('click', cursorClicker)
   let listener = true
-
-  const navPoints = document.querySelectorAll('.timeline--tick')
-
-  for (let i = 0; i < navPoints.length; i++) {
-
-    navPoints[i].addEventListener('mouseenter', () => {
-      cursor.hover()
-    })
-
-    navPoints[i].addEventListener('mouseout', () => {
-
-      if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
-        cursor.big()
-      } else {
-        cursor.small()
-      }
-    })
-
-    navPoints[i].addEventListener('mouseout', () => {
-
-      if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
-        cursor.big()
-      } else {
-        cursor.small()
-      }
-    })
-    navPoints[i].addEventListener('click', () => {
-      console.log('click');
-
-      CONFIG[CURRENT_SCENE].subtitle?.stop()
-      cursor.small()
-    })
-  }
+  cursor.small()
 
   function cursorClicker() {
 
@@ -366,14 +326,9 @@ function cursorTrigger() {
 
   setInterval(
     () => {
-      // console.log(cursor.getStatus());
+      console.log(cursor.getStatus());
       if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
-        if (cursor.getStatus() === 'hover') {
-          cursor.hover()
-        } else {
-          cursor.big()
-        }
-
+        cursor.big()
         if (!listener) {
           window.addEventListener('click', cursorClicker)
           listener = true
