@@ -6,6 +6,7 @@ export class LoaderTrigger {
     numberImages: number
     numberImagesLoad: number
     domTextParagraph: any
+    lastRate: number
     constructor() {
         this.container = document.querySelector('#loader')
         this.domTextParagraph = document.querySelector('#loader > p')
@@ -14,6 +15,7 @@ export class LoaderTrigger {
         this.numberImages = this.imagesList.length
         this.numberImagesLoad = 0
         this.imagesOnLoad = []
+        this.lastRate = 0
     }
 
     init() {
@@ -32,14 +34,46 @@ export class LoaderTrigger {
             }
         }
 
-        setTimeout(() => this.updateDom(), 50)
+        setTimeout(() => this.updateDom(), 10)
     }
 
     private updateDom() {
         // console.log('Load state :' + this.getRate())
+        const currentRate = this.getRate()
+
+        const increment = setInterval(() => {
+            if (currentRate !== this.lastRate) {
+                this.domTextParagraph.innerHTML = this.lastRate + ' %'
+                this.lastRate++
+            } else if (currentRate !== 100) {
+                this.lastRate = currentRate
+                this.domTextParagraph.innerHTML = currentRate + ' %'
+                clearInterval(increment)
+            } else {
+                this.domTextParagraph.innerHTML = 100 + ' %'
+                clearInterval(increment)
+                setTimeout(() => {
+                    this.domTextParagraph.innerHTML = 'bienvenue'
+                }, 900)
+                setTimeout(() => {
+                    this.container.classList.add('remove')
+                    this.lastRate = 0
+                }, 1900)
+            }
+            if (currentRate > 100 || this.lastRate > 100) {
+                this.domTextParagraph.innerHTML = 100 + ' %'
+                clearInterval(increment)
+                setTimeout(() => {
+                    this.domTextParagraph.innerHTML = 'bienvenue'
+                }, 900)
+                setTimeout(() => {
+                    this.container.classList.add('remove')
+                }, 1900)
+            }
+        }, 50)
+
         if (this.numberImagesLoad !== this.numberImages) this.checkLoad()
-        this.domTextParagraph.innerHTML = this.getRate() + ' %'
-        if (this.getRate() === 100) this.container.classList.add('remove')
+        this.domTextParagraph.innerHTML = currentRate + ' %'
     }
 
     private getRate() {
