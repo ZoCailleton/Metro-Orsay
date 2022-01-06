@@ -319,7 +319,7 @@ function cursorTrigger() {
 
   setInterval(
     () => {
-      console.log(cursor.getStatus());
+      // console.log(cursor.getStatus());
       if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
         if (cursor.getStatus() === 'hover') {
           cursor.hover()
@@ -338,8 +338,8 @@ function cursorTrigger() {
 
 }
 
-function detectDevice(){
-  console.log(!!navigator.maxTouchPoints)
+function detectDevice() {
+  // console.log(!!navigator.maxTouchPoints)
   return !!navigator.maxTouchPoints ? 'mobile' : 'computer'
 }
 
