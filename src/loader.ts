@@ -32,7 +32,7 @@ export class LoaderTrigger {
             }
         }
 
-        setTimeout(() => this.updateDom(), 500)
+        setTimeout(() => this.updateDom(), 50)
     }
 
     private updateDom() {
