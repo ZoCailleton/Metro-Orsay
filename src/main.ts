@@ -37,6 +37,8 @@ const scene6Voix = new AudioClass('/assets/audio/slide6.mp3', false)
 // const scene7Voix = new AudioClass('/assets/audio/slide7.mp3', false)
 const scene8Voix = new AudioClass('/assets/audio/slide8.mp3', false)
 
+const scene1Ambiance = new AudioClass('/assets/audio/slide1ambiance.mp3', true)
+
 // const scene4Ambiance = new AudioClass('/assets/audio/ambiance_slide_4.mp3', true)
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
@@ -84,6 +86,7 @@ interface config {
   date?: number
   subtitle?: SlideSubtitle
   voix?: AudioClass
+  ambiance?: AudioClass
   delayVoixSubtitle?: number
 }
 
@@ -98,6 +101,7 @@ const CONFIG: Array<config> = [
     date: new Date().getFullYear(),
     subtitle: subtitles1,
     voix: scene1Voix,
+    ambiance: scene1Ambiance,
     delayVoixSubtitle: 2000
   },
   //Scène 2 - Paris 1900
@@ -198,12 +202,14 @@ const slideTo = (num: number, animated: boolean = true) => {
   CONFIG[CURRENT_SCENE].parallax?.stop()
   CONFIG[CURRENT_SCENE].subtitle?.stop()
   CONFIG[CURRENT_SCENE].voix?.stop()
+  CONFIG[CURRENT_SCENE].ambiance?.stop()
 
   // CURRENT_SCENE = new scene
   CURRENT_SCENE = num
 
 
   if (CONFIG[num].date) date.updateDate(CONFIG[num].date)
+  CONFIG[num].ambiance?.init()
   if (CONFIG[num].subtitle && CONFIG[num].delayVoixSubtitle) {
     CONFIG[num].voix?.init()
     setTimeout(
@@ -263,6 +269,7 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
 const cursor = new Cursor()
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
   cursor.draw()
+  date.show()
   cursorTrigger()
   document.querySelector('.timeline--wrapper')?.classList.add('active')
   document.querySelector('.timeline--tick:first-child')?.classList.add('active')
