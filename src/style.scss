@@ -1,3 +1,5 @@
+$white: #FFFFFC;
+
 @font-face {
   font-family: 'Centrion';
   src: url('./fonts/centrion.ttf');
@@ -9,11 +11,61 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  position: relative;
   overflow: hidden;
 }
 
 .centrion {
   font-family: 'Centrion';
+}
+
+#loader{
+  z-index: 1000000;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFFFFC;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p{
+    font-size: 80px;
+    font-family:'Centrion' ;
+  }
+  &.remove{
+    display: none;
+  }
+}
+
+.warning--mobile {
+  width: 100%;
+  height: 100%;
+  background-color: $white;
+  padding: 15px;
+  box-sizing: border-box;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-size: 24px;
+  font-family: 'Centrion';
+  color: #333;
+  line-height: 1.5em;
+  text-align: center;
+  z-index: 12;
+}
+
+@media screen and (max-width: 850px) {
+  .warning--mobile {
+    display: flex;
+  }
 }
 
 .transition {
@@ -31,6 +83,12 @@ body {
     img {
       object-fit: fill;
     }
+  }
+  &.space {
+    height: 200vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -52,7 +110,7 @@ body {
 .timeline--wrapper {
   width: 50px;
   height: 100vh;
-  padding: 0 35px;
+  padding-right: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,54 +118,62 @@ body {
   grid-gap: 15px;
   position: fixed;
   right: 0;
-  z-index: 99;
+  z-index: 0;
   .timeline--tick {
     width: 30px;
     height: 30px;
-    background-color: #fff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
     transition: opacity .3s;
+    opacity: 0;
     cursor: none;
-    &.active {
-      opacity: 1;
+    img {
+      width: 100%;
     }
   }
 }
 
 .cursor {
-  width: 0px;
-  height: 0px;
-  background-color: #FFF;
-  border: #000 1px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: fixed;
   left: 0;
   top: 0;
   z-index: 98;
-  transition: width 500ms, height 500ms;
   overflow: hidden;
-  color: #fff;
+  color: $white;
   cursor: none;
-  &.active {
-    width: 15px;
-    height: 15px;
-  }
   &.big {
-    width: 120px;
-    height: 120px;
-    color: black;
+    width: 110px;
+    height: 110px;
+    border: #38344B;
   }
-  &.hover {
-    width: 30px;
-    height: 30px;
-    color: #fff
+  
+  .cursor-2{
+    cursor: none;
+    width: 10px;
+    height: 10px;
+    transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #38344B;
+    border-radius: 50%;
+    &.big {
+      width: 100px;
+      height: 100px;
+      color: #FFFFFC;
+      p {
+        display: block;
+      }
+    }
+    &.small {
+      width: 10px;
+      height: 10px;
+      p {
+        display: none;
+      }
+    }
   }
 }
 
@@ -136,20 +202,29 @@ figure {
   position: absolute;
 }
 
-.nav--wrapper {
-  width: 100%;
-  padding: 75px 75px 0;
+.date {
+  width: 200px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
-  left: 0;
-  top: 0;
+  left: 18px;
+  top: 18px;
+  transform: translateY(-100px);
   z-index: 10;
-  .date {
-    p{
-      font-size: 44px;
-      margin: 0;
-      opacity: 0;
-      transition: opacity .3s;
-    }
+  img {
+    width: 100%;
+    position: absolute;
+  }
+  p {
+    margin: 0;
+    position: relative;
+    opacity: 0;
+    transform: translate(-5%, 5%);
+    transition: opacity .3s;
+    font-size: 36px;
+    font-family: 'Centrion';
   }
 }
 
@@ -167,7 +242,7 @@ figure {
     background-color: #000;
     padding: 5px 15px;
     font-size: 20px;
-    color: #fff;
+    color: $white;
     text-align: center;
     &.hidden {
       display: none;
@@ -175,42 +250,46 @@ figure {
   }
 }
 
-.band--top,
-.band--bottom,
-.band--left,
-.band--right {
-  background-color: #fff;
+.band {
   position: fixed;
+  opacity: 0;
   z-index: 10;
+  pointer-events: none;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .band--top,
 .band--bottom {
   width: 100%;
-  height: 20px;
   left: 0;
 }
 
 .band--left,
 .band--right {
-  width: 20px;
   height: 100%;
 }
 
 .band--top {
-  top: -20px;
+  height: 18px;
+  top: 0;
 }
 
 .band--bottom {
-  bottom: -20px;
+  height: 16px;
+  bottom: 0;
 }
 
 .band--left {
-  left: -20px;
+  width: 20px;
+  left: 0;
 }
 
 .band--right {
-  right: -20px;
+  width: 125px;
+  right: 0;
 }
 
 .loader {
@@ -221,6 +300,31 @@ figure {
   left: 0;
   bottom: 0;
   z-index: 5;
+}
+
+.landing--footer {
+  width: 100vw;
+  padding: 0 25px 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  pointer-events: none;
+  .logo {
+    pointer-events: visible;
+    img{
+      max-height: 100px;
+      &.gobelins{
+        margin-top: -10px;
+      }
+    }
+  }
 }
 
 .story--wrapper {
@@ -234,7 +338,7 @@ figure {
   position: relative;
   overflow: hidden;
   &.intro {
-    background-color: #fff;
+    background-color: $white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -243,11 +347,15 @@ figure {
       grid-gap: 15px;
     }
     h1 {
-      max-width: 1000px;
-      margin: 0 0 15px;
-      font-size: 84px;
+      max-width: 733px;
+      margin: -30px 0 15px;
+      font-size: 72px;
       font-weight: 400;
       text-align: center;
+      line-height: 1em;
+      span {
+        font-size: 44px;
+      }
     }
     .side {
       width: 275px;
@@ -281,7 +389,8 @@ figure {
         position: absolute;
       }
       p {
-        font-size: 24px;
+        font-size: 20px;
+        margin-top: 31px;
         z-index: 1;
       }
     }
@@ -291,13 +400,19 @@ figure {
         width: 100%;
       }
     }
+    .casque {
+      margin-top: 25px;
+      display: flex;
+      img {
+        margin-right: 20px;
+        margin-top: 12px;
+        height: 20px;
+      }
+    }
   }
   &.slide-1 {
     overflow: hidden;
     filter: grayscale(0%);
-    .layer {
-      
-    }
   }
   &.slide-2 {
     z-index: 4;
@@ -320,11 +435,9 @@ figure {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    z-index: 5;
     .item {
       height: 100vh;
-      background-color: #fff;
+      background-color: $white;
       flex: 1 1 300px;
       display: flex;
       justify-content: center;
@@ -342,9 +455,34 @@ figure {
         }
       }
       img {
+        width: 100%;
         max-width: 250px;
         max-height: 500px;
         object-fit: contain;
+      }
+    }
+  }
+  &.slide-9 {
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .plaque {
+      width: 100%;
+      max-width: 1000px;
+      position: absolute;
+      img {
+        width: 100%;
+      }
+    }
+    .artistes {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      .artiste {
+        width: 33%;
       }
     }
   }
@@ -403,4 +541,34 @@ figure {
   position: absolute;
   top: 0;
   z-index: 4;
+}
+
+.wrapper-objets {
+  width: 100%;
+  height: 200vh;
+  position: absolute;
+  z-index: 5;
+}
+
+.wrapper-space {
+  width: 100%;
+  height: 600vh;
+  position: absolute;
+  z-index: 3;
+  .slide-11 {
+    height: 300vh;
+    display: flex;
+    align-items: center;
+    .spaceship {
+      width: 600px;
+      height: 300px;
+      position: absolute;
+      left: 50%;
+      top: 50vh;
+      z-index: 1;
+      img {
+        width: 100%;
+      }
+    }
+  }
 }

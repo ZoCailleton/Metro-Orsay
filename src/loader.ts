@@ -1,12 +1,14 @@
 export class LoaderTrigger {
-    container: HTMLDivElement
+    container: any
     text: string
     imagesList: any
     imagesOnLoad: Array<HTMLImageElement>
     numberImages: number
     numberImagesLoad: number
+    domTextParagraph: any
     constructor() {
-        this.container = document.createElement('div')
+        this.container = document.querySelector('#loader')
+        this.domTextParagraph = document.querySelector('#loader > p')
         this.text = '0%'
         this.imagesList = document.images
         this.numberImages = this.imagesList.length
@@ -29,12 +31,15 @@ export class LoaderTrigger {
                 this.numberImagesLoad++
             }
         }
-        this.updateDom()
+
+        setTimeout(() => this.updateDom(), 500)
     }
 
     private updateDom() {
-        console.log('Load state :' + this.getRate())
+        // console.log('Load state :' + this.getRate())
         if (this.numberImagesLoad !== this.numberImages) this.checkLoad()
+        this.domTextParagraph.innerHTML = this.getRate() + ' %'
+        if (this.getRate() === 100) this.container.classList.add('remove')
     }
 
     private getRate() {

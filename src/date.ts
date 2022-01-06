@@ -3,7 +3,7 @@ export class DateTrigger {
     dateContainer: any
     constructor() {
         this.date = new Date().getFullYear()
-        this.dateContainer = document.querySelector('#app .nav--wrapper p')
+        this.dateContainer = document.querySelector('.date p')
     }
 
     init() {

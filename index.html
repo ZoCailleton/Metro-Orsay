@@ -3,50 +3,97 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
+  <title>L'Odyssée Secrète des Arches du Métro</title>
 </head>
 
 <body>
 
+  <div id="loader">
+    <p></p>
+  </div>
+
   <div id="app">
 
-    <nav class="nav--wrapper">
-      <div class="date">
-        <p></p>
-      </div>
-      <div class="nav--controls">
-        <div class="sound"></div>
-        <div class="fullscreen"></div>
-      </div>
-    </nav>
-
-    <div class="cursor">
-      <p>Cliquez</p>
+    <div class="date">
+      <img src="assets/ui/date.png" role="presentation" />
+      <p></p>
     </div>
+    <div class="nav--controls">
+      <div class="sound"></div>
+      <div class="fullscreen"></div>
+    </div>
+
+    <!-- <div class="cursor">
+      <div class="cursor-2">
+        <p>Suivant</p>
+      </div>
+    </div> -->
 
     <div class="screen-transition"></div>
 
-    <div class="timeline--wrapper">
-      <div class="timeline--tick" data-tick="1">1</div>
-      <div class="timeline--tick" data-tick="2">2</div>
-      <div class="timeline--tick" data-tick="3">3</div>
-      <div class="timeline--tick" data-tick="4">4</div>
-      <div class="timeline--tick" data-tick="5">5</div>
-      <div class="timeline--tick" data-tick="6">6</div>
-      <div class="timeline--tick" data-tick="7">7</div>
-      <div class="timeline--tick" data-tick="8">8</div>
-      <div class="timeline--tick" data-tick="9">9</div>
-      <div class="timeline--tick" data-tick="10">10</div>
-      <div class="timeline--tick" data-tick="11">11</div>
-      <div class="timeline--tick" data-tick="12">12</div>
+    <div class="warning--mobile">
+      <p>Notre expérience n'est pas encore disponible sur mobile. Essayez de la consulter sur une tablette.</p>
     </div>
 
-    <div class="band--top"></div>
-    <div class="band--bottom"></div>
-    <div class="band--left"></div>
-    <div class="band--right"></div>
+    <div class="timeline--wrapper">
+      <div class="timeline--tick" data-tick="1">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="2">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="3">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="4">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="5">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="6">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="7">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="8">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="9">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="10">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="11">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="12">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="13">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+      <div class="timeline--tick" data-tick="14">
+        <img src="assets/ui/tick-disabled.png" role="presentation" />
+      </div>
+    </div>
+
+    <div class="band band--top">
+      <img src="assets/ui/frame-top.png" role="presentation" />
+    </div>
+    <div class="band band--bottom">
+      <img src="assets/ui/frame-bottom.png" role="presentation" />
+    </div>
+    <div class="band band--left">
+      <img src="assets/ui/frame-left.png" role="presentation" />
+    </div>
+    <div class="band band--right">
+      <img src="assets/ui/frame-right.png" role="presentation" />
+    </div>
 
     <div class="story--wrapper">
 
@@ -66,20 +113,34 @@
             </div>
           </div>
 
-          <h1 class="centrion">L'Odyssée secrète des Arches du Métro</h1>
+          <h1 class="centrion">L'Odyssée secrète <span>des</span> Arches <span>du</span> Métro</h1>
 
           <div class="flex items-center">
             <div class="aile">
-              <img src="assets/landing/bottom-left.png" role="presentation" />
+              <!-- <img src="assets/landing/bottom-left.png" role="presentation" /> -->
             </div>
             <div class="btn">
               <img src="assets/landing/button.png" role="presentation">
-              <p class="centrion">Start</p>
+              <p class="centrion">Commencer</p>
             </div>
             <div class="aile">
-              <img src="assets/landing/bottom-right.png" role="presentation" />
+              <!-- <img src="assets/landing/bottom-right.png" role="presentation" /> -->
             </div>
           </div>
+
+          <div class="casque">
+            <img src="assets/landing/casque.svg" role="presentation">
+            <p>Astuce : utilisez un casque pour profiter d'une expérience plus complète</p>
+          </div>
+
+          <footer class="landing--footer">
+            <a href="https://www.musee-orsay.fr/fr" target="_blank" class="logo">
+              <img src="assets/landing/logo-orsay.svg" role="presentation" />
+            </a>
+            <a href="https://www.gobelins.fr/" target="_blank" class="logo ">
+              <img class="gobelins" src="assets/landing/logo-gobelins.svg" role="presentation" />
+            </a>
+          </footer>
 
         </section>
 
@@ -92,11 +153,11 @@
           <figure class="layer">
             <img data-coef="2" src="assets/slide1/layer-3.svg" role="presentation" />
           </figure>
-          <figure class="layer">
+          <figure class="layer hidden">
             <img data-coef="2.5" src="assets/slide1/layer-4.png" role="presentation" />
           </figure>
           <figure class="layer tour-eiffel">
-            <img data-coef="3" src="assets/slide1/layer-5.png" role="presentation" />
+            <img data-coef="2.5" src="assets/slide1/layer-5.png" role="presentation" />
           </figure>
           <figure class="layer">
             <img data-coef="3.5" src="assets/slide1/layer-6.png" role="presentation" />
@@ -162,7 +223,7 @@
             <figure class="layer">
               <img data-coef="2" src="assets/slide3/layer-3.png" role="presentation" />
             </figure>
-  
+
           </section>
 
           <div class="wrapper-herbe">
@@ -172,35 +233,35 @@
               <figure class="layer">
                 <img data-coef="0.5" src="assets/slide4/layer-1.jpg" role="presentation" />
               </figure>
-    
+
               <figure class="layer">
                 <img data-coef="1" src="assets/slide4/layer-2.png" role="presentation" />
               </figure>
-    
+
               <figure class="layer">
                 <img data-coef="1.5" src="assets/slide4/layer-3.png" role="presentation" />
               </figure>
-    
+
               <figure class="layer">
                 <img data-coef="2" src="assets/slide4/layer-4.png" role="presentation" />
               </figure>
-    
+
               <figure class="layer">
                 <img data-coef="2.5" src="assets/slide4/layer-5.png" role="presentation" />
               </figure>
-    
+
               <figure class="layer">
                 <img data-coef="3" src="assets/slide4/layer-6.png" role="presentation" />
               </figure>
-    
+
               <figure class="layer">
                 <img data-coef="3.5" src="assets/slide4/layer-7.png" role="presentation" />
               </figure>
-    
+
               <figure class="layer">
                 <img data-coef="4" src="assets/slide4/layer-8.png" role="presentation" />
               </figure>
-    
+
             </section>
 
             <section id="slide-5" class="story--slide slide-5">
@@ -208,23 +269,23 @@
               <figure class="layer hidden bg-dark">
                 <img data-coef="1" src="assets/slide5/layer-1.jpg" role="presentation" />
               </figure>
-    
+
               <figure class="layer p1">
                 <img data-coef="1.5" src="assets/slide5/layer-2.png" role="presentation" />
               </figure>
-    
+
               <figure class="layer p1">
                 <img data-coef="2" src="assets/slide5/layer-3.png" role="presentation" />
               </figure>
-    
+
               <figure class="layer p1">
                 <img data-coef="2.5" src="assets/slide5/layer-4.png" role="presentation" />
               </figure>
-    
+
               <figure class="layer hidden monstre">
                 <img data-coef="3" src="assets/slide5/layer-5.png" role="presentation" />
               </figure>
-    
+
               <figure class="layer p1">
                 <img data-coef="3.5" src="assets/slide5/layer-6.png" role="presentation" />
               </figure>
@@ -240,7 +301,7 @@
               <figure class="layer hidden m2">
                 <img data-coef="3" src="assets/slide5/layer-9.png" role="presentation" />
               </figure>
-    
+
             </section>
 
           </div>
@@ -252,23 +313,23 @@
       <div class="wrapper wrapper-usine">
 
         <section id="slide-6" class="story--slide slide-6">
-          
+
           <figure class="layer">
             <img data-coef="1" src="assets/slide8/layer-1.jpg" role="presentation" />
           </figure>
-          
+
           <figure class="layer">
             <img data-coef="2" src="assets/slide8/layer-2.png" role="presentation" />
           </figure>
 
         </section>
-        
+
         <div class="transition smoke">
           <img src="assets/transitions/transition-smoke.png" role="presentation" />
         </div>
 
         <section id="slide-7" class="story--slide slide-7">
-          
+
           <figure class="layer">
             <img data-coef="1" src="assets/slide7/layer-1.jpg" role="presentation" />
           </figure>
@@ -277,26 +338,68 @@
 
       </div>
 
-      <section id="slide-8" class="story--slide slide-8">
+      <div class="wrapper-objets">
 
-        <div class="item">
-          <img src="assets/slide6/item-1.png" alt="Vase" />
-          <p class="centrion">Vase</p>
-        </div>
-        <div class="item">
-          <img src="assets/slide6/item-2.png" alt="Lampe" />
-          <p class="centrion">Lampe</p>
-        </div>
-        <div class="item">
-          <img src="assets/slide6/item-3.png" alt="" />
-          <p class="centrion">?</p>
-        </div>
-        <div class="item">
-          <img src="assets/slide6/item-4.png" alt="Fauteil" />
-          <p class="centrion">Fauteuil</p>
+        <section id="slide-8" class="story--slide slide-8">
+
+          <div class="item">
+            <img src="assets/slide6/item-1.png" alt="Vase" />
+          </div>
+          <div class="item">
+            <img src="assets/slide6/item-2.png" alt="Lampe" />
+          </div>
+          <div class="item">
+            <img src="assets/slide6/item-3.png" alt="" />
+          </div>
+          <div class="item">
+            <img src="assets/slide6/item-4.png" alt="Fauteil" />
+          </div>
+
+        </section>
+
+        <section id="slide-9" class="story--slide slide-9">
+
+          <figure class="plaque">
+            <img data-coef="1" src="assets/slide9/layer-1.png" role="presentation" />
+          </figure>
+
+          <div class="artistes">
+            <img class="artiste" src="assets/slide9/gaudi.png" alt="Portrait de Gaudi" />
+            <img class="artiste" src="assets/slide9/mucha.png" alt="Portrait de Mucha" />
+            <img class="artiste" src="assets/slide9/horta.png" alt="Portrait de Horta" />
+          </div>
+
+        </section>
+
+      </div>
+
+      <div class="wrapper-space">
+
+        <section id="slide-10" class="story--slide slide-10">
+
+          <figure class="layer">
+            <img data-coef="1" src="assets/slide10/layer-1.jpg" role="presentation" />
+          </figure>
+
+        </section>
+
+        <div class="transition space">
+
+          <img src="assets/transitions/transition-space.jpg" role="presentation" />
+
         </div>
 
-      </section>
+        <section id="slide-11" class="story--slide slide-11">
+
+          <img class="spaceship" src="assets/transitions/spaceship.png" role="presentation" />
+
+          <figure class="layer">
+            <img data-coef="1" src="assets/slide11/layer-1.jpg" role="presentation" />
+          </figure>
+
+        </section>
+
+      </div>
 
     </div>
 
