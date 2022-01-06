@@ -16,6 +16,7 @@ loader.init()
 gsap.registerPlugin(ScrollTrigger)
 
 let CURRENT_SCENE: number = 0
+let PREVIOUS_SCENE: number = 0
 
 const GLOBAL_SCENE = gsap.timeline({ paused: true })
 
@@ -48,6 +49,13 @@ const scene12Voix = new AudioClass('/assets/audio/slide12.mp3', false)
 const scene13Voix = new AudioClass('/assets/audio/slide13.mp3', false)
 
 const scene1Ambiance = new AudioClass('/assets/audio/slide1ambiance.mp3', true)
+const scene2Ambiance = new AudioClass('/assets/audio/slide2ambiance.mp3', true)
+const scene3Ambiance = new AudioClass('/assets/audio/slide3ambiance.mp3', true)
+const scene4Ambiance = new AudioClass('/assets/audio/slide4ambiance.mp3', true)
+const scene6Ambiance = new AudioClass('/assets/audio/slide6ambiance.mp3', true)
+const scene8Ambiance = new AudioClass('/assets/audio/slide8ambiance.mp3', true)
+const scene12Ambiance = new AudioClass('/assets/audio/slide12ambiance.mp3', true)
+const scene13Ambiance = new AudioClass('/assets/audio/slide13ambiance.mp3', true)
 
 // const scene4Ambiance = new AudioClass('/assets/audio/ambiance_slide_4.mp3', true)
 
@@ -114,32 +122,35 @@ const CONFIG: Array<config> = [
   {
     timecode: 5.5,
     parallax: scene1Parallax,
-    date: 1900,
+    date: 1887,
     subtitle: subtitles2,
     voix: scene2Voix,
+    ambiance: scene2Ambiance,
     delayVoixSubtitle: 2000
   },
   //Scene 3 : Construction du metro
   {
-    timecode: 10.5,
+    timecode: 16.5,
     parallax: scene2Parallax,
-    date: 1900,
+    date: 1899,
     subtitle: subtitles3,
     voix: scene3Voix,
+    ambiance: scene3Ambiance,
     delayVoixSubtitle: 1900
   },
   // Scène 4 : Contrat sombre
   {
-    timecode: 12.25,
+    timecode: 18.25,
     parallax: scene3Parallax,
     date: 1900,
     subtitle: subtitles4,
     voix: scene4Voix,
+    ambiance: scene4Ambiance,
     delayVoixSubtitle: 2000
   },
   // Scène 4 : 
   {
-    timecode: 13.5,
+    timecode: 19.5,
     parallax: scene4Parallax,
     subtitle: subtitles5,
     voix: scene5Voix,
@@ -147,15 +158,16 @@ const CONFIG: Array<config> = [
   },
   // Scène 5 : Herbe
   {
-    timecode: 15.5,
+    timecode: 21.5,
     parallax: scene5Parallax,
     subtitle: subtitles6,
     voix: scene6Voix,
+    ambiance: scene6Ambiance,
     delayVoixSubtitle: 2000
   },
   // Scène 5 : Herbe - Apparition monstre
   {
-    timecode: 17.5,
+    timecode: 23.5,
     parallax: scene5Parallax,
     subtitle: subtitles7,
     voix: scene7Voix,
@@ -163,57 +175,62 @@ const CONFIG: Array<config> = [
   },
   // Scène 8 : Usine - Start
   {
-    timecode: 19,
+    timecode: 25,
     parallax: scene7Parallax,
     subtitle: subtitles8,
     voix: scene8Voix,
+    ambiance: scene8Ambiance,
     delayVoixSubtitle: 1910
   },
   // Scène 8 : Usine - Ciel
   {
-    timecode: 20.5,
+    timecode: 26.5,
     parallax: scene6Parallax,
     subtitle: subtitles9,
     voix: scene9Voix,
+    ambiance: scene8Ambiance,
     delayVoixSubtitle: 1910
   },
   // Scène 9 : Objets - Apparition
   {
-    timecode: 23.5,
+    timecode: 29.5,
     subtitle: subtitles10,
     voix: scene10Voix,
     delayVoixSubtitle: 1920
   },
   // Scène 10 : Portraits artistes Art Nouveau
   {
-    timecode: 25.25,
+    timecode: 31.25,
     subtitle: subtitles11,
     voix: scene11Voix,
     delayVoixSubtitle: 2000
   },
   // Scène 12 : Mouvement psychédélique
   {
-    timecode: 26.25,
+    timecode: 32.25,
     // parallax: scene13Parallax,
     subtitle: subtitles12,
     voix: scene12Voix,
+    ambiance: scene12Ambiance,
     delayVoixSubtitle: 2000
   },
   // Scène 13 : Alien
   {
-    timecode: 29.25,
+    timecode: 35.25,
     // parallax: scene12Parallax,
     subtitle: subtitles13,
     voix: scene13Voix,
+    ambiance: scene13Ambiance,
     delayVoixSubtitle: 2000
   },
   // Scène 14 : End
   {
-    timecode: 30.25
+    timecode: 36.25
   }
 ]
 
 const slideToTransition = (num: number) => {
+
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
   CONFIG[CURRENT_SCENE].subtitle?.stop()
@@ -221,6 +238,7 @@ const slideToTransition = (num: number) => {
   CONFIG[CURRENT_SCENE].ambiance?.stop()
 
   // CURRENT_SCENE = new scene
+  PREVIOUS_SCENE = CURRENT_SCENE
   CURRENT_SCENE = num
 
   GLOBAL_SCENE.time(CONFIG[num].timecode)
@@ -238,6 +256,10 @@ const slideTo = (num: number, animated: boolean = true) => {
   // CURRENT_SCENE = new scene
   CURRENT_SCENE = num
 
+  console.log('prev : ' + PREVIOUS_SCENE)
+  console.log('current : ' + CURRENT_SCENE)
+
+  document.querySelector('.timeline--tick:nth-child('+CURRENT_SCENE+') img')?.setAttribute('src', 'assets/ui/tick-active.png')
 
   if (CONFIG[num].date) date.updateDate(CONFIG[num].date)
   CONFIG[num].ambiance?.init()
@@ -270,8 +292,6 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
   tick.addEventListener('click', () => {
     CONFIG[CURRENT_SCENE].subtitle?.init()
 
-    tick.querySelector('img')?.setAttribute('src', 'assets/ui/tick-active.png')
-
     // On récupère le tick choisi
     let _tick = (tick as HTMLInputElement).dataset.tick || ''
     var y: number = +_tick;
@@ -293,8 +313,6 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
   });
 
 }
-
-// const loader = document.querySelector<HTMLInputElement>('.loader')
 
 document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
 
@@ -323,6 +341,9 @@ GLOBAL_SCENE
   .set('.slide-1 .layer:nth-child(7)', { y: -200 })
   .set('.slide-1 .layer:nth-child(8)', { y: -150 })
   .set('.slide-1 .layer:nth-child(9)', { y: -100 })
+
+  // Scène 2 - Setup
+  .set('.slide-2 .guimard', { opacity: 0 })
 
   // Scène 5 - Setup
   .set('.slide-5 .layer:nth-child(2)', { y: -200 })
@@ -379,7 +400,9 @@ GLOBAL_SCENE
   .to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .hidden', { opacity: 1, duration: 1, delay: 3, ease: Power2.easeInOut })
+  .to('.guimard', { opacity: 1, duration: 1, delay: 2, ease: Power2.easeInOut })
+  .to('.slide-2 .hidden', { opacity: 1, duration: 1, delay: 6, ease: Power2.easeInOut })
+  .to('.slide-2 .guimard', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
   // Scène 3 - Contrat sombre
   .set('.slide-3 .layer:nth-child(1)', { y: -500 })

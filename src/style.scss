@@ -128,7 +128,7 @@ body {
     align-items: center;
     transition: opacity .3s;
     opacity: 0;
-    cursor: none;
+    cursor: pointer;
     img {
       width: 100%;
     }
@@ -416,6 +416,14 @@ figure {
   }
   &.slide-2 {
     z-index: 4;
+    .guimard {
+      width: 250px;
+      position: absolute;
+      left: 100px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
     @for $i from 5 through 1 {
       .layer:nth-child(#{$i}) {
         transform: scale(1 - $i * 0.1);
