@@ -201,7 +201,7 @@ const CONFIG: Array<config> = [
   // Scène 10 : Mouvement psychédélique
   {
     timecode: 25.25,
-    // parallax: scene13Parallax,
+    parallax: scene10Parallax,
     subtitle: subtitles12,
     voix: scene12Voix,
     delayVoixSubtitle: 2000
@@ -209,7 +209,7 @@ const CONFIG: Array<config> = [
   // Scène 10 : Alien
   {
     timecode: 28.25,
-    // parallax: scene12Parallax,
+    parallax: scene11Parallax,
     subtitle: subtitles13,
     voix: scene13Voix,
     delayVoixSubtitle: 2000
