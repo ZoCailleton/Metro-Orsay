@@ -30,11 +30,13 @@ export class Cursor {
         this.size = 10
         this.cursor2.classList.add('small')
         this.cursor2.classList.remove('big')
+        this.cursor.classList.remove('big')
     }
 
     big() {
         this.size = 100
         this.cursor2.classList.add('big')
+        this.cursor.classList.add('big')
         this.cursor2.classList.remove('small')
     }
 

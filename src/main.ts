@@ -5,10 +5,8 @@ import { MouseParallax } from './mouse'
 import gsap, { Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { DateTrigger } from './date'
-import { Cursor } from './cursor'
 
 const date = new DateTrigger()
-const cursor = new Cursor()
 date.init()
 
 gsap.registerPlugin(ScrollTrigger)
@@ -216,7 +214,6 @@ const CONFIG: Array<config> = [
 ]
 
 const slideToTransition = (num: number) => {
-  cursor.small()
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
   CONFIG[CURRENT_SCENE].subtitle?.stop()
@@ -231,7 +228,6 @@ const slideToTransition = (num: number) => {
 }
 
 const slideTo = (num: number, animated: boolean = true) => {
-  cursor.small()
 
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
@@ -270,7 +266,6 @@ if (window.location.hash) {
 }
 
 for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')) {
-  cursor.small()
 
   tick.addEventListener('click', () => {
     CONFIG[CURRENT_SCENE].subtitle?.init()
@@ -288,11 +283,9 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
     } else {
       launchScreenTransition()
       setTimeout(() => {
-        cursor.small()
         slideToTransition(y - 1)
       }, 1000)
       setTimeout(() => {
-        cursor.small()
         slideTo(y)
       }, 1000)
     }
@@ -307,44 +300,9 @@ document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click
 
   document.querySelector('.timeline--tick:first-child img')?.setAttribute('src', 'assets/ui/tick-active.png')
 
-  cursor.draw()
-
   date.show()
-  cursorTrigger()
   slideTo(1)
 })
-
-function cursorTrigger() {
-  window.addEventListener('click', cursorClicker)
-  let listener = true
-  cursor.small()
-
-  function cursorClicker() {
-
-    if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
-      cursor.small()
-      slideTo(CURRENT_SCENE + 1)
-      window.removeEventListener('click', cursorClicker)
-      listener = false
-    }
-
-  }
-
-  setInterval(
-    () => {
-      console.log(cursor.getStatus());
-      if (CONFIG[CURRENT_SCENE].subtitle?.isFinish()) {
-        cursor.big()
-        if (!listener) {
-          window.addEventListener('click', cursorClicker)
-          listener = true
-        }
-      }
-    },
-    10
-  )
-
-}
 
 function detectDevice() {
   // console.log(!!navigator.maxTouchPoints)
