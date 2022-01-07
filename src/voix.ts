@@ -136,7 +136,7 @@ export class AudioClass {
 
       this.gainNode.gain.setValueAtTime(this.gainNode.gain.value, this.contexteAudio.currentTime)
 
-      this.gainNode.gain.exponentialRampToValueAtTime(0.001, this.contexteAudio.currentTime + 0.3)
+      this.gainNode.gain.exponentialRampToValueAtTime(0.001, this.contexteAudio.currentTime + 1)
 
       setTimeout(
         () => this.source.stop()

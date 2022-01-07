@@ -48,15 +48,26 @@ const scene12Voix = new AudioClass('/assets/audio/slide12.mp3', false)
 const scene13Voix = new AudioClass('/assets/audio/slide13.mp3', false)
 
 const scene1Ambiance = new AudioClass('/assets/audio/slide1ambiance.mp3', true)
-
-// const scene4Ambiance = new AudioClass('/assets/audio/ambiance_slide_4.mp3', true)
+const scene2Ambiance = new AudioClass('/assets/audio/slide2ambiance.mp3', true)
+const scene3Ambiance = new AudioClass('/assets/audio/slide3ambiance.mp3', true)
+const scene4Ambiance = new AudioClass('/assets/audio/slide4ambiance.mp3', true)
+const scene5Ambiance = new AudioClass('/assets/audio/slide5ambiance.mp3', true)
+const scene6Ambiance = new AudioClass('/assets/audio/slide6ambiance.mp3', true)
+const scene7Ambiance = new AudioClass('/assets/audio/slide7ambiance.mp3', true)
+const scene8Ambiance = new AudioClass('/assets/audio/slide8ambiance.mp3', true)
+const scene9Ambiance = new AudioClass('/assets/audio/slide9ambiance.mp3', true)
+const scene10Ambiance = new AudioClass('/assets/audio/slide11ambiance.mp3', true)
+const scene11Ambiance = new AudioClass('/assets/audio/slide11ambiance.mp3', true)
+const scene12Ambiance = new AudioClass('/assets/audio/slide12ambiance.mp3', true)
+const scene13Ambiance = new AudioClass('/assets/audio/slide13ambiance.mp3', true)
+const scene14Ambiance = new AudioClass('/assets/audio/slide14ambiancea.mp3', true)
 
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
 const slide3 = document.querySelector<HTMLInputElement>('.slide-3')
 const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
 const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
-const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
+//const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
 const slide7 = document.querySelector<HTMLInputElement>('.slide-7')
 
 const scene1Parallax = new MouseParallax(slide1!)
@@ -64,7 +75,7 @@ const scene2Parallax = new MouseParallax(slide2!)
 const scene3Parallax = new MouseParallax(slide3!)
 const scene4Parallax = new MouseParallax(slide4!)
 const scene5Parallax = new MouseParallax(slide5!)
-const scene6Parallax = new MouseParallax(slide6!)
+//const scene6Parallax = new MouseParallax(slide6!)
 const scene7Parallax = new MouseParallax(slide7!)
 
 const launchScreenTransition = () => {
@@ -77,7 +88,14 @@ const launchScreenTransition = () => {
 
 }
 
+const tickSound = () => {
+  var audio = new Audio('assets/audio/tick.mp3')
+  audio.play()
+}
+
 /* Lazy Loading */
+
+let PLAYING: boolean = true
 
 const slides: Array<Element> = [];
 
@@ -85,6 +103,11 @@ for (let slide of document.querySelectorAll('.story--slide')) {
   slides.push(slide)
 }
 
+document.querySelector('.story--wrapper')?.addEventListener('click', () => {
+  if(!PLAYING) {
+    slideTo(CURRENT_SCENE+1)
+  }
+})
 
 interface config {
   timecode: number
@@ -100,7 +123,6 @@ const CONFIG: Array<config> = [
   {
     timecode: 0,
   },
-  //Scène 1 - Première scène
   {
     timecode: 2,
     parallax: scene1Parallax,
@@ -110,110 +132,132 @@ const CONFIG: Array<config> = [
     ambiance: scene1Ambiance,
     delayVoixSubtitle: 2000
   },
-  //Scène 2 - Paris 1900
   {
     timecode: 5.5,
     parallax: scene1Parallax,
-    date: 1900,
+    date: 1887,
     subtitle: subtitles2,
     voix: scene2Voix,
+    ambiance: scene2Ambiance,
     delayVoixSubtitle: 2000
   },
   //Scene 3 : Construction du metro
   {
-    timecode: 10.5,
+    timecode: 16.5,
     parallax: scene2Parallax,
-    date: 1900,
+    date: 1899,
     subtitle: subtitles3,
     voix: scene3Voix,
-    delayVoixSubtitle: 1900
+    ambiance: scene3Ambiance,
+    delayVoixSubtitle: 2000
   },
   // Scène 4 : Contrat sombre
   {
-    timecode: 12.25,
+    timecode: 18.25,
     parallax: scene3Parallax,
     date: 1900,
     subtitle: subtitles4,
     voix: scene4Voix,
+    ambiance: scene4Ambiance,
     delayVoixSubtitle: 2000
   },
-  // Scène 4 : 
+  // Scène 5 : Bureau
   {
-    timecode: 13.5,
+    timecode: 19.5,
     parallax: scene4Parallax,
+    date: 1900,
     subtitle: subtitles5,
     voix: scene5Voix,
+    ambiance: scene5Ambiance,
     delayVoixSubtitle: 2000
   },
-  // Scène 5 : Herbe
+  // Scène 6 : Herbe
   {
-    timecode: 15.5,
+    timecode: 21.5,
     parallax: scene5Parallax,
+    date: 1900,
     subtitle: subtitles6,
     voix: scene6Voix,
+    ambiance: scene6Ambiance,
     delayVoixSubtitle: 2000
   },
-  // Scène 5 : Herbe - Apparition monstre
+  // Scène 7 : Herbe - Apparition monstre
   {
-    timecode: 17.5,
+    timecode: 23.5,
     parallax: scene5Parallax,
+    date: 1900,
     subtitle: subtitles7,
     voix: scene7Voix,
+    ambiance: scene7Ambiance,
     delayVoixSubtitle: 2000
   },
   // Scène 8 : Usine - Start
   {
-    timecode: 19,
+    timecode: 25,
     parallax: scene7Parallax,
+    date: 1910,
     subtitle: subtitles8,
     voix: scene8Voix,
+    ambiance: scene8Ambiance,
     delayVoixSubtitle: 1910
   },
   // Scène 8 : Usine - Ciel
   {
-    timecode: 20.5,
-    parallax: scene6Parallax,
+    timecode: 26.5,
+    date: 1910,
     subtitle: subtitles9,
     voix: scene9Voix,
+    ambiance: scene9Ambiance,
     delayVoixSubtitle: 1910
   },
   // Scène 9 : Objets - Apparition
   {
-    timecode: 23.5,
+    timecode: 29.5,
+    date: 1915,
     subtitle: subtitles10,
     voix: scene10Voix,
+    ambiance: scene10Ambiance,
     delayVoixSubtitle: 1920
   },
   // Scène 10 : Portraits artistes Art Nouveau
   {
-    timecode: 25.25,
+    timecode: 31.25,
+    date: 1915,
     subtitle: subtitles11,
     voix: scene11Voix,
+    ambiance: scene11Ambiance,
     delayVoixSubtitle: 2000
   },
   // Scène 12 : Mouvement psychédélique
   {
-    timecode: 26.25,
+    timecode: 32.25,
     // parallax: scene13Parallax,
+    date: 1960,
     subtitle: subtitles12,
     voix: scene12Voix,
+    ambiance: scene12Ambiance,
     delayVoixSubtitle: 2000
   },
   // Scène 13 : Alien
   {
-    timecode: 29.25,
+    timecode: 35.25,
+    date: 1979,
     // parallax: scene12Parallax,
     subtitle: subtitles13,
     voix: scene13Voix,
+    ambiance: scene13Ambiance,
     delayVoixSubtitle: 2000
   },
   // Scène 14 : End
   {
-    timecode: 30.25
+    timecode: 59.25,
+    ambiance: scene14Ambiance,
+    date: new Date().getFullYear()
   }
 ]
 
 const slideToTransition = (num: number) => {
+
   // CURRENT_SCENE = prev scene
   CONFIG[CURRENT_SCENE].parallax?.stop()
   CONFIG[CURRENT_SCENE].subtitle?.stop()
@@ -238,6 +282,22 @@ const slideTo = (num: number, animated: boolean = true) => {
   // CURRENT_SCENE = new scene
   CURRENT_SCENE = num
 
+  document.querySelector('.timeline--tick:nth-child('+CURRENT_SCENE+') img')?.setAttribute('src', 'assets/ui/tick-active.png')
+
+  reset('.timeline--tick', 'active')
+
+  document.querySelector('.timeline--tick:nth-child('+CURRENT_SCENE+')')?.classList.add('active')
+
+  const _interval = setInterval(() => {
+    if(CONFIG[num].subtitle?.isFinish()) {
+      cursor?.classList.add('big')
+      clearInterval(_interval)
+      PLAYING = false
+    } else {
+      cursor?.classList.remove('big')
+      PLAYING = true
+    }
+  }, 100)
 
   if (CONFIG[num].date) date.updateDate(CONFIG[num].date)
   CONFIG[num].ambiance?.init()
@@ -265,12 +325,33 @@ if (window.location.hash) {
   slideTo(y, false)
 }
 
+const cursor = document.querySelector('.cursor')
+
+document.addEventListener('mousemove', (e: MouseEvent) => {
+  cursor?.setAttribute('style', 'left: ' + e.clientX + 'px; top: ' + e.clientY + 'px;')
+})
+
+const reset = (collection: string, classe: string) => {
+  for(let elt of document.querySelectorAll(collection)) {
+    elt.classList.remove(classe)
+  }
+}
+
 for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')) {
 
-  tick.addEventListener('click', () => {
-    CONFIG[CURRENT_SCENE].subtitle?.init()
+  tick.addEventListener('mouseenter', () => {
+    cursor?.classList.add('hidden')
+  })
 
-    tick.querySelector('img')?.setAttribute('src', 'assets/ui/tick-active.png')
+  tick.addEventListener('mouseleave', () => {
+    cursor?.classList.remove('hidden')
+  })
+
+  tick.addEventListener('click', () => {
+    
+    tickSound()
+
+    CONFIG[CURRENT_SCENE].subtitle?.init()
 
     // On récupère le tick choisi
     let _tick = (tick as HTMLInputElement).dataset.tick || ''
@@ -294,22 +375,40 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
 
 }
 
-// const loader = document.querySelector<HTMLInputElement>('.loader')
+const btnStart = document.querySelector<HTMLInputElement>('.intro .btn')
 
-document.querySelector<HTMLInputElement>('.intro .btn')?.addEventListener('click', () => {
+btnStart?.addEventListener('mouseenter', () => {
+  cursor?.classList.add('hidden')
+})
+
+btnStart?.addEventListener('mouseleave', () => {
+  cursor?.classList.remove('hidden')
+})
+
+btnStart?.addEventListener('click', () => {
 
   document.querySelector('.timeline--tick:first-child img')?.setAttribute('src', 'assets/ui/tick-active.png')
 
   date.show()
   slideTo(1)
+  
 })
 
-function detectDevice() {
-  // console.log(!!navigator.maxTouchPoints)
-  return !!navigator.maxTouchPoints ? 'mobile' : 'computer'
-}
+// Intro post loader
 
-detectDevice()
+const SCENE_INTRO = gsap.timeline({ paused: true })
+
+SCENE_INTRO
+.to('.landing--footer', { y: 0, duration: 1, ease: Power2.easeInOut })
+
+const checkIntro = setInterval(() => {
+  if(loader.isFinish) {
+    clearInterval(checkIntro)
+    SCENE_INTRO.play()
+  }
+}, 100)
+
+// Timeline générale
 
 GLOBAL_SCENE
 
@@ -323,6 +422,9 @@ GLOBAL_SCENE
   .set('.slide-1 .layer:nth-child(7)', { y: -200 })
   .set('.slide-1 .layer:nth-child(8)', { y: -150 })
   .set('.slide-1 .layer:nth-child(9)', { y: -100 })
+
+  // Scène 2 - Setup
+  .set('.slide-2 .guimard', { opacity: 0 })
 
   // Scène 5 - Setup
   .set('.slide-5 .layer:nth-child(2)', { y: -200 })
@@ -379,7 +481,9 @@ GLOBAL_SCENE
   .to('.slide-1 .layer:nth-child(1)', { scale: 1.25, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-1', { scale: 1.15, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-2 .layer', { scale: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.slide-2 .hidden', { opacity: 1, duration: 1, delay: 3, ease: Power2.easeInOut })
+  .to('.guimard', { opacity: 1, duration: 1, delay: 2, ease: Power2.easeInOut })
+  .to('.slide-2 .hidden', { opacity: 1, duration: 1, delay: 6, ease: Power2.easeInOut })
+  .to('.slide-2 .guimard', { opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
 
   // Scène 3 - Contrat sombre
   .set('.slide-3 .layer:nth-child(1)', { y: -500 })
@@ -467,5 +571,18 @@ GLOBAL_SCENE
   .to('.slide-11 .spaceship', { x: -200, duration: 3, ease: Power2.easeInOut }, '-=3')
 
   // Scène 14 - End
-  .to('.wrapper-space', { y: '-500vh', duration: 1, ease: Power2.easeInOut })
+  .to('.wrapper-space', { y: '-530vh', duration: 1, ease: Power2.easeInOut })
+  .to('.credit div:nth-child(1)', { opacity: 0, duration: 1, delay: 2, ease: Power2.easeInOut })
+  .to('.credit div:nth-child(2)', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.credit div:nth-child(2)', { opacity: 0, duration: 1, delay: 2, ease: Power2.easeInOut })
+  .to('.credit div:nth-child(3)', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.credit div:nth-child(3)', { opacity: 0, duration: 1, delay: 2, ease: Power2.easeInOut })
+  .to('.credit div:nth-child(4)', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.credit div:nth-child(4)', { opacity: 0, duration: 1, delay: 2, ease: Power2.easeInOut })
+  .to('.credit div:nth-child(5)', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.credit div:nth-child(5)', { opacity: 0, duration: 1, delay: 2, ease: Power2.easeInOut })
+  .to('.credit div:nth-child(6)', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.credit div:nth-child(6)', { opacity: 0, duration: 1, delay: 2, ease: Power2.easeInOut })
+  .to('.credit div:nth-child(7)', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
+  .to('.credit div:nth-child(7)', { opacity: 0, duration: 1, delay: 2, ease: Power2.easeInOut })
 

@@ -1,4 +1,5 @@
 $white: #FFFFFC;
+$black: #394734;
 
 @font-face {
   font-family: 'Centrion';
@@ -11,6 +12,7 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: none !important;
 }
 
 #app {
@@ -22,22 +24,22 @@ body {
   font-family: 'Centrion';
 }
 
-#loader{
-  z-index: 1000000;
+#loader {
   width: 100vw;
   height: 100vh;
   background-color: #FFFFFC;
-  position: absolute;
-  top: 0;
-  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  p{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000000;
+  p {
     font-size: 80px;
-    font-family:'Centrion' ;
+    font-family:'Centrion';
   }
-  &.remove{
+  &.remove {
     display: none;
   }
 }
@@ -49,6 +51,7 @@ body {
   padding: 15px;
   box-sizing: border-box;
   display: none;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -60,6 +63,13 @@ body {
   line-height: 1.5em;
   text-align: center;
   z-index: 12;
+  img {
+    width: 80%;
+    max-width: 300px;
+    &:last-child {
+      width: 50%;
+    }
+  }
 }
 
 @media screen and (max-width: 850px) {
@@ -128,52 +138,92 @@ body {
     align-items: center;
     transition: opacity .3s;
     opacity: 0;
-    cursor: none;
+    cursor: pointer;
+    transition: 500ms;
+    &.active {
+      transform: scale(1.35);
+    }
     img {
       width: 100%;
     }
   }
 }
 
+.nav--controls {
+  position: fixed;
+  left: 35px;
+  bottom: 35px;
+  z-index: 10;
+}
+
 .cursor {
+  width: 15px;
+  height: 15px;
+  background-color: #38344B;
+  border: 1px solid #000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 98;
-  overflow: hidden;
-  color: $white;
+  z-index: 999;
   cursor: none;
-  &.big {
-    width: 110px;
-    height: 110px;
-    border: #38344B;
-  }
-  
-  .cursor-2{
-    cursor: none;
-    width: 10px;
-    height: 10px;
-    transition: all .3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #38344B;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 300ms, height 300ms, border 300ms;
+  &::before,
+  &::after {
+    content: '';
+    border: 1px solid #000;
     border-radius: 50%;
-    &.big {
-      width: 100px;
-      height: 100px;
-      color: #FFFFFC;
-      p {
-        display: block;
-      }
+    position: absolute;
+    z-index: -1;
+    transition: 300ms;
+  }
+  &::before {
+    width: 115%;
+    height: 115%;
+    transform: scale(0);
+  }
+  &::after {
+    width: 150%;
+    height: 150%;
+    cursor: none;
+  }
+  &.hidden {
+    width: 0 !important;
+    height: 0 !important;
+    border: 0;
+    &::after {
+      transform: scale(0);
     }
-    &.small {
-      width: 10px;
-      height: 10px;
-      p {
-        display: none;
-      }
+    p {
+      transform: scale(0) !important;
     }
+  }
+  &.big {
+    width: 100px;
+    height: 100px;
+    &::before {
+      transform: scale(1);
+    }
+    &::after {
+      width: 125%;
+      height: 125%;
+    }
+    p {
+      transform: scale(1);
+    }
+  }
+  p {
+    transform: scale(0);
+    font-size: 12px;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 300ms;
   }
 }
 
@@ -191,7 +241,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  transition: 300ms;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 figure {
@@ -209,9 +262,9 @@ figure {
   justify-content: center;
   align-items: center;
   position: fixed;
-  left: 18px;
-  top: 18px;
-  transform: translateY(-100px);
+  left: 30px;
+  top: 30px;
+  transform: translateY(-150px);
   z-index: 10;
   img {
     width: 100%;
@@ -240,7 +293,7 @@ figure {
   z-index: 10;
   p {
     background-color: #000;
-    padding: 5px 15px;
+    padding: 5px 10px;
     font-size: 20px;
     color: $white;
     text-align: center;
@@ -278,7 +331,7 @@ figure {
 }
 
 .band--bottom {
-  height: 16px;
+  height: 19px;
   bottom: 0;
 }
 
@@ -295,7 +348,7 @@ figure {
 .loader {
   width: 100%;
   height: 10px;
-  background-color: #000;
+  background-color: $black;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -350,6 +403,7 @@ figure {
       max-width: 733px;
       margin: -30px 0 15px;
       font-size: 72px;
+      color: $black;
       font-weight: 400;
       text-align: center;
       line-height: 1em;
@@ -401,7 +455,7 @@ figure {
       }
     }
     .casque {
-      margin-top: 25px;
+      margin-top: 35px;
       display: flex;
       img {
         margin-right: 20px;
@@ -416,6 +470,14 @@ figure {
   }
   &.slide-2 {
     z-index: 4;
+    .guimard {
+      width: 250px;
+      position: absolute;
+      left: 100px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
     @for $i from 5 through 1 {
       .layer:nth-child(#{$i}) {
         transform: scale(1 - $i * 0.1);
@@ -439,11 +501,17 @@ figure {
       height: 100vh;
       background-color: $white;
       flex: 1 1 300px;
+      box-sizing: border-box;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      cursor: pointer;
+      &:first-child {
+        padding-left: 5%;
+      }
+      &:last-child {
+        padding-right: 5%;
+      }
       p {
         font-size: 32px;
         opacity: 0;
@@ -552,11 +620,11 @@ figure {
 
 .wrapper-space {
   width: 100%;
-  height: 600vh;
+  height: 650vh;
   position: absolute;
   z-index: 3;
   .slide-11 {
-    height: 300vh;
+    height: 350vh;
     display: flex;
     align-items: center;
     .spaceship {
@@ -568,6 +636,27 @@ figure {
       z-index: 1;
       img {
         width: 100%;
+      }
+    }
+    .credit {
+      position: absolute;
+      left: 50%;
+      bottom: 95vh;
+      font-family: 'Centrion';
+      div {
+        position: absolute;
+        opacity: 0;
+        &:first-child {
+          opacity: 1;
+        }
+        p {
+          margin: 0;
+          line-height: 1.25em;
+          font-size: 100px;
+        }
+        p:nth-child(2) {
+          margin-left: 50px;
+        }
       }
     }
   }
