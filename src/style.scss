@@ -154,25 +154,6 @@ body {
   left: 35px;
   bottom: 35px;
   z-index: 10;
-  .btn-next {
-    width: 200px;
-    height: 60px;
-    background-image: url('../public/assets/ui/btn-next.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    font-family: 'Centrion';
-    opacity: 0;
-    transition: 500ms;
-    &.active {
-      opacity: 1;
-    }
-  }
 }
 
 .cursor {
