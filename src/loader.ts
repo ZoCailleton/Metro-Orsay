@@ -1,4 +1,5 @@
 export class LoaderTrigger {
+
     container: any
     text: string
     imagesList: any
@@ -7,6 +8,8 @@ export class LoaderTrigger {
     numberImagesLoad: number
     domTextParagraph: any
     lastRate: number
+    isFinish: boolean
+    
     constructor() {
         this.container = document.querySelector('#loader')
         this.domTextParagraph = document.querySelector('#loader > p')
@@ -16,13 +19,12 @@ export class LoaderTrigger {
         this.numberImagesLoad = 0
         this.imagesOnLoad = []
         this.lastRate = 0
+        this.isFinish = false
     }
 
     init() {
         this.imagesOnLoad = this.imagesList
-
-        console.log('nombre d\'images a load :' + this.numberImages);
-
+        //console.log('nombre d\'images a load :' + this.numberImages);
         this.checkLoad()
     }
 
@@ -53,22 +55,16 @@ export class LoaderTrigger {
                 this.domTextParagraph.innerHTML = 100 + ' %'
                 clearInterval(increment)
                 setTimeout(() => {
-                    this.domTextParagraph.innerHTML = 'bienvenue'
-                }, 900)
-                setTimeout(() => {
                     this.container.classList.add('remove')
                     this.lastRate = 0
-                }, 1900)
+                }, 1000)
             }
             if (currentRate > 100 || this.lastRate > 100) {
-                this.domTextParagraph.innerHTML = 100 + ' %'
                 clearInterval(increment)
                 setTimeout(() => {
-                    this.domTextParagraph.innerHTML = 'bienvenue'
-                }, 900)
-                setTimeout(() => {
                     this.container.classList.add('remove')
-                }, 1900)
+                    this.isFinish = true
+                }, 1000)
             }
         }, 50)
 
