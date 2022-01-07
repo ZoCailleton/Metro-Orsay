@@ -62,14 +62,12 @@ const scene12Ambiance = new AudioClass('/assets/audio/slide12ambiance.mp3', true
 const scene13Ambiance = new AudioClass('/assets/audio/slide13ambiance.mp3', true)
 const scene14Ambiance = new AudioClass('/assets/audio/slide14ambiancea.mp3', true)
 
-// const scene4Ambiance = new AudioClass('/assets/audio/ambiance_slide_4.mp3', true)
-
 const slide1 = document.querySelector<HTMLInputElement>('.slide-1')
 const slide2 = document.querySelector<HTMLInputElement>('.slide-2')
 const slide3 = document.querySelector<HTMLInputElement>('.slide-3')
 const slide4 = document.querySelector<HTMLInputElement>('.slide-4')
 const slide5 = document.querySelector<HTMLInputElement>('.slide-5')
-const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
+//const slide6 = document.querySelector<HTMLInputElement>('.slide-6')
 const slide7 = document.querySelector<HTMLInputElement>('.slide-7')
 
 const scene1Parallax = new MouseParallax(slide1!)
@@ -77,7 +75,7 @@ const scene2Parallax = new MouseParallax(slide2!)
 const scene3Parallax = new MouseParallax(slide3!)
 const scene4Parallax = new MouseParallax(slide4!)
 const scene5Parallax = new MouseParallax(slide5!)
-const scene6Parallax = new MouseParallax(slide6!)
+//const scene6Parallax = new MouseParallax(slide6!)
 const scene7Parallax = new MouseParallax(slide7!)
 
 const launchScreenTransition = () => {
