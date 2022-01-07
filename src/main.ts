@@ -11,7 +11,7 @@ const date = new DateTrigger()
 date.init()
 
 const loader = new LoaderTrigger()
-//loader.init()
+loader.init()
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -55,7 +55,8 @@ const scene5Ambiance = new AudioClass('/assets/audio/slide5ambiance.mp3', true)
 const scene6Ambiance = new AudioClass('/assets/audio/slide6ambiance.mp3', true)
 const scene7Ambiance = new AudioClass('/assets/audio/slide7ambiance.mp3', true)
 const scene8Ambiance = new AudioClass('/assets/audio/slide8ambiance.mp3', true)
-const scene9Ambiance = new AudioClass('/assets/audio/slide8ambiance.mp3', true)
+const scene9Ambiance = new AudioClass('/assets/audio/slide9ambiance.mp3', true)
+const scene10Ambiance = new AudioClass('/assets/audio/slide11ambiance.mp3', true)
 const scene11Ambiance = new AudioClass('/assets/audio/slide11ambiance.mp3', true)
 const scene12Ambiance = new AudioClass('/assets/audio/slide12ambiance.mp3', true)
 const scene13Ambiance = new AudioClass('/assets/audio/slide13ambiance.mp3', true)
@@ -124,7 +125,6 @@ const CONFIG: Array<config> = [
   {
     timecode: 0,
   },
-  //Scène 1 - Première scène
   {
     timecode: 2,
     parallax: scene1Parallax,
@@ -134,7 +134,6 @@ const CONFIG: Array<config> = [
     ambiance: scene1Ambiance,
     delayVoixSubtitle: 2000
   },
-  //Scène 2 - Paris 1900
   {
     timecode: 5.5,
     parallax: scene1Parallax,
@@ -219,6 +218,7 @@ const CONFIG: Array<config> = [
     date: 1915,
     subtitle: subtitles10,
     voix: scene10Voix,
+    ambiance: scene10Ambiance,
     delayVoixSubtitle: 1920
   },
   // Scène 10 : Portraits artistes Art Nouveau
