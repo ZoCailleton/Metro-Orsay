@@ -93,6 +93,31 @@ const tickSound = () => {
   audio.play()
 }
 
+// Détection de l'orientation du téléphone
+
+const warningMobile = document.querySelector('.warning--mobile')
+
+const detectDeviceOrientation = () => {
+  if(window.innerHeight > window.innerWidth){
+    warningMobile?.classList.add('active')
+  } else {
+    warningMobile?.classList.remove('active')
+  }
+}
+
+detectDeviceOrientation()
+
+window.addEventListener('resize', detectDeviceOrientation)
+
+// Timeline mobile
+
+const timelineMobile = document.querySelector('.timeline--mobile')
+
+const btnMenu = document.querySelector('.controls--mobile .btn-menu')
+btnMenu?.addEventListener('click', () => {
+  timelineMobile?.classList.add('active')
+})
+
 /* Lazy Loading */
 
 let PLAYING: boolean = true
@@ -287,6 +312,7 @@ const slideTo = (num: number, animated: boolean = true) => {
   reset('.timeline--tick', 'active')
 
   document.querySelector('.timeline--tick:nth-child('+CURRENT_SCENE+')')?.classList.add('active')
+  document.querySelector('.timeline--chapter:nth-child('+CURRENT_SCENE+')')?.classList.add('active')
 
   const _interval = setInterval(() => {
     if(CONFIG[num].subtitle?.isFinish()) {
@@ -346,6 +372,18 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')
   tick.addEventListener('mouseleave', () => {
     cursor?.classList.remove('hidden')
   })
+
+}
+
+for (let tick of document.querySelectorAll('.timeline--mobile .timeline--chapter')) {
+
+  tick.addEventListener('click', () => {
+    timelineMobile?.classList.remove('active')
+  })
+
+}
+
+for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick, .timeline--mobile .timeline--chapter')) {
 
   tick.addEventListener('click', () => {
     
@@ -459,6 +497,7 @@ GLOBAL_SCENE
   // Intro - Start
   .to('.wrapper-intro', { y: '-100vh', duration: 1, ease: Power2.easeInOut })
   .to('.timeline--wrapper', { zIndex: 99, duration: 0, ease: Power2.easeInOut })
+  .to('.controls--mobile', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-1 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.band', { opacity: 1, duration: 1, ease: Power2.easeInOut })
   .to('.timeline--tick', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
