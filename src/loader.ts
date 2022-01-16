@@ -45,7 +45,7 @@ export class LoaderTrigger {
         const currentRate = this.getRate()
 
         const increment = setInterval(() => {
-            if (currentRate !== this.lastRate) {
+            if (currentRate !== this.lastRate && this.lastRate < 100) {
                 this.domTextParagraph.innerHTML = this.lastRate + ' %'
                 this.lastRate++
             } else if (currentRate !== 100) {
