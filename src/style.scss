@@ -28,7 +28,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #FFFFFC;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -63,18 +63,46 @@ body {
   line-height: 1.5em;
   text-align: center;
   z-index: 12;
-  img {
+  &.active {
+    display: flex;
+  }
+  .illu {
     width: 80%;
     max-width: 300px;
     &:last-child {
       width: 50%;
     }
   }
-}
-
-@media screen and (max-width: 850px) {
-  .warning--mobile {
-    display: flex;
+  .rotate-phone {
+    width: 50px;
+    margin-top: 35px;
+    animation-name: rotatePhone;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    @keyframes rotatePhone {
+      25% {
+        transform: rotate(0deg);
+      }
+      30% {
+        transform: rotate(-20deg);
+      }
+      35% {
+        transform: rotate(0deg);
+      }
+      40% {
+        transform: rotate(0deg);
+      }
+      45% {
+        transform: rotate(-20deg);
+      }
+      50% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
   }
 }
 
@@ -117,6 +145,79 @@ body {
   transform: translateY(100vh);
 }
 
+.timeline--mobile {
+  width: 50vw;
+  height: 100vh;
+  background-color: #FFFCDC;
+  border-left: 10px solid #93C3BA;
+  box-shadow: -1px 0px 0px 1px #000;
+  position: fixed;
+  right: -100vw;
+  z-index: 12;
+  transition: 500ms cubic-bezier(.84,.07,.54,.82);
+  overflow-y: scroll;
+  &.active {
+    right: 0;
+    &::before,
+    &::after {
+      content: '';
+      width: 100%;
+      height: 50px;
+      position: sticky;
+      left: 0;
+      user-select: none;
+    }
+    &::before {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+      top: 0;
+    }
+    &::after {
+      background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+      bottom: 0;
+    }
+  }
+  .timeline--chapter {
+    padding: 25px 20px;
+    position: relative;
+    font-size: 24px;
+    font-family: 'Centrion';
+    opacity: 0.5;
+    &::after {
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: #000;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
+.controls--mobile {
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  padding: 10px;
+  box-sizing: border-box;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: -75px;
+  z-index: 10;
+  .btn-next {
+    font-family: 'Centrion';
+  }
+  @media screen and (max-width: 1000px) {
+    display: flex;
+  }
+}
+
 .timeline--wrapper {
   width: 50px;
   height: 100vh;
@@ -129,6 +230,9 @@ body {
   position: fixed;
   right: 0;
   z-index: 0;
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
   .timeline--tick {
     width: 30px;
     height: 30px;
@@ -173,6 +277,9 @@ body {
   pointer-events: none;
   transform: translate(-50%, -50%);
   transition: width 300ms, height 300ms, border 300ms;
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
   &::before,
   &::after {
     content: '';
@@ -291,6 +398,9 @@ figure {
   bottom: 100px;
   transform: translateX(-50%);
   z-index: 10;
+  @media screen and (max-width: 1000px) {
+    bottom: 35px;
+  }
   p {
     background-color: #000;
     padding: 5px 10px;
@@ -343,6 +453,19 @@ figure {
 .band--right {
   width: 125px;
   right: 0;
+  @media screen and (max-width: 1000px) {
+    width: 20px;
+  }
+  .desktop {
+    @media screen and (max-width: 1000px) {
+      display: none;
+    }
+  }
+  .mobile {
+    @media screen and (min-width: 1000px) {
+      display: none;
+    }
+  }
 }
 
 .loader {
@@ -410,9 +533,19 @@ figure {
       span {
         font-size: 44px;
       }
+      @media screen and (max-width: 1000px) {
+        margin-top: 0px;
+        font-size: 32px;
+        span {
+          font-size: 24px;
+        }
+      }
     }
     .side {
       width: 275px;
+      @media screen and (max-width: 1000px) {
+        width: 175px;
+      }
       &:first-child {
         margin-right: -50px;
         margin-bottom: 50px;
@@ -427,6 +560,9 @@ figure {
     }
     .arche {
       width: 400px;
+      @media screen and (max-width: 1000px) {
+        width: 200px;
+      }
       img {
         width: 100%;
       }
@@ -565,6 +701,9 @@ figure {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      @media screen and (max-width: 1000px) {
+        transition: 500ms;
+      }
     }
   }
 }
