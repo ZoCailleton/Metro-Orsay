@@ -113,10 +113,38 @@ window.addEventListener('resize', detectDeviceOrientation)
 
 const timelineMobile = document.querySelector('.timeline--mobile')
 
-const btnMenu = document.querySelector('.controls--mobile .btn-menu')
+const btnMenu = document.querySelector('.nav--controls .burger')
 btnMenu?.addEventListener('click', () => {
   timelineMobile?.classList.add('active')
 })
+
+var elem: any = document.documentElement;
+
+let isFullscreen: boolean = false
+
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    elem.msRequestFullscreen();
+  }
+  isFullscreen = true
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  let document_elt: any = document
+  if (document_elt.exitFullscreen) {
+    document_elt.exitFullscreen();
+  } else if (document_elt.webkitExitFullscreen) {
+    document_elt.webkitExitFullscreen();
+  } else if (document_elt.msExitFullscreen) {
+    document_elt.msExitFullscreen();
+  }
+  isFullscreen = false
+}
 
 /* Lazy Loading */
 
@@ -363,7 +391,7 @@ const reset = (collection: string, classe: string) => {
   }
 }
 
-for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick')) {
+for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick, .nav--controls div')) {
 
   tick.addEventListener('mouseenter', () => {
     cursor?.classList.add('hidden')
@@ -412,6 +440,11 @@ for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick, 
   });
 
 }
+
+document.querySelector('.nav--controls .fullscreen')?.addEventListener('click', () => {
+  isFullscreen ? closeFullscreen() : openFullscreen()
+})
+document.querySelector('.nav--controls .audio')?.addEventListener('click', openFullscreen)
 
 const btnStart = document.querySelector<HTMLInputElement>('.intro .btn')
 
@@ -499,7 +532,8 @@ GLOBAL_SCENE
   .to('.timeline--wrapper', { zIndex: 99, duration: 0, ease: Power2.easeInOut })
   .to('.controls--mobile', { bottom: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.slide-1 .layer', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
-  .to('.band', { opacity: 1, duration: 1, ease: Power2.easeInOut })
+  .to('.frame', { scale: 1, duration: 1, ease: Power2.easeInOut })
+  .to('.nav--controls', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.timeline--tick', { opacity: 1, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.date', { y: 0, duration: 1, ease: Power2.easeInOut }, '-=1')
   .to('.intro .side:first-child', { rotation: -10, opacity: 0, duration: 1, ease: Power2.easeInOut }, '-=1')

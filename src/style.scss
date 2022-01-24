@@ -1,6 +1,8 @@
 $white: #FFFFFC;
 $black: #394734;
 
+$responsive: 900px;
+
 @font-face {
   font-family: 'Centrion';
   src: url('./fonts/centrion.ttf');
@@ -197,27 +199,6 @@ body {
   }
 }
 
-.controls--mobile {
-  width: 100%;
-  height: 50px;
-  background-color: #fff;
-  padding: 10px;
-  box-sizing: border-box;
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  left: 0;
-  bottom: -75px;
-  z-index: 10;
-  .btn-next {
-    font-family: 'Centrion';
-  }
-  @media screen and (max-width: 1000px) {
-    display: flex;
-  }
-}
-
 .timeline--wrapper {
   width: 50px;
   height: 100vh;
@@ -230,7 +211,7 @@ body {
   position: fixed;
   right: 0;
   z-index: 0;
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: $responsive) {
     display: none;
   }
   .timeline--tick {
@@ -254,10 +235,46 @@ body {
 }
 
 .nav--controls {
+  width: 100%;
+  padding: 0 3%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
   position: fixed;
-  left: 35px;
-  bottom: 35px;
-  z-index: 10;
+  bottom: 0px;
+  z-index: 12;
+  cursor: pointer;
+  transform: translateY(100px);
+  div {
+    display: flex;
+    &.btn-next {
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      font-size: 1.25em;
+      font-family: 'Centrion';
+      @media screen and (min-width: $responsive) {
+        display: none;
+      }
+      p {
+        z-index: 1;
+      }
+      img {
+        width: 100%;
+        position: absolute;
+      }
+    }
+    &.burger {
+      @media screen and (min-width: $responsive) {
+        display: none;
+      }
+    }
+  }
+  img {
+    height: 75px;
+  }
 }
 
 .cursor {
@@ -277,7 +294,7 @@ body {
   pointer-events: none;
   transform: translate(-50%, -50%);
   transition: width 300ms, height 300ms, border 300ms;
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: $responsive) {
     display: none;
   }
   &::before,
@@ -373,6 +390,10 @@ figure {
   top: 30px;
   transform: translateY(-150px);
   z-index: 10;
+  @media screen and (max-width: $responsive) {
+    left: 6px;
+    top: 3px;
+  }
   img {
     width: 100%;
     position: absolute;
@@ -398,7 +419,7 @@ figure {
   bottom: 100px;
   transform: translateX(-50%);
   z-index: 10;
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: $responsive) {
     bottom: 35px;
   }
   p {
@@ -413,58 +434,16 @@ figure {
   }
 }
 
-.band {
+.frame {
+  width: 100%;
+  height: 100%;
   position: fixed;
-  opacity: 0;
   z-index: 10;
   pointer-events: none;
+  transform: scale(1.2);
   img {
     width: 100%;
     height: 100%;
-  }
-}
-
-.band--top,
-.band--bottom {
-  width: 100%;
-  left: 0;
-}
-
-.band--left,
-.band--right {
-  height: 100%;
-}
-
-.band--top {
-  height: 18px;
-  top: 0;
-}
-
-.band--bottom {
-  height: 19px;
-  bottom: 0;
-}
-
-.band--left {
-  width: 20px;
-  left: 0;
-}
-
-.band--right {
-  width: 125px;
-  right: 0;
-  @media screen and (max-width: 1000px) {
-    width: 20px;
-  }
-  .desktop {
-    @media screen and (max-width: 1000px) {
-      display: none;
-    }
-  }
-  .mobile {
-    @media screen and (min-width: 1000px) {
-      display: none;
-    }
   }
 }
 
@@ -533,7 +512,7 @@ figure {
       span {
         font-size: 44px;
       }
-      @media screen and (max-width: 1000px) {
+      @media screen and (max-width: $responsive) {
         margin-top: 0px;
         font-size: 32px;
         span {
@@ -543,7 +522,7 @@ figure {
     }
     .side {
       width: 275px;
-      @media screen and (max-width: 1000px) {
+      @media screen and (max-width: $responsive) {
         width: 175px;
       }
       &:first-child {
@@ -560,7 +539,7 @@ figure {
     }
     .arche {
       width: 400px;
-      @media screen and (max-width: 1000px) {
+      @media screen and (max-width: $responsive) {
         width: 200px;
       }
       img {
@@ -701,7 +680,7 @@ figure {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      @media screen and (max-width: 1000px) {
+      @media screen and (max-width: $responsive) {
         transition: 500ms;
       }
     }
