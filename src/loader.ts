@@ -6,6 +6,7 @@ export class LoaderTrigger {
     numberImagesLoad: number
     numberImages: number
     rate: number
+    finish: boolean
 
     constructor() {
         this.container = document.querySelector('#loader')
@@ -13,6 +14,7 @@ export class LoaderTrigger {
         this.numberImages = 0
         this.numberImagesLoad = 0
         this.rate = 0
+        this.finish = false
     }
 
     init() {
@@ -39,8 +41,15 @@ export class LoaderTrigger {
 
 
         setTimeout(() => {
-            this.numberImagesLoad === this.numberImages ? setTimeout(() => { this.container.style.display = 'none' }, 200) : this.checkLoad()
+            this.numberImagesLoad === this.numberImages ? setTimeout(() => {
+                this.finish = true
+                this.container.style.display = 'none'
+            }, 200) : this.checkLoad()
         }, 20)
+    }
+
+    private isFinish() {
+        return this.finish
     }
 
     private getRate() {
