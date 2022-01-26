@@ -118,7 +118,7 @@ btnMenu?.addEventListener('click', () => {
   timelineMobile?.classList.add('active')
 })
 
-var elem: any = document.documentElement;
+const elem: any = document.documentElement;
 
 let isFullscreen: boolean = false
 
@@ -145,6 +145,8 @@ function closeFullscreen() {
   }
   isFullscreen = false
 }
+
+window.onbeforeunload = function() { return 'ATTENTION'; }
 
 /* Lazy Loading */
 
@@ -457,6 +459,10 @@ btnStart?.addEventListener('mouseleave', () => {
 })
 
 btnStart?.addEventListener('click', () => {
+
+  if(window.innerWidth < 1000) {
+    openFullscreen()
+  }
 
   document.querySelector('.timeline--tick:first-child img')?.setAttribute('src', 'assets/ui/tick-active.png')
 

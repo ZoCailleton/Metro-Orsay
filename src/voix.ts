@@ -7,7 +7,7 @@ export class SlideSubtitle {
   numSentences: number;
   duration: number;
   step: number;
-  containerSubtitle: any
+  containerSubtitle: HTMLInputElement | null
   textSubtitle: HTMLParagraphElement
   play: boolean
 
@@ -86,7 +86,7 @@ export class SlideSubtitle {
 
 export class AudioClass {
   url: string
-  contexteAudio: any
+  contexteAudio: AudioContext
   yodelBuffer: any
   source: any
   isInit: boolean

@@ -1,7 +1,7 @@
 export class Cursor {
 
-    cursor: any
-    cursor2: any
+    cursor: HTMLInputElement | null
+    cursor2: HTMLInputElement | null
     size: number
     x!: number
     y!: number
@@ -28,22 +28,22 @@ export class Cursor {
 
     small() {
         this.size = 10
-        this.cursor2.classList.add('small')
-        this.cursor2.classList.remove('big')
-        this.cursor.classList.remove('big')
+        this.cursor2?.classList.add('small')
+        this.cursor2?.classList.remove('big')
+        this.cursor?.classList.remove('big')
     }
 
     big() {
         this.size = 100
-        this.cursor2.classList.add('big')
-        this.cursor.classList.add('big')
-        this.cursor2.classList.remove('small')
+        this.cursor2?.classList.add('big')
+        this.cursor?.classList.add('big')
+        this.cursor2?.classList.remove('small')
     }
 
     getStatus() {
-        if (this.cursor2.classList.contains('big')) {
+        if (this.cursor2?.classList.contains('big')) {
             return 'big'
-        } else if (this.cursor2.classList.contains('small')) {
+        } else if (this.cursor2?.classList.contains('small')) {
             return 'small'
         } else {
             return 'Le cursor n\'a pas de status'
