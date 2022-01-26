@@ -1,8 +1,8 @@
 export class LoaderTrigger {
 
-    container: any
-    text: any
-    imagesList: any
+    container: HTMLElement | null
+    text: HTMLElement | null
+    imagesList: HTMLCollectionOf<HTMLImageElement> | null
     numberImagesLoad: number
     numberImages: number
     rate: number
@@ -15,11 +15,13 @@ export class LoaderTrigger {
         this.numberImagesLoad = 0
         this.rate = 0
         this.finish = false
+        this.imagesList = null
     }
 
     init() {
         this.imagesList = document.images
         this.numberImages = this.imagesList.length
+        if (this.text)
         this.text.innerHTML = this.rate + ' %'
         setTimeout(() => {
             if ((document as any).fonts.ready) {
@@ -32,6 +34,7 @@ export class LoaderTrigger {
 
     private checkLoad() {
         this.numberImagesLoad = 0
+        if(this.imagesList)
         for (let i = 0; i < this.imagesList.length; i++) {
             this.imagesList[i].complete ? this.numberImagesLoad++ : null
 
@@ -39,12 +42,14 @@ export class LoaderTrigger {
 
         this.rate = this.getRate()
 
+        if(this.text)
         this.text.innerHTML = this.rate + ' %'
 
 
         setTimeout(() => {
             this.numberImagesLoad === this.numberImages ? setTimeout(() => {
                 this.finish = true
+                if(this.container)
                 this.container.style.display = 'none'
             }, 200) : this.checkLoad()
         }, 20)

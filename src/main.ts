@@ -355,7 +355,7 @@ const slideTo = (num: number, animated: boolean = true) => {
     }
   }, 100)
 
-  if (CONFIG[num].date) date.updateDate(CONFIG[num].date)
+  if (CONFIG[num].date) date.updateDate(CONFIG[num].date || 0)
   CONFIG[num].ambiance?.init()
   if (CONFIG[num].subtitle && CONFIG[num].delayVoixSubtitle) {
     CONFIG[num].voix?.init()
