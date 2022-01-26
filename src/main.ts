@@ -98,7 +98,7 @@ const tickSound = () => {
 const warningMobile = document.querySelector('.warning--mobile')
 
 const detectDeviceOrientation = () => {
-  if(window.innerHeight > window.innerWidth){
+  if (window.innerHeight > window.innerWidth) {
     warningMobile?.classList.add('active')
   } else {
     warningMobile?.classList.remove('active')
@@ -157,8 +157,8 @@ for (let slide of document.querySelectorAll('.story--slide')) {
 }
 
 document.querySelector('.story--wrapper')?.addEventListener('click', () => {
-  if(!PLAYING) {
-    slideTo(CURRENT_SCENE+1)
+  if (!PLAYING) {
+    slideTo(CURRENT_SCENE + 1)
   }
 })
 
@@ -335,15 +335,15 @@ const slideTo = (num: number, animated: boolean = true) => {
   // CURRENT_SCENE = new scene
   CURRENT_SCENE = num
 
-  document.querySelector('.timeline--tick:nth-child('+CURRENT_SCENE+') img')?.setAttribute('src', 'assets/ui/tick-active.png')
+  document.querySelector('.timeline--tick:nth-child(' + CURRENT_SCENE + ') img')?.setAttribute('src', 'assets/ui/tick-active.png')
 
   reset('.timeline--tick', 'active')
 
-  document.querySelector('.timeline--tick:nth-child('+CURRENT_SCENE+')')?.classList.add('active')
-  document.querySelector('.timeline--chapter:nth-child('+CURRENT_SCENE+')')?.classList.add('active')
+  document.querySelector('.timeline--tick:nth-child(' + CURRENT_SCENE + ')')?.classList.add('active')
+  document.querySelector('.timeline--chapter:nth-child(' + CURRENT_SCENE + ')')?.classList.add('active')
 
   const _interval = setInterval(() => {
-    if(CONFIG[num].subtitle?.isFinish()) {
+    if (CONFIG[num].subtitle?.isFinish()) {
       cursor?.classList.add('big')
       clearInterval(_interval)
       PLAYING = false
@@ -386,7 +386,7 @@ document.addEventListener('mousemove', (e: MouseEvent) => {
 })
 
 const reset = (collection: string, classe: string) => {
-  for(let elt of document.querySelectorAll(collection)) {
+  for (let elt of document.querySelectorAll(collection)) {
     elt.classList.remove(classe)
   }
 }
@@ -414,7 +414,7 @@ for (let tick of document.querySelectorAll('.timeline--mobile .timeline--chapter
 for (let tick of document.querySelectorAll('.timeline--wrapper .timeline--tick, .timeline--mobile .timeline--chapter')) {
 
   tick.addEventListener('click', () => {
-    
+
     tickSound()
 
     CONFIG[CURRENT_SCENE].subtitle?.init()
@@ -462,7 +462,7 @@ btnStart?.addEventListener('click', () => {
 
   date.show()
   slideTo(1)
-  
+
 })
 
 // Intro post loader
@@ -470,10 +470,10 @@ btnStart?.addEventListener('click', () => {
 const SCENE_INTRO = gsap.timeline({ paused: true })
 
 SCENE_INTRO
-.to('.landing--footer', { y: 0, duration: 1, ease: Power2.easeInOut })
+  .to('.landing--footer', { y: 0, duration: 1, ease: Power2.easeInOut })
 
 const checkIntro = setInterval(() => {
-  if(loader.isFinish) {
+  if (loader.isFinish()) {
     clearInterval(checkIntro)
     SCENE_INTRO.play()
   }

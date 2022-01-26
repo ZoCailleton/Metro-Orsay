@@ -48,7 +48,7 @@ export class LoaderTrigger {
         }, 20)
     }
 
-    private isFinish() {
+    isFinish() {
         return this.finish
     }
 
