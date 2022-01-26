@@ -8,6 +8,10 @@ $responsive: 900px;
   src: url('./fonts/centrion.ttf');
 }
 
+h1, h2, h3, p {
+  margin: 0;
+}
+
 body {
   margin: 0;
   color: #2c3e50;
@@ -15,6 +19,35 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   cursor: none !important;
+}
+
+.about {
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 11;
+  .membres {
+    display: flex;
+    grid-gap: 35px;
+    .membre {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .photo {
+        width: 150px;
+        height: 150px;
+        background-color: #aaa;
+        border-radius: 50%;
+      }
+    }
+  }
 }
 
 #app {
