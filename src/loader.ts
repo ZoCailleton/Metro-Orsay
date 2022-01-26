@@ -21,10 +21,13 @@ export class LoaderTrigger {
         this.imagesList = document.images
         this.numberImages = this.imagesList.length
         this.text.innerHTML = this.rate + ' %'
-
-        console.log('Images List : ', this.imagesList)
-        console.log('Nombre total d images ' + this.numberImages)
-        this.checkLoad()
+        setTimeout(() => {
+            if ((document as any).fonts.ready) {
+                this.checkLoad()
+            } else {
+                this.init()
+            }
+        }, 20);
     }
 
     private checkLoad() {
@@ -33,7 +36,6 @@ export class LoaderTrigger {
             this.imagesList[i].complete ? this.numberImagesLoad++ : null
 
         }
-        console.log('Nombre total d images load ' + this.numberImagesLoad)
 
         this.rate = this.getRate()
 
