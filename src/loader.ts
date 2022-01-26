@@ -9,13 +9,13 @@ export class LoaderTrigger {
     domTextParagraph: any
     lastRate: number
     isFinish: boolean
-    
+
     constructor() {
         this.container = document.querySelector('#loader')
         this.domTextParagraph = document.querySelector('#loader > p')
         this.text = '0%'
-        this.imagesList = document.images
-        this.numberImages = this.imagesList.length
+        this.imagesList
+        this.numberImages = 0
         this.numberImagesLoad = 0
         this.imagesOnLoad = []
         this.lastRate = 0
@@ -23,8 +23,9 @@ export class LoaderTrigger {
     }
 
     init() {
+        this.imagesList = document.images
+        this.numberImages = this.imagesList.length
         this.imagesOnLoad = this.imagesList
-        //console.log('nombre d\'images a load :' + this.numberImages);
         this.checkLoad()
     }
 
@@ -44,28 +45,22 @@ export class LoaderTrigger {
         const currentRate = this.getRate()
 
         const increment = setInterval(() => {
-            if (currentRate !== this.lastRate) {
+            if (currentRate !== this.lastRate && this.lastRate !== 100) {
                 this.domTextParagraph.innerHTML = this.lastRate + ' %'
                 this.lastRate++
             } else if (currentRate !== 100) {
                 this.lastRate = currentRate
                 this.domTextParagraph.innerHTML = currentRate + ' %'
+            } else if (currentRate >= 100 || this.lastRate >= 100) {
                 clearInterval(increment)
-            } else {
-                this.domTextParagraph.innerHTML = 100 + ' %'
-                clearInterval(increment)
-                setTimeout(() => {
-                    this.container.classList.add('remove')
-                    this.lastRate = 0
-                }, 1000)
-            }
-            if (currentRate > 100 || this.lastRate > 100) {
-                clearInterval(increment)
+                this.domTextParagraph.innerHTML = '100%'
+                this.lastRate++
                 setTimeout(() => {
                     this.container.classList.add('remove')
                     this.isFinish = true
                 }, 1000)
             }
+
         }, 50)
 
         if (this.numberImagesLoad !== this.numberImages) this.checkLoad()
