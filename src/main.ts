@@ -146,7 +146,7 @@ function closeFullscreen() {
   isFullscreen = false
 }
 
-window.onbeforeunload = function() { return 'ATTENTION'; }
+window.onbeforeunload = function() { return 'Attention, vous allez perdre votre progression'; }
 
 /* Lazy Loading */
 
@@ -162,6 +162,24 @@ document.querySelector('.story--wrapper')?.addEventListener('click', () => {
   if (!PLAYING) {
     slideTo(CURRENT_SCENE + 1)
   }
+})
+
+const nextMobile = document.querySelector('.btn-next')
+
+nextMobile?.addEventListener('click', () => {
+  if (!PLAYING) {
+    slideTo(CURRENT_SCENE + 1)
+  }
+})
+
+const credits = document.querySelector('.about')
+
+document.querySelector('.open-credits')?.addEventListener('click', () => {
+  credits?.classList.add('active')
+})
+
+document.querySelector('.about .close')?.addEventListener('click', () => {
+  credits?.classList.remove('active')
 })
 
 interface config {
@@ -347,10 +365,12 @@ const slideTo = (num: number, animated: boolean = true) => {
   const _interval = setInterval(() => {
     if (CONFIG[num].subtitle?.isFinish()) {
       cursor?.classList.add('big')
+      nextMobile?.classList.add('active')
       clearInterval(_interval)
       PLAYING = false
     } else {
       cursor?.classList.remove('big')
+      nextMobile?.classList.remove('active')
       PLAYING = true
     }
   }, 100)
