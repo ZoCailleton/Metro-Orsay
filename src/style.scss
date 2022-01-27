@@ -24,7 +24,7 @@ body {
 .about {
   width: 100%;
   max-width: 800px;
-  max-height: 90vh;
+  max-height: 80vh;
   overflow-y: scroll;
   background-color: #fff;
   padding-bottom: 50px;
@@ -355,8 +355,10 @@ body {
   font-size: 1.25em;
   font-family: 'Centrion';
   z-index: 12;
-  &.active {
-    display: flex;
+  @media screen and (max-width: $responsive) {
+    &.active {
+      display: flex;
+    }
   }
   @media screen and (min-width: $responsive) {
     display: none;
