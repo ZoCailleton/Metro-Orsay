@@ -87,18 +87,18 @@ export class SlideSubtitle {
 export class AudioClass {
   url: string
   contexteAudio: AudioContext
-  yodelBuffer: any
-  source: any
+  yodelBuffer: AudioBuffer | null
+  source: AudioBufferSourceNode | null
   isInit: boolean
-  gainNode: any
+  gainNode: GainNode | null
   startInstant: boolean
   constructor(url: string, startInstant: boolean) {
     this.url = url
     this.contexteAudio = new AudioContext()
-    this.yodelBuffer
-    this.source
+    this.yodelBuffer = null
+    this.source = null
     this.isInit = false
-    this.gainNode
+    this.gainNode = null
     this.startInstant = startInstant || false
   }
 
@@ -120,13 +120,14 @@ export class AudioClass {
     if (this.isInit === true) {
       this.source = this.contexteAudio.createBufferSource();
       this.source.buffer = this.yodelBuffer;
+      if(this.gainNode)
       this.source.connect(this.gainNode)
 
 
       this.source.start();
-      this.gainNode.gain.setValueAtTime(0.01, this.contexteAudio.currentTime);
+      this.gainNode?.gain.setValueAtTime(0.01, this.contexteAudio.currentTime);
 
-      this.gainNode.gain.exponentialRampToValueAtTime(1, this.contexteAudio.currentTime + 0.3)
+      this.gainNode?.gain.exponentialRampToValueAtTime(1, this.contexteAudio.currentTime + 0.3)
 
     }
   }
@@ -134,12 +135,12 @@ export class AudioClass {
   stop() {
     if (this.isInit === true) {
 
-      this.gainNode.gain.setValueAtTime(this.gainNode.gain.value, this.contexteAudio.currentTime)
+      this.gainNode?.gain.setValueAtTime(this.gainNode.gain.value, this.contexteAudio.currentTime)
 
-      this.gainNode.gain.exponentialRampToValueAtTime(0.001, this.contexteAudio.currentTime + 1)
+      this.gainNode?.gain.exponentialRampToValueAtTime(0.001, this.contexteAudio.currentTime + 1)
 
       setTimeout(
-        () => this.source.stop()
+        () => this.source?.stop()
         , 2000
       )
     }

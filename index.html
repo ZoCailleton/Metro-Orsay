@@ -6,6 +6,17 @@
   <link rel="icon" type="image/svg+xml" href="favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L'Odyssée Secrète des Arches du Métro</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM05RMT756"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HM05RMT756');
+  </script>
+
 </head>
 
 <body>
@@ -27,19 +38,23 @@
     
     <div class="nav--controls">
       <div>
+        <div class="open-credits">
+          <img src="assets/ui/btn-team.png" alt="L'équipe"/>
+        </div>
         <div class="fullscreen">
           <img src="assets/ui/btn-fullscreen.png" alt="Plein écran"/>
         </div>
       </div>
       <div>
-        <div class="btn-next">
-          <p>Continuer</p>
-          <img src="/assets/ui/btn-template.png" role="presentation"/>
-        </div>
         <div class="burger">
           <img src="assets/ui/burger.png" alt="Chapitres"/>
         </div>
       </div>
+    </div>
+
+    <div class="btn-next">
+      <p>Continuer</p>
+      <img src="/assets/ui/btn-template.png" role="presentation"/>
     </div>
 
     <div class="screen-transition"></div>
@@ -111,6 +126,7 @@
       <div class="timeline--chapter" data-tick="12">Chapitre 12</div>
       <div class="timeline--chapter" data-tick="13">Chapitre 13</div>
       <div class="timeline--chapter" data-tick="14">Chapitre 14</div>
+      <p class="open-credits">L'équipe du projet</p>
     </div>
 
     <div class="frame">
@@ -450,10 +466,7 @@
               <p>Enzo</p>
               <p>Cailleton</p>
             </div>
-            <div>
-              <p>Margot</p>
-              <p>Evan</p>
-            </div>
+            <div></div>
           </div>
 
         </section>
@@ -464,6 +477,85 @@
 
     <div class="subtitles--wrapper"></div>
 
+  </div>
+
+  <div class="about">
+    <img class="close" src="./public/assets/ui/close.png" alt="Fermer" />
+    <h2 class="sentence centrion">L'équipe</h2>
+    <div class="membres">
+      <div class="membre">
+        <div class="photo">
+            <img src="./public/assets/team/enzo.jpeg" alt="Enzo Cailleton"/>
+        </div>
+        <h3 class="nom">Enzo Cailleton</h3>
+        <p class="role">Développeur</p>
+        <div class="socials">
+          <div class="social">
+              <a target="_blank" href="https://www.linkedin.com/in/enzo-cailleton-9b9247175/">
+                <img src="./public/assets/ui/linkedin.png" role="presentation" />
+              </a>
+          </div>
+          <div class="social">
+            <a target="_blank" href="https://www.instagram.com/enzocailleton.design/">
+                <img src="./public/assets/ui/instagram.png" role="presentation" />
+              </a>
+          </div>
+          <div class="social">
+            <a target="_blank" href="https://enzocailleton.com/">
+                <img src="./public/assets/ui/website.png" role="presentation" />
+              </a>
+          </div>
+        </div>
+      </div>
+      <div class="membre">
+        <div class="photo">
+            <img src="./public/assets/team/maelle.jpg" alt="Maëlle Rabouan"/>
+        </div>
+        <h3 class="nom">Maëlle Rabouan</h3>
+        <p class="role">Développeur</p>
+        <div class="socials">
+            <div class="social">
+                <a target="_blank" href="https://www.linkedin.com/in/ma%C3%ABlle-rabouan-4b0776194/">
+                  <img src="./public/assets/ui/linkedin.png" role="presentation" />
+                </a>
+            </div>
+            <div class="social">
+              <a target="_blank" href="https://maellerabouan.com/">
+                  <img src="./public/assets/ui/website.png" role="presentation" />
+                </a>
+            </div>
+          </div>
+      </div>
+      <div class="membre">
+        <div class="photo">
+            <img src="./public/assets/team/yacine.jpg" alt="Yacine Bigot"/>
+        </div>
+        <h3 class="nom">Yacine Bigot</h3>
+        <p class="role">Designer</p>
+        <div class="socials">
+            <div class="social">
+                <a target="_blank" href="https://www.linkedin.com/in/yacine-bigot-306872187/">
+                  <img src="./public/assets/ui/linkedin.png" role="presentation" />
+                </a>
+            </div>
+            <div class="social">
+              <a target="_blank" href="https://www.instagram.com/yaci_nsh03/">
+                  <img src="./public/assets/ui/instagram.png" role="presentation" />
+                </a>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="membres bottom">
+        <div class="membre">
+            <h3 class="nom">Ange Belegue</h3>
+            <p class="role">Designer</p>
+        </div>
+        <div class="membre">
+            <h3 class="nom">Sohel Hara</h3>
+            <p class="role">Designer</p>
+        </div>
+    </div>
   </div>
 
   <script type="module" loading="lazy" src="/src/main.ts"></script>

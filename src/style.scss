@@ -23,13 +23,34 @@ body {
 
 .about {
   width: 100%;
-  min-height: 100vh;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: scroll;
+  background-color: #fff;
   padding-bottom: 50px;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 12;
+  box-shadow: 0 0 0 50vw rgba(0, 0, 0, 0.5);
   cursor: default !important;
+  &.active {
+    display: flex;
+  }
+  .close {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+  }
   .sentence {
     font-size: 32px;
     margin-top: 50px;
@@ -38,6 +59,9 @@ body {
     margin-top: 25px;
     display: flex;
     grid-gap: 35px;
+    &.bottom {
+      margin-top: 50px;
+    }
     @media screen and (max-width: 500px) {
       flex-direction: column;
     }
@@ -224,15 +248,16 @@ body {
 }
 
 .timeline--mobile {
-  width: 50vw;
+  width: 30vw;
   height: 100vh;
   background-color: #FFFCDC;
   border-left: 10px solid #93C3BA;
   box-shadow: -1px 0px 0px 1px #000;
   position: fixed;
-  right: -100vw;
+  right: -50vw;
   z-index: 12;
   transition: 500ms cubic-bezier(.84,.07,.54,.82);
+  overflow-x: visible;
   overflow-y: scroll;
   &.active {
     right: 0;
@@ -255,22 +280,30 @@ body {
     }
   }
   .timeline--chapter {
+    width: 100%;
     padding: 25px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
     position: relative;
     font-size: 24px;
     font-family: 'Centrion';
     opacity: 0.5;
     &::after {
       content: '';
-      width: 100%;
-      height: 1px;
-      background-color: #000;
-      position: absolute;
-      left: 0;
-      bottom: 0;
+      width: 30px;
+      height: 30px;
+      background-image: url('../public/assets/ui/tick-disabled.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: inline-block;
     }
     &.active {
       opacity: 1;
+      &::after {
+        background-image: url('../public/assets/ui/tick-active.png');
+      }
     }
   }
 }
@@ -310,6 +343,36 @@ body {
   }
 }
 
+.btn-next {
+  width: 200px;
+  height: 80px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 0;
+  font-size: 1.25em;
+  font-family: 'Centrion';
+  z-index: 12;
+  @media screen and (max-width: $responsive) {
+    &.active {
+      display: flex;
+    }
+  }
+  @media screen and (min-width: $responsive) {
+    display: none;
+  }
+  p {
+    z-index: 1;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+}
+
 .nav--controls {
   width: 100%;
   padding: 0 3%;
@@ -323,25 +386,6 @@ body {
   transform: translateY(100px);
   div {
     display: flex;
-    &.btn-next {
-      width: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      font-size: 1.25em;
-      font-family: 'Centrion';
-      @media screen and (min-width: $responsive) {
-        display: none;
-      }
-      p {
-        z-index: 1;
-      }
-      img {
-        width: 100%;
-        position: absolute;
-      }
-    }
     &.burger {
       @media screen and (min-width: $responsive) {
         display: none;

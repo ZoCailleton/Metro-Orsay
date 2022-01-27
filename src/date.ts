@@ -1,16 +1,17 @@
 export class DateTrigger {
     date: number
-    dateContainer: any
+    dateContainer: HTMLDivElement | null
     constructor() {
         this.date = new Date().getFullYear()
         this.dateContainer = document.querySelector('.date p')
     }
 
     init() {
-        this.dateContainer.innerHTML = this.date
+        if (this.dateContainer)
+        this.dateContainer.innerHTML = this.date.toString()
     }
 
-    updateDate(newDate: any) {
+    updateDate(newDate: number) {
         let update = setInterval(() => {
             if (newDate < this.date) {
                 this.date--
@@ -19,11 +20,13 @@ export class DateTrigger {
             } else {
                 clearInterval(update)
             }
-            this.dateContainer.innerHTML = this.date
+            if (this.dateContainer)
+            this.dateContainer.innerHTML = this.date.toString()
         }, 20)
     }
 
     show() {
-        this.dateContainer.style.opacity = 1
+        if (this.dateContainer)
+        this.dateContainer.style.opacity = `1`
     }
 }
